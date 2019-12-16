@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
   return knex.schema.createTable('appointments', table => {
     table.increments();
@@ -14,8 +13,8 @@ exports.up = function(knex) {
       .unsigned()
       .references('id')
       .inTable('interviewees');
-    table.timestamp('interview_appointment_datetime');
-    table.timestamp('interview_created_at');
+    table.string('interview_appointment_datetime');
+    table.timestamp('interview_created_at').defaultTo(knex.fn.now());
   });
 };
 

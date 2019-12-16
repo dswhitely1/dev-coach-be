@@ -3,15 +3,18 @@ exports.up = function(knex) {
     table.increments();
     table.string('first_name', 128).notNullable();
     table.string('last_name', 128).notNullable();
-    table.string('email', 128).notNullable();
-    table.string('password', 50).notNullable();
+    table
+      .string('email', 128)
+      .unique()
+      .notNullable();
+    table.string('password', 128).notNullable();
     table.string('location');
     table
       .integer('user_role_id')
-      .notNullable()
       .unsigned()
       .references('id')
-      .inTable('user_roles');
+      .inTable('user_roles')
+      .defaultTo(null);
   });
 };
 
