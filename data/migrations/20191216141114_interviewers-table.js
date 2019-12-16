@@ -11,9 +11,12 @@ exports.up = function(knex) {
     table.integer('interviewer_experience_level').notNullable();
     table.integer('interviewer_skill_level').notNullable();
     table.string('description', 400);
-    table.integer('rating');
-    table.float('hourly_rate')
+    table.float('rating');
+    table.float('hourly_rate');
+    table.string('contact_url', 128);
   });
 };
 
-exports.down = function(knex) {};
+exports.down = function(knex) {
+  return knex.schema.dropTableIfExists('interviewers');
+};
