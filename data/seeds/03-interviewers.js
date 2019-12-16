@@ -1,10 +1,10 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('interviewers')
+  return knex('interviewers_table')
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('interviewers').insert([
+      return knex('interviewers_table').insert([
         {
           user_id: 1,
           avatar_url: 'google.com',

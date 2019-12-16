@@ -1,21 +1,21 @@
 
 exports.up = function(knex) {
-  return knex.schema.createTable('appointments', table => {
+  return knex.schema.createTable('appointments_table', table => {
     table.increments();
     table
       .integer('interviewer_id')
       .notNullable()
       .unsigned()
       .references('id')
-      .inTable('interviewers');
+      .inTable('interviewers_table');
     table
       .integer('interviewee_id')
       .notNullable()
       .unsigned()
       .references('id')
-      .inTable('interviewees');
-    table.timestamp('interview_appointment_datetime');
-    table.timestamp('interview_created_at');
+      .inTable('interviewees_table');
+    table.string('interview_appointment_datetime');
+    table.timestamp('interview_created_at').defaultTo(knex.fn.now());
   });
 };
 

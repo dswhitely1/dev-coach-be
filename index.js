@@ -4,18 +4,18 @@ const cors = require('cors');
 
 const server = express();
 
-//plug middleware
+// plug middleware & connections
 server.use(helmet());
 server.use(cors());
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
+// catch-all endpoint
 server.get('/', (req, res) => {
-  res.status(200).json({ message: 'Quality Hub API' });
+  res.status(200).json({ message: 'Welcome to the Dev Coach API' });
 });
 
-// catch-all endpoint
 server.all('*', (req, res) => {
   res.status(404).send({
     error: 'The resource you are looking for does not exist',
