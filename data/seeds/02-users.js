@@ -33,6 +33,13 @@ exports.seed = function(knex) {
           password: 'bob',
           user_role_id: 1,
         },
+        {
+          first_name: 'Lizzo',
+          last_name: 'Smith',
+          email: 'lizzo@google.com',
+          password: 'lizzo',
+          user_role_id: 1,
+        },
       ]);
     });
 };
