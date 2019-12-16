@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const server = express();
 
+//plug middleware
 server.use(helmet());
 server.use(cors());
 
@@ -14,6 +15,7 @@ server.get('/', (req, res) => {
   res.status(200).json({ message: 'Quality Hub API' });
 });
 
+// catch-all endpoint
 server.all('*', (req, res) => {
   res.status(404).send({
     error: 'The resource you are looking for does not exist',
