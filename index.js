@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const authRouter = require('./src/routers/auth-router');
+const userRouter = require('./src/routers/user-router');
 
 const server = express();
 
@@ -17,7 +17,7 @@ server.get('/', (req, res) => {
   res.status(200).json({ message: 'Quality Hub API' });
 });
 
-server.use('/auth', authRouter);
+server.use('/user', userRouter);
 
 // catch-all endpoint
 server.all('*', (req, res) => {
