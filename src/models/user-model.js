@@ -12,6 +12,12 @@ function find() {
   );
 }
 
+function findBy(email) {
+  return db('users')
+    .where(email)
+    .first();
+}
+
 function findById(id) {
   return db('users')
     .where({ id })
@@ -26,6 +32,7 @@ function add(user) {
 
 module.exports = {
   find,
+  findBy,
   findById,
   add,
 };
