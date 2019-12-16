@@ -2,9 +2,11 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 
+const authRouter = require('./src/routers/auth-router');
+
 const server = express();
 
-//plug middleware
+// plug middleware
 server.use(helmet());
 server.use(cors());
 
@@ -14,6 +16,8 @@ server.use(express.urlencoded({ extended: true }));
 server.get('/', (req, res) => {
   res.status(200).json({ message: 'Quality Hub API' });
 });
+
+server.use('/auth', authRouter);
 
 // catch-all endpoint
 server.all('*', (req, res) => {
