@@ -15,8 +15,11 @@
     "ecmaVersion": 2018
   },
   "rules": {
-    "prettier/prettier": ["error"],
     "no-console": "off",
-    "func-names": "off"
+    "func-names": "off",
+    "camelcase": [
+      "error",
+      { "ignoreDestructuring": true, "properties": "never" }
+    ]
   }
 }
