@@ -12,6 +12,10 @@ describe('user', () => {
 
     const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico", "user_role_id": 2}
 
+    const jayneDataWrongEmail = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@google.co.uk", "password": "chico", "user_role_id": 2}
+
+    const jayneDataWrongPassword = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "lambda", "user_role_id": 2}
+
     const goodData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
 
     const duplicateData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
@@ -59,6 +63,24 @@ describe('user', () => {
          .expect(500)
          .expect('Content-Type', /json/)
      })
+
+     test(' POST LOGIN wrong email 500', () => {
+       return request(server)
+        .post('/user/login')
+        .send(jayneDataWrongEmail)
+        .set('Accept', 'application/json')
+        .expect(500)
+        .expect('Content-Type', /json/)
+     })
+
+     test(' POST LOGIN wrong password 500', () => {
+      return request(server)
+       .post('/user/login')
+       .send(jayneDataWrongPassword)
+       .set('Accept', 'application/json')
+       .expect(500)
+       .expect('Content-Type', /json/)
+    })
 
      test(' POST LOGIN no data 500 ', () => {
        return request(server)
