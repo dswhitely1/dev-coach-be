@@ -36,15 +36,11 @@ async function add(user) {
 
 async function remove(id) {
   const user = await findById(id);
-  if (user) {
-    const deleted = await db('users')
-      .where({ id })
-      .del();
+  await db('users')
+    .where({ id })
+    .del();
 
-    if (deleted) {
-      return user;
-    }
-  }
+  return user;
 }
 
 module.exports = {
