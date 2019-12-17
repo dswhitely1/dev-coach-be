@@ -1,10 +1,10 @@
 const request = require('supertest');
 const server = require('../index');
-const db = require('../data/dbConfig');
+// const db = require('../data/dbConfig');
 
-beforeEach(() => {
-  return db('users_table').truncate()
-})
+// beforeEach(() => {
+//   return db('users_table').truncate()
+// })
 
 describe('user', () => {
   
