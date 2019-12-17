@@ -52,7 +52,7 @@ describe('user', () => {
          .post('/user/login')
          .send(wrongData)
          .set('Accept', 'application/json')
-         .expect(500)
+         .expect(401)
          .expect('Content-Type', /json/)
      })
 
@@ -61,7 +61,7 @@ describe('user', () => {
         .post('/user/login')
         .send(jayneDataWrongEmail)
         .set('Accept', 'application/json')
-        .expect(500)
+        .expect(401)
         .expect('Content-Type', /json/)
      })
 
@@ -70,7 +70,7 @@ describe('user', () => {
        .post('/user/login')
        .send(jayneDataWrongPassword)
        .set('Accept', 'application/json')
-       .expect(500)
+       .expect(401)
        .expect('Content-Type', /json/)
     })
 
@@ -79,7 +79,7 @@ describe('user', () => {
          .post('/user/login')
         //  .send(wrongData)
          .set('Accept', 'application/json')
-         .expect(500)
+         .expect(401)
          .expect('Content-Type', /json/)
      })
 
