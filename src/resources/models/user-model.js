@@ -1,7 +1,7 @@
 const db = require('../../../data/dbConfig');
 
 async function find() {
-  const users = await db('users').select(
+  const users = await db('users_table').select(
     'id',
     'first_name',
     'last_name',
@@ -14,14 +14,14 @@ async function find() {
 }
 
 async function findBy(email) {
-  const user = await db('users')
+  const user = await db('users_table')
     .where(email)
     .first();
   return user;
 }
 
 async function findById(id) {
-  const user = await db('users')
+  const user = await db('users_table')
     .where({ id })
     .first();
 
@@ -29,18 +29,22 @@ async function findById(id) {
 }
 
 async function add(user) {
-  const [id] = await db('users').insert(user, 'id');
+  const [id] = await db('users_table').insert(user, 'id');
 
   return findById(id);
 }
 
+// eslint-disable-next-line
 async function remove(id) {
   const user = await findById(id);
-  await db('users')
-    .where({ id })
-    .del();
-
-  return user;
+  if (user) {
+    const deleted = await db('users_table')
+      .where({ id })
+      .del();
+    if (deleted) {
+      return user;
+    }
+  }
 }
 
 module.exports = {

@@ -8,7 +8,7 @@ exports.up = function(knex) {
     table.string('location');
     table
       .integer('user_role_id')
-      .notNullable()
+      .defaultTo(null)
       .unsigned()
       .references('id')
       .inTable('user_roles_table');
