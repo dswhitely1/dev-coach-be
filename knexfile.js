@@ -39,7 +39,7 @@ module.exports = {
     client: 'pg',
     connection:
       process.env.DATABASE_TEST ||
-      'postgres://postgres-1:root@127.0.0.1:5432/qualityhub_test',
+      'postgres://quality:root@127.0.0.1:5432/qualityhub_test',
     useNullAsDefault: true,
     migrations: {
       directory: './data/migrations',
