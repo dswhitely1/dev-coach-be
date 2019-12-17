@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const Users = require('../models/user-model');
 
-const generateToken = require('../utils/generate-token');
+const generateToken = require('../../utils/generate-token');
 
 exports.register = async (req, res) => {
   const user = await Users.findBy({ email: req.body.email });
