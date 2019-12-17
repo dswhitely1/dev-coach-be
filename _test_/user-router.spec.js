@@ -47,14 +47,6 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN 200 ', () => {
-       return request(server)
-         .post('/user/login')
-         .send(goodData)
-         .expect(200)
-         .expect('Content-Type', /json/)
-     })
-
      test(' POST LOGIN wrong data 500 ', () => {
        return request(server)
          .post('/user/login')
@@ -90,11 +82,19 @@ describe('user', () => {
          .expect(500)
          .expect('Content-Type', /json/)
      })
+
+     test(' POST LOGIN  jayneData 200 ', () => {
+      return request(server)
+        .post('/user/login')
+        .send(jayneData)
+        .expect(200)
+        .expect('Content-Type', /json/)
+    })
   });
 
   describe('[GET] / endpoint', () => {
     
-    test(' ID user 1', () => {
+    test(' ID user 1 expect 200', () => {
       return request(server)
         .get('/user/1')
         .expect(200) 

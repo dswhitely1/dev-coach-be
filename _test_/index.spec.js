@@ -19,6 +19,12 @@ describe('index', () => {
       .expect('Content-Type', /json/);
   });
 
+  test(' / test 404 ', () => {
+    return request(server)
+      .get('/test')
+      .expect(404)
+  })
+
   test('welcome message displayed ', () => {
     return request(server)
       .get('/')
@@ -27,7 +33,9 @@ describe('index', () => {
         expect(res.status).toEqual(200);
         expect(res.body.message).toBe('Welcome to the Dev Coach API');
         expect(res.body).toHaveProperty('message');
-  });
+  })
+
+
 
 })
 
