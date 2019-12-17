@@ -12,6 +12,6 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database qualityhub_test;' -U postgres
-  - psql -c "CREATE USER username WITH PASSWORD 'password';" -U postgres
+  - psql -c "CREATE USER postgres WITH PASSWORD 'root';" -U postgres
 
 script: npm test
