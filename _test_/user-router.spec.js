@@ -1,22 +1,17 @@
 const request = require('supertest');
 const server = require('../index');
+const db = require('../data/dbConfig');
+
+beforeEach(() => {
+  return db('users_table').truncate()
+})
 
 describe('user', () => {
-  describe('[GET] / endpoint', () => {
+  
+  describe('[POST] / endpoint', () => {
+
     const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico", "user_role_id": 2}
 
-    test(' ID user 1', () => {
-      return request(server)
-        .post('/user/login')
-        .send(jayneData)
-        .set('Accept', 'application/json')
-        .expect(201)
-        .get('/user/1')
-        .expect(200) 
-    });
-  })
-
-  describe('[POST] / endpoint', () => {
     const goodData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
 
     const duplicateData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
@@ -68,10 +63,25 @@ describe('user', () => {
      test(' POST LOGIN no data 500 ', () => {
        return request(server)
          .post('/user/login')
-         .send(wrongData)
+        //  .send(wrongData)
          .set('Accept', 'application/json')
          .expect(500)
          .expect('Content-Type', /json/)
      })
   });
+
+  describe('[GET] / endpoint', () => {
+    
+    test(' ID user 1', () => {
+      return request(server)
+        .get('/user/1')
+        .expect(200) 
+    });
+
+    test(' ID user 500 expect 404', () => {
+      return request(server)
+        .get('/user/500')
+        .expect(404) 
+    });
+  })
 })
