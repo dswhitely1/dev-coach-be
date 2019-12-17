@@ -1,5 +1,4 @@
 require('dotenv').config(); // load .env variables
-
 module.exports = {
   development: {
     client: 'pg',
@@ -37,7 +36,9 @@ module.exports = {
   },
   testing: {
     client: 'pg',
-    connection: process.env.DATABASE_TEST,
+    connection:
+      process.env.DATABASE_TEST ||
+      'postgres://quality:root@127.0.0.1:5432/qualityhub_test',
     useNullAsDefault: true,
     migrations: {
       directory: './data/migrations',
