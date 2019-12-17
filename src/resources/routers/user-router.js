@@ -16,6 +16,11 @@ router.post(
   userController.login,
 );
 
-router.delete('/:id', checkAuth, userController.delete);
+router.delete(
+  '/:id',
+  checkAuth,
+  userMiddleware.validateId,
+  userController.delete,
+);
 
 module.exports = router;

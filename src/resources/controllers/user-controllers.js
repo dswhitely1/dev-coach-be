@@ -64,8 +64,6 @@ exports.delete = async (req, res) => {
       res.status(200).json({
         message: 'User deleted',
       });
-    } else {
-      res.status(400).json({ message: 'User does not exist!' });
     }
   } catch (error) {
     res.status(500).json({ message: 'Could not delete user' });

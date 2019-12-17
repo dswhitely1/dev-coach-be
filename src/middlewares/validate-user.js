@@ -1,3 +1,5 @@
+const Users = require('../resources/models/user-model');
+
 exports.validateRegister = (req, res, next) => {
   const {
     first_name: firstName,
@@ -24,5 +26,22 @@ exports.validateLogin = (req, res, next) => {
     });
   } else {
     next();
+  }
+};
+
+exports.validateId = async (req, res, next) => {
+  try {
+    const user = await Users.findById(req.params.id);
+    if (!user) {
+      res.status(400).json({ message: 'Unable to find user' });
+    } else {
+      next();
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({
+        message: `Your request could not be processed ${error.message}`,
+      });
   }
 };
