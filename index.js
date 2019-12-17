@@ -6,15 +6,16 @@ const userRouter = require('./src/resources/routers/user-router');
 
 const server = express();
 
-// plug middleware
+// plug middleware & connections
 server.use(helmet());
 server.use(cors());
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
+// catch-all endpoint
 server.get('/', (req, res) => {
-  res.status(200).json({ message: 'Quality Hub API' });
+  res.status(200).json({ message: 'Welcome to the Dev Coach API' });
 });
 
 server.use('/user', userRouter);
@@ -26,7 +27,7 @@ server.all('*', (req, res) => {
   });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 // server.listen(port, console.log(`Listening on Port ${port}`));
 
 /* 
