@@ -2,6 +2,8 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 
+const userRouter = require('./src/resources/routers/user-router');
+
 const server = express();
 
 // plug middleware & connections
@@ -16,6 +18,9 @@ server.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to the Dev Coach API' });
 });
 
+server.use('/user', userRouter);
+
+// catch-all endpoint
 server.all('*', (req, res) => {
   res.status(404).send({
     error: 'The resource you are looking for does not exist',
