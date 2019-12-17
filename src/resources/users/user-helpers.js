@@ -1,4 +1,4 @@
-const Users = require('../resources/models/user-model');
+const Users = require('../users/user-model');
 
 exports.validateRegister = (req, res, next) => {
   const {
@@ -38,10 +38,8 @@ exports.validateId = async (req, res, next) => {
       next();
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: `Your request could not be processed ${error.message}`,
-      });
+    res.status(500).json({
+      message: `Your request could not be processed ${error.message}`,
+    });
   }
 };
