@@ -3,7 +3,7 @@ const server = require('../index');
 
 describe('user', () => {
   describe('[GET] / endpoint', () => {
-    const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico", "user_role_id": 2},
+    const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico", "user_role_id": 2}
 
     test(' ID user 1', () => {
       return request(server)

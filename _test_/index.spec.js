@@ -3,8 +3,8 @@ const server = require('../index');
 
 describe('index', () => {
   describe('[GET] / endpoint', () => {})
-  test('the db env is development', () => {
-    expect(process.env.DB_ENV).toBe('development');
+  test('the db env is testing', () => {
+    expect(process.env.DB_ENV).toBe('testing');
   });
 
   test(' GET should return 200', async () => {
@@ -28,6 +28,7 @@ describe('index', () => {
         expect(res.body.message).toBe('Welcome to the Dev Coach API');
         expect(res.body).toHaveProperty('message');
   });
+
 })
   
 });
