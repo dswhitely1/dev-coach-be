@@ -2,16 +2,23 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 
+const usersRouter = require('./users/user-router');
+
 const server = express();
 
+// plug middleware & connections
 server.use(helmet());
 server.use(cors());
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
+// Routers and authentication
+server.use('/api/users', usersRouter);
+
+// catch-all endpoint
 server.get('/', (req, res) => {
-  res.status(200).json({ message: 'Quality Hub API' });
+  res.status(200).json({ message: 'Welcome to the Dev Coach API' });
 });
 
 server.all('*', (req, res) => {
@@ -20,7 +27,7 @@ server.all('*', (req, res) => {
   });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 // server.listen(port, console.log(`Listening on Port ${port}`));
 
 /* 
