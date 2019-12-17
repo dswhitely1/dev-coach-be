@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
   return knex.schema.createTable('appointments_table', table => {
     table.increments();
