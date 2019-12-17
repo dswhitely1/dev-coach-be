@@ -4,23 +4,14 @@ const userController = require('../controllers/user-controllers');
 const checkAuth = require('../../middlewares/check-auth');
 const userMiddleware = require('../../middlewares/validate-user');
 
-router.post(
-  '/register',
-  userMiddleware.validateRegister,
-  userController.register,
-);
+const {
+  validateId,
+  validateRegister,
+  validateLogin,
+} = userMiddleware;
 
-router.post(
-  '/login',
-  userMiddleware.validateLogin,
-  userController.login,
-);
-
-router.delete(
-  '/:id',
-  checkAuth,
-  userMiddleware.validateId,
-  userController.delete,
-);
+router.post('/register', validateRegister, userController.register);
+router.post('/login', validateLogin, userController.login);
+router.delete('/:id', checkAuth, validateId, userController.delete);
 
 module.exports = router;
