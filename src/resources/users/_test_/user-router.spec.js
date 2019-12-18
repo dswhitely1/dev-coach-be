@@ -10,7 +10,7 @@ describe('user', () => {
   
   describe('[POST] / endpoint', () => {
 
-    const jayneData = {'first_name': 'Jayne', 'last_name': 'Carmichael Norrie', 'email': 'jayne@musicisourforte.co.uk', 'password': 'chico'}
+    const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico"}
 
     const jayneDataWrongEmail = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@google.co.uk", "password": "chico"}
 
@@ -96,7 +96,7 @@ describe('user', () => {
     
     test(' ID user 1 expect 200', () => {
       return request(server)
-        .get('/user/1')
+        .get('/user/4')
         .expect(200) 
     });
 
