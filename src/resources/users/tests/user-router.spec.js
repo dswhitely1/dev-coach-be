@@ -68,7 +68,7 @@ describe('user', () => {
 
     test('POST REGISTER newUser gives user_id 200 ', async () => {
       const response = await request(server)
-        .post('/user/login')
+        .post('/user/register')
         .send(newUser)
         expect(response.status).toEqual(200)
         expect(response.body).toHaveProperty('user_id');
