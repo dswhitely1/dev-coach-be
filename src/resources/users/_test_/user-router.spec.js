@@ -12,6 +12,8 @@ describe('user', () => {
 
     const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico"}
 
+    const jayneLogIn = {"email": "jayne@musicisourforte.co.uk", "password": "chico"}
+
     const jayneDataWrongEmail = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@google.co.uk", "password": "chico"}
 
     const jayneDataWrongPassword = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "lambda", "user_role_id": 2}
@@ -83,10 +85,10 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN  jayneData 200 ', () => {
+     test(' POST LOGIN  jayne 200 ', () => {
       return request(server)
         .post('/user/login')
-        .send(jayneData)
+        .send(jayneLogIn)
         .expect(200)
         .expect('Content-Type', /json/)
     })
