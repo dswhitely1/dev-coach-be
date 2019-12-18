@@ -65,6 +65,15 @@ async function get_appointments(role, id) {
   return appointments;
 }
 
+// BUG in last part for where() => is returning only one coach
+
+// STUDENT
+// SELECT u.first_name, u.last_name, u.email ,c.experience_level, c.skill_level, c.avatar_url,
+// a.id as appointment_id, a.created_at, a.appointment_datetime, at.appointment_topic from users as u
+// join coaches as c on c.user_id = u.id join appointments as a on a.student_id = c.id
+//  join appointment_topics as at on at.id = a.topic_id join students as s on s.id = a.student_id where a.student_id = 1
+
+//COACH
 // SELECT u.first_name, u.last_name, u.email ,s.experience_level, s.confidence_level, s.avatar_url,
 //  a.id as appointment_id, a.created_at, a.appointment_datetime, at.appointment_topic
 //  from users as u
