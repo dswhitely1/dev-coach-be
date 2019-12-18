@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('users_table', table => {
+  return knex.schema.createTable('users', table => {
     table.increments();
     table.string('first_name', 128).notNullable();
     table.string('last_name', 128).notNullable();
@@ -7,13 +7,13 @@ exports.up = function(knex) {
     table.string('password', 128).notNullable();
     table.string('location');
     table
-      .integer('user_role_id')
+      .integer('role_id')
       .defaultTo(null)
       .unsigned()
       .references('id')
-      .inTable('user_roles_table');
+      .inTable('user_roles');
   });
 };
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('users_table');
+  return knex.schema.dropTableIfExists('users');
 };

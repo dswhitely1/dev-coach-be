@@ -8,7 +8,7 @@ describe('user', () => {
       last_name: 'Carmichael Norrie',
       email: 'jayne@musicisourforte.co.uk',
       password: 'chico',
-      user_role_id: 2,
+      role_id: 2,
     };
 
     const testUser = {

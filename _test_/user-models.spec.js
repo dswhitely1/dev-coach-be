@@ -24,7 +24,7 @@ describe('Users model', () => {
         last_name: 'tee',
         location: null,
         password: '12345',
-        user_role_id: null,
+        role_id: null,
       });
       expect(users.length).toBe(9);
     });
@@ -41,12 +41,11 @@ describe('Users model', () => {
         email: 'funmi@google.com',
         location: null,
         password: 'funmi',
-        user_role_id: 2,
+        role_id: 2,
       });
     });
   });
 
- 
   describe('.remove()', () => {
     test('should remove a user successfully from the database', async () => {
       const removed = await Users.remove(8);
