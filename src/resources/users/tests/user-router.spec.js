@@ -55,10 +55,9 @@ describe('user', () => {
       const response = await request(server)
         .post('/user/register')
         .send(testUser)
-        .then(res => {
-          expect(response.status).toEqual(201);
-          expect(response.body.message).toBe('Welcome matt');
-          expect(response.body).toHaveProperty('token');
+        expect(response.status).toEqual(201)
+        expect(response.body.message).toBe('Welcome matt')
+        expect(response.body).toHaveProperty('token');
     })
 
      test(' POST LOGIN wrong data 400 ', () => {
@@ -95,7 +94,7 @@ describe('user', () => {
          .set('Accept', 'application/json')
          .expect(400)
          .expect('Content-Type', /json/)
-     })
+     });
 
      test(' POST LOGIN expect 401 ', () => {
       return request(server)
@@ -103,7 +102,7 @@ describe('user', () => {
         .send(jayneData)
         .expect(401)
         .expect('Content-Type', /json/)
-    })
+    });
 
     test(' POST LOGIN expect 200 ', () => {
       return request(server)
