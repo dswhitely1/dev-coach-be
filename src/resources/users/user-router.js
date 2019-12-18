@@ -15,6 +15,6 @@ router.post('/login', validateLogin, userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
 router.get('/:id', checkAuth, userController.details);
 router.get('/all/coaches', checkAuth, userController.coaches);
-router.get('/:id/appointments', userController.appointments); // add checkauth
+router.get('/appointments/:id', userController.appointments); // add checkauth
 
 module.exports = router;
