@@ -1,14 +1,6 @@
 const request = require('supertest');
 const db = require('../data/dbConfig');
 const server = require('../index');
-// const generateToken = require('../src/utils/generate-token');
-
-
-// beforeAll((done) => {
-//   token = generateToken('user');
-//   done();
-// })
-
 
 const testUser = {
   first_name: 'fun',
@@ -79,9 +71,9 @@ describe('usersController', () => {
 
   describe('DELETE /:id', () => {
     test('It should not delete a user without a valid token', async () => {
-     const response = await request(server).delete('/user/1')
-     expect(response.status).toBe(401);
-     expect(response.body).toEqual( { message: 'Auth Failed' })
-    })
-  })
+      const response = await request(server).delete('/user/1');
+      expect(response.status).toBe(401);
+      expect(response.body).toEqual({ message: 'Auth Failed' });
+    });
+  });
 });
