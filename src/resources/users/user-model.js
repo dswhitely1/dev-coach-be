@@ -75,6 +75,22 @@ async function get_coaches() {
   return coaches;
 }
 
+async function get_appointments(role, id) {
+  let appointments;
+  if (role === 1) {
+    appointments = await db('users')
+      .join('students', 'students.user_id', '=', 'users.id')
+      .join('appointments', 'appointments.user_id', '=', 'users.id')
+      .where('users.id', '=', id)
+  } else {
+    appointments = await db('users')
+      .join('coaches', 'coaches.user_id', '=', 'users.id')
+      .join('appointments', 'appointments.user_id', '=', 'users.id')
+      .where('users.id', '=', id)
+  }
+  return appointments;
+}
+
 module.exports = {
   find,
   findBy,
@@ -82,5 +98,6 @@ module.exports = {
   add,
   remove,
   user_details,
-  get_coaches
+  get_coaches,
+  get_appointments
 };
