@@ -98,7 +98,7 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      });
 
-     test(' POST LOGIN expect 401 ', () => {
+     test(' POST LOGIN jayneData expect 401 ', () => {
       return request(server)
         .post('/user/login')
         .send(jayneData)
@@ -106,7 +106,7 @@ describe('user', () => {
         .expect('Content-Type', /json/)
     });
 
-    test(' POST LOGIN expect 200 ', () => {
+    test(' POST LOGIN userData expect 200 ', () => {
       return request(server)
         .post('/user/login')
         .send(userDataLogIn)
@@ -114,20 +114,31 @@ describe('user', () => {
         .expect('Content-Type', /json/)
     })
 
+    test('POST LOGIN TESTUSER 200 ', () => {
+      return request(server)
+        .post('/user/login')
+        .send(testUserLogIn)
+        .expect(200)
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body.message).toBe('Welcome Back matt!');
+        })
+    })
+
     test('POST LOGIN testUser gives welcome 201', async () => {
       const response = await request(server)
         .post('/user/register')
-        .send(testUserLogIn)
-        expect(response.status).toEqual(201)
-        expect(response.body.message).toBe('Welcome Back matt!')
+        .send(testUserLogIn);
+      expect(response.status).toEqual(201);
+      expect(response.body.message).toBe('Welcome Back matt!')
     })
 
     test('POST LOGIN testUser gives token 201', async () => {
       const response = await request(server)
         .post('/user/register')
-        .send(testUserLogIn)
-        expect(response.status).toEqual(201)
-        expect(response.body).toHaveProperty('token');
+        .send(testUserLogIn);
+      expect(response.status).toEqual(201)
+      expect(response.body).toHaveProperty('token');
     })
   });
 
