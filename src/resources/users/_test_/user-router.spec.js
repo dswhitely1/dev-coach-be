@@ -1,5 +1,5 @@
 const request = require('supertest');
-const server = require('../index');
+const server = require('../../../../index');
 // const db = require('../data/dbConfig');
 
 // beforeEach(() => {
@@ -10,15 +10,15 @@ describe('user', () => {
   
   describe('[POST] / endpoint', () => {
 
-    const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico", "user_role_id": 2}
+    const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico"}
 
-    const jayneDataWrongEmail = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@google.co.uk", "password": "chico", "user_role_id": 2}
+    const jayneDataWrongEmail = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@google.co.uk", "password": "chico"}
 
     const jayneDataWrongPassword = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "lambda", "user_role_id": 2}
 
-    const goodData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
+    const goodData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
 
-    const duplicateData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
+    const duplicateData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
 
     const wrongData = {"first_name": "chico", "password": "testing"}
 
