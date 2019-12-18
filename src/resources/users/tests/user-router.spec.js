@@ -213,12 +213,4 @@ describe('user', () => {
         });
     });
   });
-
-  describe('[GET] / endpoint', () => {
-    test(' ID user 500 expect 500', () => {
-      return request(server)
-        .get('/user/500')
-        .expect(500);
-    });
-  });
 });
