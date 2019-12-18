@@ -56,20 +56,19 @@ async function user_details(role, id) {
         'interviewees_table',
         'interviewees_table.user_id',
         '=',
-        'id',
+        'users_table.id',
       )
       .where('users_table.id', '=', id)
       .first();
   } else {
     user = await db('users_table')
-      .join('users_table')
       .join(
         'interviewers_table',
         'interviewers_table.user_id',
         '=',
-        'id',
+        'users_table.id',
       )
-      .where({ id })
+      .where('users_table.id', '=', id)
       .first();
   }
   return user;

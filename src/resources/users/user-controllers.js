@@ -75,10 +75,10 @@ exports.details = async (req, res) => {
     const user = await Users.user_details(req.body.role, req.params.id);
     if (user) {
       res.status(200).json({
-        message: user,
+        user,
       });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Could not delete user' });
+    res.status(500).json({ message: 'Could not find user' });
   }
 };
