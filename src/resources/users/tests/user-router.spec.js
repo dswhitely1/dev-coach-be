@@ -31,12 +31,12 @@ describe('user', () => {
         .expect(201)
     })
 
-    test(' POST REGISTER duplicate data 500 ', () => {
+    test(' POST REGISTER duplicate data 409 ', () => {
       return request(server)
          .post('/user/register')
          .send(duplicateData)
          .set('Accept', 'application/json')
-         .expect(500)
+         .expect(409)
          .expect('Content-Type', /json/)
      })
 
@@ -49,12 +49,12 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong data 401 ', () => {
+     test(' POST LOGIN wrong data 400 ', () => {
        return request(server)
          .post('/user/login')
          .send(wrongData)
          .set('Accept', 'application/json')
-         .expect(401)
+         .expect(400)
          .expect('Content-Type', /json/)
      })
 
@@ -76,12 +76,12 @@ describe('user', () => {
        .expect('Content-Type', /json/)
     })
 
-     test(' POST LOGIN no data 401 ', () => {
+     test(' POST LOGIN no data 400 ', () => {
        return request(server)
          .post('/user/login')
         //  .send(wrongData)
          .set('Accept', 'application/json')
-         .expect(401)
+         .expect(400)
          .expect('Content-Type', /json/)
      })
 
@@ -97,7 +97,7 @@ describe('user', () => {
       return request(server)
         .post('/user/login')
         .send(goodDataLogIn)
-        .expect(401)
+        .expect(200)
         .expect('Content-Type', /json/)
     })
   });
@@ -107,7 +107,8 @@ describe('user', () => {
     test(' ID user 1 expect 200', () => {
       return request(server)
         .get('/user/1')
-        .expect(200) 
+        .expect(200)
+        .expect('Content-Type', /json/) 
     });
 
     test(' ID user 500 expect 404', () => {
