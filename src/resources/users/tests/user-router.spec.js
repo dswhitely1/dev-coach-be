@@ -8,7 +8,7 @@ describe('user', () => {
       last_name: 'Carmichael Norrie',
       email: 'jayne@musicisourforte.co.uk',
       password: 'chico',
-      user_role_id: 2,
+      role_id: 2,
     };
 
     const jayneDataWrongEmail = {
@@ -16,7 +16,7 @@ describe('user', () => {
       last_name: 'Carmichael Norrie',
       email: 'jayne@google.co.uk',
       password: 'chico',
-      user_role_id: 2,
+      role_id: 2,
     };
 
     const jayneDataWrongPassword = {
@@ -24,7 +24,7 @@ describe('user', () => {
       last_name: 'Carmichael Norrie',
       email: 'jayne@musicisourforte.co.uk',
       password: 'lambda',
-      user_role_id: 2,
+      role_id: 2,
     };
 
     const goodData = {
