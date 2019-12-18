@@ -66,11 +66,11 @@ describe('user', () => {
         expect(response.body).toHaveProperty('token');
     })
 
-    test('POST REGISTER newUser gives user_id 200 ', async () => {
+    test('POST REGISTER newUser gives user_id 201 ', async () => {
       const response = await request(server)
         .post('/user/register')
         .send(newUser)
-        expect(response.status).toEqual(200)
+        expect(response.status).toEqual(201)
         expect(response.body).toHaveProperty('user_id');
     })
 
