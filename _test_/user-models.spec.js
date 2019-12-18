@@ -1,4 +1,3 @@
-const db = require('../data/dbConfig');
 const Users = require('../src/resources/users/user-model');
 
 describe('Users model', () => {
@@ -53,6 +52,6 @@ describe('Users model', () => {
       const users = await Users.find();
       expect(removed).toBeTruthy();
       expect(users.length).toBe(7);
-    })
+    });
   });
 });
