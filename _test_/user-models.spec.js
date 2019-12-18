@@ -26,7 +26,7 @@ describe('Users model', () => {
         password: '12345',
         role_id: null,
       });
-      expect(users.length).toBe(9);
+      expect(users.length).toBe(11);
     });
   });
 
