@@ -9,6 +9,8 @@ exports.seed = function(knex) {
         { id: 2, coach_id: 3, student_id: 2, topic_id: 2 },
         { id: 3, coach_id: 2, student_id: 1, topic_id: 3 },
         { id: 4, coach_id: 1, student_id: 2, topic_id: 1 },
+        { id: 5, coach_id: 3, student_id: 2, topic_id: 1 },
+        { id: 6, coach_id: 2, student_id: 1, topic_id: 5 },
       ]);
     });
 };
