@@ -16,6 +16,10 @@ describe('user', () => {
 
     const testUserLogIn = {"email": "matt@google.com", "password": "matt"}
 
+    const newUser = {"first_name": "susan", "last_name": "norrie", "email": "susan@google.com", "password": "susan"}
+
+    const newUserLogIn = {"email": "susan@google.com", "password": "susan"}
+
     const userData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
 
     const userDataLogIn = {"email": "chico@chico.com", "password": "chico"}
@@ -62,6 +66,17 @@ describe('user', () => {
         expect(response.body).toHaveProperty('token');
     })
 
+    test('POST REGISTER newUser gives user_id 200 ', () => {
+      return request(server)
+        .post('/user/login')
+        .send(newUser)
+        .expect(200)
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body).toHaveProperty('user_id');
+        })
+    })
+
      test(' POST LOGIN wrong data 400 ', () => {
        return request(server)
          .post('/user/login')
@@ -98,6 +113,16 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      });
 
+     test(' POST LOGIN no data message check 400 ', () => {
+      return request(server)
+        .post('/user/login')
+       //  .send(wrongData)
+        .expect(400)
+        .then(res => {
+          expect(res.body.message).toBe('Please make sure required fields are filled in.');
+        })
+    });
+
      test(' POST LOGIN jayneData expect 401 ', () => {
       return request(server)
         .post('/user/login')
@@ -114,7 +139,7 @@ describe('user', () => {
         .expect('Content-Type', /json/)
     })
 
-    test('POST LOGIN TESTUSER 200 ', () => {
+    test('POST LOGIN TESTUSER welcome 200 ', () => {
       return request(server)
         .post('/user/login')
         .send(testUserLogIn)
@@ -125,21 +150,29 @@ describe('user', () => {
         })
     })
 
-    test('POST LOGIN testUser gives welcome 201', async () => {
-      const response = await request(server)
-        .post('/user/register')
-        .send(testUserLogIn);
-      expect(response.status).toEqual(201);
-      expect(response.body.message).toBe('Welcome Back matt!')
+    test('POST LOGIN testUser gives token 200 ', () => {
+      return request(server)
+        .post('/user/login')
+        .send(testUserLogIn)
+        .expect(200)
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body).toHaveProperty('token');
+        })
     })
 
-    test('POST LOGIN testUser gives token 201', async () => {
-      const response = await request(server)
-        .post('/user/register')
-        .send(testUserLogIn);
-      expect(response.status).toEqual(201)
-      expect(response.body).toHaveProperty('token');
+    test('POST LOGIN newUser res=object 200 ', () => {
+      return request(server)
+        .post('/user/login')
+        .send(newUserLogIn)
+        .expect(200)
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body).toBeInstanceOf(Object);
+        })
     })
+
+
   });
 
   describe('[GET] / endpoint', () => {
