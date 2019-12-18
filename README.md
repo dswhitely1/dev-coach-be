@@ -89,7 +89,7 @@ Register Error Response
 
 Parameters
 | Name | Type | Description | Required |
-| ----------- |:--------| :------------: | ----------: |
+| ---------- | :----- | :------------: | -------: |
 | email | String | Users email | Yes |
 | password | String | Users password | Yes |
 
