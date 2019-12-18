@@ -88,10 +88,11 @@ Register Error Response
 `POST /user/login`
 
 Parameters
-| Name | Type | Description | Required |
-| ---------- | :----- | :------------: | -------: |
-| email | String | Users email | Yes |
-| password | String | Users password | Yes |
+
+| Name     | Type   |  Description   | Required |
+| -------- | :----- | :------------: | -------: |
+| email    | String |  Users email   |      Yes |
+| password | String | Users password |      Yes |
 
 **POST** This will log the user in and send back a token
 
