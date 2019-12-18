@@ -43,12 +43,12 @@
 
 Parameters
 
-| Name       | Type   |  Description   | Required |
-| ---------- | :----- | :------------: | -------: |
-| first_name | String | Users forename |      Yes |
-| last_name  | String | Users surname  |      Yes |
-| email      | String |  Users email   |      Yes |
-| password   | String | Users password |      Yes |
+| Name       |  Type  | Description    | Required |
+| :--------- | :----: | :------------- | :------: |
+| first_name | String | Users forename |   Yes    |
+| last_name  | String | Users surname  |   Yes    |
+| email      | String | Users email    |   Yes    |
+| password   | String | Users password |   Yes    |
 
 **POST** This will create a new user and send back a token
 
@@ -89,10 +89,10 @@ Register Error Response
 
 Parameters
 
-| Name     | Type   |  Description   | Required |
-| -------- | :----- | :------------: | -------: |
-| email    | String |  Users email   |      Yes |
-| password | String | Users password |      Yes |
+| Name     |  Type  | Description    | Required |
+| :------- | :----: | :------------- | :------: |
+| email    | String | Users email    |   Yes    |
+| password | String | Users password |   Yes    |
 
 **POST** This will log the user in and send back a token
 
