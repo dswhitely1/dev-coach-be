@@ -8,7 +8,7 @@ exports.seed = function(knex) {
         {
           user_id: 1,
           avatar_url: 'google.com',
-          experience_level: 1,
+          years_experience: 1,
           skill_level: 1,
           description:
             'Jayne worked as a singing teacher for 9 years and is now studying with Lambda School',
@@ -16,13 +16,13 @@ exports.seed = function(knex) {
         {
           user_id: 2,
           avatar_url: 'google.com',
-          experience_level: 1,
+          years_experience: 1,
           skill_level: 1,
         },
         {
           user_id: 3,
           avatar_url: 'google.com',
-          experience_level: 1,
+          years_experience: 1,
           skill_level: 1,
         },
       ]);
