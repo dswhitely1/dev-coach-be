@@ -51,24 +51,24 @@ async function remove(id) {
 async function user_details(role, id) {
   let user;
   if (role === 1) {
-    user = await db('users_table')
+    user = await db('users')
       .join(
-        'interviewees_table',
-        'interviewees_table.user_id',
+        'students',
+        'students.user_id',
         '=',
-        'users_table.id',
+        'users.id',
       )
-      .where('users_table.id', '=', id)
+      .where('users.id', '=', id)
       .first();
   } else {
-    user = await db('users_table')
+    user = await db('users')
       .join(
-        'interviewers_table',
-        'interviewers_table.user_id',
+        'coaches',
+        'coaches.user_id',
         '=',
-        'users_table.id',
+        'users.id',
       )
-      .where('users_table.id', '=', id)
+      .where('users.id', '=', id)
       .first();
   }
   return user;
