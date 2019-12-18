@@ -10,7 +10,7 @@ describe('user', () => {
   
   describe('[POST] / endpoint', () => {
 
-    const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico"}
+    const jayneData = {'first_name': 'Jayne', 'last_name': 'Carmichael Norrie', 'email': 'jayne@musicisourforte.co.uk', 'password': 'chico'}
 
     const jayneDataWrongEmail = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@google.co.uk", "password": "chico"}
 
@@ -29,12 +29,12 @@ describe('user', () => {
         .expect(201)
     })
 
-    test(' POST REGISTER duplicate data 500 ', () => {
+    test(' POST REGISTER duplicate data 409 ', () => {
       return request(server)
          .post('/user/register')
          .send(duplicateData)
          .set('Accept', 'application/json')
-         .expect(500)
+         .expect(409)
          .expect('Content-Type', /json/)
      })
 
@@ -47,12 +47,12 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong data 500 ', () => {
+     test(' POST LOGIN wrong data 400 ', () => {
        return request(server)
          .post('/user/login')
          .send(wrongData)
          .set('Accept', 'application/json')
-         .expect(401)
+         .expect(400)
          .expect('Content-Type', /json/)
      })
 
@@ -74,12 +74,12 @@ describe('user', () => {
        .expect('Content-Type', /json/)
     })
 
-     test(' POST LOGIN no data 500 ', () => {
+     test(' POST LOGIN no data 400 ', () => {
        return request(server)
          .post('/user/login')
         //  .send(wrongData)
          .set('Accept', 'application/json')
-         .expect(401)
+         .expect(400)
          .expect('Content-Type', /json/)
      })
 
