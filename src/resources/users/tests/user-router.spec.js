@@ -16,9 +16,11 @@ describe('user', () => {
 
     const jayneDataWrongPassword = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "lambda", "user_role_id": 2}
 
-    const goodData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
+    const goodData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
 
-    const duplicateData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico", "user_role_id": 1}
+    const goodDataLogIn = {"email": "chico@chico.com", "password": "chico"}
+
+    const duplicateData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
 
     const wrongData = {"first_name": "chico", "password": "testing"}
 
@@ -47,7 +49,7 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong data 500 ', () => {
+     test(' POST LOGIN wrong data 401 ', () => {
        return request(server)
          .post('/user/login')
          .send(wrongData)
@@ -56,7 +58,7 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong email 500', () => {
+     test(' POST LOGIN wrong email 401', () => {
        return request(server)
         .post('/user/login')
         .send(jayneDataWrongEmail)
@@ -65,7 +67,7 @@ describe('user', () => {
         .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong password 500', () => {
+     test(' POST LOGIN wrong password 401', () => {
       return request(server)
        .post('/user/login')
        .send(jayneDataWrongPassword)
@@ -74,7 +76,7 @@ describe('user', () => {
        .expect('Content-Type', /json/)
     })
 
-     test(' POST LOGIN no data 500 ', () => {
+     test(' POST LOGIN no data 401 ', () => {
        return request(server)
          .post('/user/login')
         //  .send(wrongData)
@@ -83,11 +85,19 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN  jayneData 200 ', () => {
+     test(' POST LOGIN  expect 401 ', () => {
       return request(server)
         .post('/user/login')
         .send(jayneData)
-        .expect(200)
+        .expect(401)
+        .expect('Content-Type', /json/)
+    })
+
+    test(' POST LOGIN  expect 200 ', () => {
+      return request(server)
+        .post('/user/login')
+        .send(goodDataLogIn)
+        .expect(401)
         .expect('Content-Type', /json/)
     })
   });

@@ -10,19 +10,24 @@ describe('user', () => {
   
   describe('[POST] / endpoint', () => {
 
-    const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico"}
-
-    const jayneLogIn = {"email": "jayne@musicisourforte.co.uk", "password": "chico"}
+    // const jayneData = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "chico"}
 
     const jayneDataWrongEmail = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@google.co.uk", "password": "chico"}
 
     const jayneDataWrongPassword = {"first_name": "Jayne", "last_name": "Carmichael Norrie", "email": "jayne@musicisourforte.co.uk", "password": "lambda", "user_role_id": 2}
 
     const goodData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
+    
+    const goodDataLogIn = {"email": "chico@chico.com", "password": "chico"}
+
+    const wrongEmail = {"email": "chico@google.com", "password": "chico"}
+
+    const wrongPassword = {"email": "chico@chico.com", "password": "google"}
 
     const duplicateData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
 
-    const wrongData = {"first_name": "chico", "password": "testing"}
+    const emailAlreadyTaken = {"first_name": "bob", "last_name": "jones", "email": "chico@chico.com", "password": "jones"}
+
 
     test(' POST REGISTER new member 201 ', () => {
       return request(server)
@@ -40,50 +45,32 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST REGISTER wrong data 400 ', () => {
-       return request(server)
+     test(' POST REGISTER duplicate email 409 ', () => {
+      return request(server)
          .post('/user/register')
-         .send(wrongData)
+         .send(emailAlreadyTaken)
          .set('Accept', 'application/json')
-         .expect(400)
+         .expect(409)
          .expect('Content-Type', /json/)
      })
 
-     test(' POST REGISTER jayne 201 ', () => {
-      return request(server)
-        .post('/user/register')
-        .send(jayneData)
-        .set('Accept', 'application/json')
-        .expect(201)
-        .expect('Content-Type', /json/)
-    })
-
-     test(' POST LOGIN wrong data 400 ', () => {
+     test(' POST LOGIN wrong email 400 ', () => {
        return request(server)
          .post('/user/login')
-         .send(wrongData)
+         .send(wrongEmail)
          .set('Accept', 'application/json')
          .expect(400)
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong email 500', () => {
+     test(' POST LOGIN wrong password 401', () => {
        return request(server)
         .post('/user/login')
-        .send(jayneDataWrongEmail)
+        .send(wrongPassword)
         .set('Accept', 'application/json')
         .expect(401)
         .expect('Content-Type', /json/)
      })
-
-     test(' POST LOGIN wrong password 500', () => {
-      return request(server)
-       .post('/user/login')
-       .send(jayneDataWrongPassword)
-       .set('Accept', 'application/json')
-       .expect(401)
-       .expect('Content-Type', /json/)
-    })
 
      test(' POST LOGIN no data 400 ', () => {
        return request(server)
@@ -94,10 +81,10 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN  jayne 200 ', () => {
+     test(' POST LOGIN 200 ', () => {
       return request(server)
         .post('/user/login')
-        .send(jayneLogIn)
+        .send(goodData)
         .expect(200)
         .expect('Content-Type', /json/)
     })
@@ -105,7 +92,7 @@ describe('user', () => {
 
   describe('[GET] / endpoint', () => {
     
-    test(' ID user 1 expect 200', () => {
+    test(' ID user 4 expect 200', () => {
       return request(server)
         .get('/user/4')
         .expect(200) 
