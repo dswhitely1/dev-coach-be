@@ -17,9 +17,15 @@ describe('index', () => {
       .get('/')
       .expect(200)
       .expect('Content-Type', /json/);
-  });
+  })
 
-  test(' / test 404 ', () => {
+  test(' NO / expect 404 ', () => {
+    return request(server)
+      .get('')
+      .expect(404)
+  })
+
+  test(' / test expect 404 ', () => {
     return request(server)
       .get('/test')
       .expect(404)
