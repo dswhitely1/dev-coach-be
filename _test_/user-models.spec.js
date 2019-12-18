@@ -5,7 +5,7 @@ describe('Users model', () => {
   describe('.find()', () => {
     test('should find all users in the db', async () => {
       const users = await Users.find();
-      expect(users.length).toBe(5);
+      expect(users.length).toBe(7);
     });
   });
 
@@ -27,7 +27,7 @@ describe('Users model', () => {
         password: '12345',
         user_role_id: null,
       });
-      expect(users.length).toBe(6)
+      expect(users.length).toBe(8)
     });
   });
 });
