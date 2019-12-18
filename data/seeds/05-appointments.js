@@ -1,12 +1,12 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('appointments_table')
+  return knex('appointments')
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('appointments_table').insert([
-        { interviewer_id: 1, interviewee_id: 1 },
-        { interviewer_id: 2, interviewee_id: 2 },
+      return knex('appointments').insert([
+        { coach_id: 1, student_id: 1 },
+        { coach_id: 2, student_id: 2 },
       ]);
     });
 };

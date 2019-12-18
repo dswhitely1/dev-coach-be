@@ -8,7 +8,7 @@ describe('user', () => {
       last_name: 'Carmichael Norrie',
       email: 'jayne@musicisourforte.co.uk',
       password: 'chico',
-      user_role_id: 2,
+      role_id: 2,
     };
 
     const testUser = {
@@ -211,14 +211,6 @@ describe('user', () => {
           expect(res.status).toEqual(200);
           expect(res.body).toBeInstanceOf(Object);
         });
-    });
-  });
-
-  describe('[GET] / endpoint', () => {
-    test(' ID user 500 expect 404', () => {
-      return request(server)
-        .get('/user/500')
-        .expect(404);
     });
   });
 });

@@ -1,20 +1,20 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('appointments_table', table => {
+  return knex.schema.createTable('appointments', table => {
     table.increments();
     table
-      .integer('interviewer_id')
+      .integer('coach_id')
       .notNullable()
       .unsigned()
       .references('id')
-      .inTable('interviewers_table');
+      .inTable('coaches');
     table
-      .integer('interviewee_id')
+      .integer('student_id')
       .notNullable()
       .unsigned()
       .references('id')
-      .inTable('interviewees_table');
-    table.string('interview_appointment_datetime');
-    table.timestamp('interview_created_at').defaultTo(knex.fn.now());
+      .inTable('students');
+    table.string('appointment_datetime');
+    table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 };
 

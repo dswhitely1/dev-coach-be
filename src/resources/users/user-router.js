@@ -13,5 +13,6 @@ const {
 router.post('/register', validateRegister, userController.register);
 router.post('/login', validateLogin, userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
+router.get('/:id', userController.details); // add checkAuth
 
 module.exports = router;
