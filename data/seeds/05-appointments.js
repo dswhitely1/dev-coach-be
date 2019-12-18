@@ -5,10 +5,10 @@ exports.seed = function(knex) {
     .then(function() {
       // Inserts seed entries
       return knex('appointments').insert([
-        { id: 1, coach_id: 1, student_id: 1 },
-        { id: 2, coach_id: 1, student_id: 2 },
-        { id: 3, coach_id: 1, student_id: 1 },
-        { id: 4, coach_id: 2, student_id: 2 },
+        { id: 1, coach_id: 1, student_id: 1, topic: 1 },
+        { id: 2, coach_id: 1, student_id: 2, topic: 2 },
+        { id: 3, coach_id: 1, student_id: 1, topic: 3 },
+        { id: 4, coach_id: 2, student_id: 2, topic: 1 },
       ]);
     });
 };
