@@ -47,10 +47,39 @@ async function remove(id) {
   }
 }
 
+// eslint-disable-next-line
+async function user_details(role, id) {
+  let user;
+  if (role === 1) {
+    user = await db('users_table')
+      .join(
+        'interviewees_table',
+        'interviewees_table.user_id',
+        '=',
+        'id',
+      )
+      .where('users_table.id', '=', id)
+      .first();
+  } else {
+    user = await db('users_table')
+      .join('users_table')
+      .join(
+        'interviewers_table',
+        'interviewers_table.user_id',
+        '=',
+        'id',
+      )
+      .where({ id })
+      .first();
+  }
+  return user;
+}
+
 module.exports = {
   find,
   findBy,
   findById,
   add,
   remove,
+  user_details,
 };
