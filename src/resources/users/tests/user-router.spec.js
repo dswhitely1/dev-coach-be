@@ -66,15 +66,12 @@ describe('user', () => {
         expect(response.body).toHaveProperty('token');
     })
 
-    test('POST REGISTER newUser gives user_id 200 ', () => {
-      return request(server)
+    test('POST REGISTER newUser gives user_id 200 ', async () => {
+      const response = await request(server)
         .post('/user/login')
         .send(newUser)
-        .expect(200)
-        .then(res => {
-          expect(res.status).toEqual(200);
-          expect(res.body).toHaveProperty('user_id');
-        })
+        expect(response.status).toEqual(200)
+        expect(response.body).toHaveProperty('user_id');
     })
 
      test(' POST LOGIN wrong data 400 ', () => {
