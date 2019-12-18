@@ -45,7 +45,7 @@
 
 ### Register
 
-**[POST]** `/user/register`
+[POST] `/user/register`
 
 Parameters
 
@@ -56,7 +56,7 @@ Parameters
 | email      | String | Users email    |   Yes    |
 | password   | String | Users password |   Yes    |
 
-**[POST]** This will create a new user and send back a token
+**POST** This will create a new user and send back a token
 
 **Examples**
 
@@ -91,7 +91,7 @@ Register Error Response
 
 ## Login
 
-**[POST]** `/user/login`
+`POST /user/login`
 
 Parameters
 
@@ -100,7 +100,7 @@ Parameters
 | email    | String | Users email    |   Yes    |
 | password | String | Users password |   Yes    |
 
-**[POST]** This will log the user in and send back a token
+**POST** This will log the user in and send back a token
 
 **Examples**
 
@@ -132,7 +132,7 @@ Login Error Response
 
 ## Delete User
 
-**[DELETE]** `/user/:id`
+`DELETE /user/:id`
 
 **DELETE** This will delete a user at the provided `id`
 
