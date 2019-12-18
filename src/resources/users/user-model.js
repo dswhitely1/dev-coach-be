@@ -34,13 +34,17 @@ async function add(user) {
   return findById(id);
 }
 
+// eslint-disable-next-line
 async function remove(id) {
   const user = await findById(id);
-  await db('users_table')
-    .where({ id })
-    .del();
-
-  return user;
+  if (user) {
+    const deleted = await db('users_table')
+      .where({ id })
+      .del();
+    if (deleted) {
+      return user;
+    }
+  }
 }
 
 module.exports = {
