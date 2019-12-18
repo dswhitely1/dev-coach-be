@@ -46,6 +46,7 @@ describe('Users model', () => {
     });
   });
 
+ 
   describe('.remove()', () => {
     test('should remove a user successfully from the database', async () => {
       const removed = await Users.remove(8);
