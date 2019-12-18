@@ -6,6 +6,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('users').insert([
         {
+          id: 1,
           first_name: 'Jayne',
           last_name: 'Carmichael Norrie',
           email: 'jayne@musicisourforte.co.uk',
@@ -13,6 +14,7 @@ exports.seed = function(knex) {
           role_id: 2,
         },
         {
+          id: 2,
           first_name: 'Liam',
           last_name: 'Sutton',
           email: 'liam@google.com',
@@ -20,6 +22,7 @@ exports.seed = function(knex) {
           role_id: 2,
         },
         {
+          id: 3,
           first_name: 'Funmi',
           last_name: 'Talabi',
           email: 'funmi@google.com',
@@ -27,6 +30,7 @@ exports.seed = function(knex) {
           role_id: 2,
         },
         {
+          id: 4,
           first_name: 'Bob',
           last_name: 'Smith',
           email: 'bob@google.com',
@@ -34,6 +38,7 @@ exports.seed = function(knex) {
           role_id: 1,
         },
         {
+          id: 5,
           first_name: 'Lizzo',
           last_name: 'Smith',
           email: 'lizzo@google.com',
