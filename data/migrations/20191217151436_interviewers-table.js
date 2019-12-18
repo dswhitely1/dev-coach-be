@@ -1,15 +1,15 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('interviewers_table', table => {
+  return knex.schema.createTable('coaches', table => {
     table.increments();
     table
       .integer('user_id')
       .notNullable()
       .unsigned()
       .references('id')
-      .inTable('users_table');
+      .inTable('users');
     table.string('avatar_url', 128).notNullable();
-    table.integer('interviewer_experience_level').notNullable();
-    table.integer('interviewer_skill_level').notNullable();
+    table.integer('experience_level').notNullable();
+    table.integer('skill_level').notNullable();
     table.string('description', 400);
     table.float('rating');
     table.float('hourly_rate');
@@ -18,5 +18,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('interviewers_table');
+  return knex.schema.dropTableIfExists('coaches');
 };
