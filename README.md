@@ -45,7 +45,7 @@
 
 ### Register
 
-[POST] `/user/register`
+`POST /user/register`
 
 Parameters
 
