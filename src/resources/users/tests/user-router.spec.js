@@ -218,7 +218,7 @@ describe('user', () => {
     test(' ID user 500 expect 404', () => {
       return request(server)
         .get('/user/500')
-        .expect(404);
+        .expect(500);
     });
   });
 });
