@@ -49,6 +49,15 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
+     test(' POST REGISTER jayne 201 ', () => {
+      return request(server)
+        .post('/user/register')
+        .send(jayneData)
+        .set('Accept', 'application/json')
+        .expect(201)
+        .expect('Content-Type', /json/)
+    })
+
      test(' POST LOGIN wrong data 400 ', () => {
        return request(server)
          .post('/user/login')
