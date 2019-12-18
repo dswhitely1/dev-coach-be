@@ -82,3 +82,16 @@ exports.details = async (req, res) => {
     res.status(500).json({ message: 'Could not find user' });
   }
 };
+
+exports.coaches = async (req, res) => {
+  try {
+    const coaches = await Users.get_coaches();
+    if (coaches) {
+      res.status(200).json({
+        coaches,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Could not find any coaches' });
+  }
+};
