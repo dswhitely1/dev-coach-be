@@ -54,12 +54,12 @@ describe('user', () => {
      test('POST REGISTER testUser gives token 201', async () => {
       const response = await request(server)
         .post('/user/register')
-        .send(testUser);
+        .send(testUser)
         .then(res => {
-          expect(res.status).toEqual(201);
-          expect(res.body.message).toBe('Welcome matt');
-          expect(res.body).toHaveProperty('token');
-    });
+          expect(response.status).toEqual(201);
+          expect(response.body.message).toBe('Welcome matt');
+          expect(response.body).toHaveProperty('token');
+    })
 
      test(' POST LOGIN wrong data 400 ', () => {
        return request(server)
