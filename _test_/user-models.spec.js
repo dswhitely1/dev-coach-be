@@ -4,7 +4,7 @@ describe('Users model', () => {
   describe('.find()', () => {
     test('should find all users in the db', async () => {
       const users = await Users.find();
-      expect(users.length).toBe(8);
+      expect(users.length).toBe(7);
     });
   });
 
@@ -20,13 +20,13 @@ describe('Users model', () => {
       expect(user).toEqual({
         email: 'funtee@gmail.com',
         first_name: 'fun',
-        id: 9,
+        id: 8,
         last_name: 'tee',
         location: null,
         password: '12345',
         user_role_id: null,
       });
-      expect(users.length).toBe(9);
+      expect(users.length).toBe(8);
     });
   });
 
@@ -52,7 +52,7 @@ describe('Users model', () => {
       const removed = await Users.remove(8);
       const users = await Users.find();
       expect(removed).toBeTruthy();
-      expect(users.length).toBe(8);
+      expect(users.length).toBe(7);
     });
   });
 });

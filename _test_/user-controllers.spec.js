@@ -1,12 +1,7 @@
 const request = require('supertest');
 const db = require('../data/dbConfig');
 const server = require('../index');
-// const generateToken = require('../src/utils/generate-token');
 
-// beforeAll((done) => {
-//   token = generateToken('user');
-//   done();
-// })
 
 const testUser = {
   first_name: 'fun',
