@@ -28,7 +28,7 @@ describe('user', () => {
 
     const wrongData = {"first_name": "chico", "password": "testing"}
 
-    test(' POST REGISTER new member 201 ', () => {
+    test(' POST REGISTER userData 201 ', () => {
       return request(server)
         .post('/user/register')
         .send(userData)
@@ -119,7 +119,7 @@ describe('user', () => {
         .post('/user/register')
         .send(testUserLogIn)
         expect(response.status).toEqual(201)
-        expect(response.body.message).toBe('Welcome Back matt')
+        expect(response.body.message).toBe('Welcome Back matt!')
     })
 
     test('POST LOGIN testUser gives token 201', async () => {
