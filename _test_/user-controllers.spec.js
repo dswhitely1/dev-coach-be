@@ -1,6 +1,14 @@
 const request = require('supertest');
 const db = require('../data/dbConfig');
 const server = require('../index');
+// const generateToken = require('../src/utils/generate-token');
+
+
+// beforeAll((done) => {
+//   token = generateToken('user');
+//   done();
+// })
+
 
 const testUser = {
   first_name: 'fun',
@@ -40,7 +48,7 @@ describe('usersController', () => {
     });
   });
 
-  describe('POST /login', async () => {
+  describe('POST /login', () => {
     test('should login in a user succesfully', async () => {
       await db('users_table').insert(testUser);
       const userData = {
@@ -68,4 +76,12 @@ describe('usersController', () => {
       expect(response.body).toEqual({ message: 'Auth Failed' });
     });
   });
+
+  describe('DELETE /:id', () => {
+    test('It should not delete a user without a valid token', async () => {
+     const response = await request(server).delete('/user/1')
+     expect(response.status).toBe(401);
+     expect(response.body).toEqual( { message: 'Auth Failed' })
+    })
+  })
 });
