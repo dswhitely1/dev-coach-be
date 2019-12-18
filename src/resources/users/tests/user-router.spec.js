@@ -32,14 +32,14 @@ describe('user', () => {
 
     const wrongData = {"first_name": "chico", "password": "testing"}
 
-    test(' POST REGISTER userData 201 ', () => {
+    test('POST REGISTER userData 201 ', () => {
       return request(server)
         .post('/user/register')
         .send(userData)
         .expect(201)
     })
 
-    test(' POST REGISTER duplicate data 409 ', () => {
+    test('POST REGISTER duplicate data 409 ', () => {
       return request(server)
          .post('/user/register')
          .send(duplicateData)
@@ -48,7 +48,7 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST REGISTER wrong data 400 ', () => {
+     test('POST REGISTER wrong data 400 ', () => {
        return request(server)
          .post('/user/register')
          .send(wrongData)
@@ -74,7 +74,7 @@ describe('user', () => {
         expect(response.body).toHaveProperty('user_id');
     })
 
-     test(' POST LOGIN wrong data 400 ', () => {
+     test('POST LOGIN wrong data 400 ', () => {
        return request(server)
          .post('/user/login')
          .send(wrongData)
@@ -83,7 +83,7 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong email 401', () => {
+     test('POST LOGIN wrong email 401', () => {
        return request(server)
         .post('/user/login')
         .send(wrongEmail)
@@ -92,7 +92,7 @@ describe('user', () => {
         .expect('Content-Type', /json/)
      })
 
-     test(' POST LOGIN wrong password 401', () => {
+     test('POST LOGIN wrong password 401', () => {
       return request(server)
        .post('/user/login')
        .send(wrongPassword)
@@ -101,7 +101,7 @@ describe('user', () => {
        .expect('Content-Type', /json/)
     })
 
-     test(' POST LOGIN no data 400 ', () => {
+     test('POST LOGIN no data 400 ', () => {
        return request(server)
          .post('/user/login')
         //  .send(wrongData)
@@ -110,7 +110,7 @@ describe('user', () => {
          .expect('Content-Type', /json/)
      });
 
-     test(' POST LOGIN no data message check 400 ', () => {
+     test('POST LOGIN no data message check 400 ', () => {
       return request(server)
         .post('/user/login')
        //  .send(wrongData)
@@ -120,7 +120,7 @@ describe('user', () => {
         })
     });
 
-     test(' POST LOGIN jayneData expect 401 ', () => {
+     test('POST LOGIN jayneData expect 401 ', () => {
       return request(server)
         .post('/user/login')
         .send(jayneData)
@@ -128,7 +128,7 @@ describe('user', () => {
         .expect('Content-Type', /json/)
     });
 
-    test(' POST LOGIN userData expect 200 ', () => {
+    test('POST LOGIN userData expect 200 ', () => {
       return request(server)
         .post('/user/login')
         .send(userDataLogIn)
