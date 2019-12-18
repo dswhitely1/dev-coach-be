@@ -14,6 +14,8 @@ describe('user', () => {
 
     const testUser = {"first_name": "matt", "last_name": "norrie", "email": "matt@google.com", "password": "matt"}
 
+    const testUserLogIn = {"email": "matt@google.com", "password": "matt"}
+
     const userData = {"first_name": "chico", "last_name": "norrie", "email": "chico@chico.com", "password": "chico"}
 
     const userDataLogIn = {"email": "chico@chico.com", "password": "chico"}
@@ -110,6 +112,22 @@ describe('user', () => {
         .send(userDataLogIn)
         .expect(200)
         .expect('Content-Type', /json/)
+    })
+
+    test('POST LOGIN testUser gives welcome 201', async () => {
+      const response = await request(server)
+        .post('/user/register')
+        .send(testUserLogIn)
+        expect(response.status).toEqual(201)
+        expect(response.body.message).toBe('Welcome Back matt')
+    })
+
+    test('POST LOGIN testUser gives token 201', async () => {
+      const response = await request(server)
+        .post('/user/register')
+        .send(testUserLogIn)
+        expect(response.status).toEqual(201)
+        expect(response.body).toHaveProperty('token');
     })
   });
 
