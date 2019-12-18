@@ -6,6 +6,8 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('appointments').insert([
         { coach_id: 1, student_id: 1 },
+        { coach_id: 1, student_id: 2 },
+        { coach_id: 1, student_id: 1 },
         { coach_id: 2, student_id: 2 },
       ]);
     });
