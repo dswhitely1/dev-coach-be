@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const userRouter = require('./src/resources/users/user-router');
+const appointmentRouter = require('./src/resources/appointments/appointments-router');
 
 const server = express();
 
@@ -19,6 +20,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/user', userRouter);
+server.use('/appointment', appointmentRouter);
 
 // catch-all endpoint
 server.all('*', (req, res) => {

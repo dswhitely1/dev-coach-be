@@ -82,5 +82,5 @@ module.exports = {
   add,
   remove,
   user_details,
-  get_coaches
+  get_coaches,
 };

@@ -15,13 +15,13 @@ exports.seed = function(knex) {
         },
         {
           user_id: 2,
-          avatar_url: 'google.com',
+          avatar_url: 'Github.com',
           experience_level: 1,
           skill_level: 1,
         },
         {
           user_id: 3,
-          avatar_url: 'google.com',
+          avatar_url: 'Paypal.com',
           experience_level: 1,
           skill_level: 1,
         },

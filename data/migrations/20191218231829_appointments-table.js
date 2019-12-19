@@ -15,6 +15,12 @@ exports.up = function(knex) {
       .inTable('students');
     table.string('appointment_datetime');
     table.timestamp('created_at').defaultTo(knex.fn.now());
+    table
+    .integer('topic_id')
+    .notNullable()
+    .unsigned()
+    .references('id')
+    .inTable('appointment_topics');
   });
 };
 
