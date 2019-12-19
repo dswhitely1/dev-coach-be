@@ -46,6 +46,7 @@ exports.login = async (req, res) => {
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
+        user
       });
     } else {
       res.status(401).json({ message: 'Auth Failed' });
