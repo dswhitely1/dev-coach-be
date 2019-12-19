@@ -1,5 +1,13 @@
 const db = require('../../../data/dbConfig');
 
+async function findById(id) {
+  const appointment = await db('appointments ')
+    .where({ id })
+    .first();
+
+  return appointment;
+}
+
 async function get_appointments(role, coach_student_id) {
   let appointments;
   if (role === 1) {
@@ -45,7 +53,7 @@ async function get_appointments(role, coach_student_id) {
 }
 
 async function add_appointment(appointment) {
-  const [id] = await db('appointments').insert(appointment);
+  const [id] = await db('appointments').insert(appointment, 'id');
 
   return findById(id);
 }
