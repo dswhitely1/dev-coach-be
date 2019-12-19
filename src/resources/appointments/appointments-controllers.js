@@ -37,7 +37,7 @@ exports.add_appointment = async (req, res) => {
 
 exports.cancel_appointment = async (req, res) => {
   try {
-    const appointment = await Appointments.cancel_appointment(
+    const appointment = await Appointments.cancel(
       "true",
       req.params.id
     );
