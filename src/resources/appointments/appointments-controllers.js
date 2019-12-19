@@ -34,3 +34,21 @@ exports.add_appointment = async (req, res) => {
       .json({ message: 'You dont can make this appointment' });
   }
 };
+
+exports.cancel_appointment = async (req, res) => {
+  try {
+    const appointment = await Appointments.cancel_appointment(
+      "true",
+      req.params.id
+    );
+    if (appointment) {
+      res.status(200).json({
+        appointment,
+      });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'You dont can cancel this appointment' });
+  }
+};
