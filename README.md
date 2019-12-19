@@ -62,7 +62,7 @@ Parameters
 
 Register Request
 
-```
+```javascript
 {
 	"first_name": "dom",
 	"last_name": "eccleston",
@@ -73,7 +73,7 @@ Register Request
 
 Register Success Response
 
-```
+```javascript
 {
   "message": "Welcome dom",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NzY2NzA1NDQsImV4cCI6MTU3Njc1Njk0NH0.jpyV3IoB3sYehy8CdQ_h1EPhSjIrglvmVEEgUyqo_Zs",
@@ -83,7 +83,7 @@ Register Success Response
 
 Register Error Response
 
-```
+```javascript
 {
   "message": "Please make sure required fields are filled in."
 }
@@ -106,7 +106,7 @@ Parameters
 
 Login Request
 
-```
+```javascript
 {
 	"email": "dom12@gmail.com",
 	"password": "123"
@@ -115,7 +115,7 @@ Login Request
 
 Login Success Response
 
-```
+```javascript
 {
   "message": "Welcome Back dom!",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NzY2NzE5OTcsImV4cCI6MTU3Njc1ODM5N30.HkW-d9WPkpFPD6AhZeG40_jz748kd6B5_AkDOK1pk1U"
@@ -124,7 +124,7 @@ Login Success Response
 
 Login Error Response
 
-```
+```javascript
 {
   "message": "Please make sure required fields are filled in."
 }
@@ -140,7 +140,7 @@ Login Error Response
 
 Delete User Success Response
 
-```
+```javascript
 {
   "message": "User deleted"
 }
@@ -148,7 +148,7 @@ Delete User Success Response
 
 Delete User Error Response
 
-```
+```javascript
 {
   "message": "Unable to find user"
 }
