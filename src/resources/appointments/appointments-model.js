@@ -1,14 +1,14 @@
 const db = require('../../../data/dbConfig');
 
 // eslint-disable-next-line
-async function get_appointments(role, id) {
+async function get_appointments(role, coach_student_id) {
   let appointments;
   if (role === 1) {
     appointments = await db('users')
       .join('coaches AS c', 'c.user_id', '=', 'users.id')
       .join('appointments AS a', 'a.coach_id', '=', 'c.id')
       .join('appointment_topics AS at', 'at.id', '=', 'a.topic_id')
-      .where('a.student_id', '=', id)
+      .where('a.student_id', '=', coach_student_id)
       .select(
         'users.first_name',
         'users.last_name',
@@ -26,7 +26,7 @@ async function get_appointments(role, id) {
       .join('students AS s', 's.user_id', '=', 'users.id')
       .join('appointments AS a', 'a.student_id', '=', 's.id')
       .join('appointment_topics AS at', 'at.id', '=', 'a.topic_id')
-      .where('a.coach_id', '=', id)
+      .where('a.coach_id', '=', coach_student_id)
       .select(
         'users.first_name',
         'users.last_name',
