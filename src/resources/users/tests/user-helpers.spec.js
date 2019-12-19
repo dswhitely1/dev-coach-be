@@ -1,9 +1,7 @@
 const request = require('supertest');
 const server = require('../../../../index');
 
-
 describe('Middleware authentication', () => {
-
   describe('check Authentication', () => {
     test('throws an error without valid token for authentication', async () => {
       const response = await request(server).delete('/user/7');
@@ -11,7 +9,7 @@ describe('Middleware authentication', () => {
       expect(response.body).toEqual({ message: 'Auth Failed' });
     });
   });
-  
+
   describe('Validates register new user', async () => {
     test('Throws an error for missing user input', async () => {
       const response = await request(server)
