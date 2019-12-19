@@ -34,7 +34,6 @@ async function add(user) {
   return findById(id);
 }
 
-// eslint-disable-next-line
 async function remove(id) {
   const user = await findById(id);
   if (user) {

@@ -1,6 +1,5 @@
 const db = require('../../../data/dbConfig');
 
-// eslint-disable-next-line
 async function get_appointments(role, coach_student_id) {
   let appointments;
   if (role === 1) {
@@ -45,6 +44,13 @@ async function get_appointments(role, coach_student_id) {
   return appointments;
 }
 
+async function add_appointment(appointment) {
+  const [id] = await db('appointments').insert(appointment);
+
+  return findById(id);
+}
+
 module.exports = {
   get_appointments,
+  add_appointment
 };
