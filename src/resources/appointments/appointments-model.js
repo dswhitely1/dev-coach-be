@@ -52,7 +52,7 @@ async function get_appointments(role, coach_student_id) {
   return appointments;
 }
 
-async function add_appointment(appointment) {
+async function add(appointment) {
   const [id] = await db('appointments').insert(appointment, 'id');
 
   return findById(id);
@@ -60,5 +60,5 @@ async function add_appointment(appointment) {
 
 module.exports = {
   get_appointments,
-  add_appointment
+  add
 };

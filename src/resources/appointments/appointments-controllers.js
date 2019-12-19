@@ -17,3 +17,20 @@ exports.appointments = async (req, res) => {
       .json({ message: 'Could not find any appointment' });
   }
 };
+
+exports.add_appointment = async (req, res) => {
+  try {
+    const appointment = await Appointments.add(
+      req.body
+    );
+    if (appointment) {
+      res.status(200).json({
+        appointment,
+      });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'You dont can make this appointment' });
+  }
+};
