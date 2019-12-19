@@ -1,6 +1,5 @@
 const db = require('../../../data/dbConfig');
 
-
 // eslint-disable-next-line
 async function get_appointments(role, coach_student_id) {
   let appointments;
