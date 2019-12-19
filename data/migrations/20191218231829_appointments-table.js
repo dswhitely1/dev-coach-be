@@ -15,6 +15,7 @@ exports.up = function(knex) {
       .inTable('students');
     table.string('appointment_datetime');
     table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.boolean('canceled').defaultTo(false);
     table
     .integer('topic_id')
     .notNullable()
