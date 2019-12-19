@@ -1,6 +1,5 @@
 const db = require('../../../data/dbConfig');
 
-// eslint-disable-next-line
 async function user_details(role, id) {
   let user;
   if (role === 1) {
@@ -17,7 +16,6 @@ async function user_details(role, id) {
   return user;
 }
 
-// eslint-disable-next-line
 async function get_coaches() {
   const coaches = await db('users').join(
     'coaches',
