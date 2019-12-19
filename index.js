@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const userRouter = require('./src/resources/users/user-router');
 const appointmentRouter = require('./src/resources/appointments/appointments-router');
-const profileRouter = require('./src/resources/profile/profile-router');
+const profileRouter = require('./src/resources/profiles/profile-router');
 
 const server = express();
 

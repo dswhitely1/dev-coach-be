@@ -16,7 +16,6 @@ async function user_details(role, id) {
   }
   return user;
 }
-// for user_details we need to send the user id and role id from the user table
 
 // eslint-disable-next-line
 async function get_coaches() {
