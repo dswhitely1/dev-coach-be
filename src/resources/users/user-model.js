@@ -34,7 +34,7 @@ async function findBy(email) {
     }
     return user;
   }
-  
+
   return user;
 }
 
