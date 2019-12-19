@@ -1,4 +1,4 @@
-const Users = require('../src/resources/users/user-model');
+const Users = require('../user-model');
 
 describe('Users model', () => {
   describe('.find()', () => {
