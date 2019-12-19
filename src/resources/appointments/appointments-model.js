@@ -44,6 +44,9 @@ async function get_appointments(role, coach_student_id) {
   return appointments;
 }
 
+// we need to send from the frontend the role_id from the users table and 
+// the coach_student_id from the students or coaches table
+
 module.exports = {
   get_appointments,
 };
