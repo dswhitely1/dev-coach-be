@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 const Users = require('../src/resources/users/user-model');
 
 describe('Users model', () => {
