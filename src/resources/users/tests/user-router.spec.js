@@ -55,13 +55,6 @@ describe('user', () => {
       password: 'chico',
     };
 
-    const wrongEmail = {
-      first_name: 'chico',
-      last_name: 'norrie',
-      email: 'chico@google.com',
-      password: bcrypt.hashSync('chico', 10),
-    };
-
     const wrongPassword = {
       first_name: 'chico',
       last_name: 'norrie',
@@ -119,15 +112,6 @@ describe('user', () => {
         .send(wrongData)
         .set('Accept', 'application/json')
         .expect(400)
-        .expect('Content-Type', /json/);
-    });
-
-    test('POST LOGIN wrong email 401', () => {
-      return request(server)
-        .post('/user/login')
-        .send(wrongEmail)
-        .set('Accept', 'application/json')
-        .expect(401)
         .expect('Content-Type', /json/);
     });
 

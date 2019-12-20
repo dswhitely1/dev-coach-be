@@ -55,6 +55,7 @@ describe('usersController', () => {
       expect(response.body).toHaveProperty('message');
       expect(response.body).toHaveProperty('token');
     });
+  });
 
   describe('DELETE /:id', () => {
     test('It should not delete a user without a valid token', async () => {
