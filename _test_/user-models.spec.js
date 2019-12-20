@@ -31,22 +31,6 @@ describe('Users model', () => {
     });
   });
 
-  describe('.findById()', () => {
-    test('should retrieve a user by that users ID', async () => {
-      const userById = await Users.findById(3);
-      expect(userById).toBeDefined();
-      expect(userById).toEqual({
-        first_name: 'Funmi',
-        last_name: 'Talabi',
-        id: 3,
-        email: 'funmi@google.com',
-        location: null,
-        password: bcrypt.hashSync('funmi', 10),
-        role_id: 2,
-      });
-    });
-  });
-
   describe('.remove()', () => {
     test('should remove a user successfully from the database', async () => {
       const removed = await Users.remove(8);
