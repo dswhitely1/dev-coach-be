@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const Users = require('../src/resources/users/user-model');
 
 describe('Users model', () => {
@@ -40,7 +41,7 @@ describe('Users model', () => {
         id: 3,
         email: 'funmi@google.com',
         location: null,
-        password: 'funmi',
+        password: bcrypt.hashSync('funmi', 10),
         role_id: 2,
       });
     });

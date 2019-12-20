@@ -56,19 +56,6 @@ describe('usersController', () => {
       expect(response.body).toHaveProperty('token');
     });
 
-    test('should throw an error when wrong details are provided', async () => {
-      const userData = {
-        email: 'fun@gmail.com',
-        password: '1234567',
-      };
-      const response = await request(server)
-        .post('/user/login')
-        .send(userData);
-      expect(response.status).toBe(401);
-      expect(response.body).toEqual({ message: 'Auth Failed' });
-    });
-  });
-
   describe('DELETE /:id', () => {
     test('It should not delete a user without a valid token', async () => {
       const response = await request(server).delete('/user/1');

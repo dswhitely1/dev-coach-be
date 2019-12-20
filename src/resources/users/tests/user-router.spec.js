@@ -1,4 +1,5 @@
 const request = require('supertest');
+const bcrypt = require('bcryptjs');
 const server = require('../../../../index');
 
 describe('user', () => {
@@ -7,7 +8,7 @@ describe('user', () => {
       first_name: 'Jayne',
       last_name: 'Carmichael Norrie',
       email: 'jayne@musicisourforte.co.uk',
-      password: 'chico',
+      password: bcrypt.hashSync('chico', 10),
       role_id: 2,
     };
 
@@ -58,7 +59,7 @@ describe('user', () => {
       first_name: 'chico',
       last_name: 'norrie',
       email: 'chico@google.com',
-      password: 'chico',
+      password: bcrypt.hashSync('chico', 10),
     };
 
     const wrongPassword = {
