@@ -39,7 +39,7 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await Users.findBy({ email });
+    const user = await Users.findByForLogin({ email });
 
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user.id);
