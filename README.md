@@ -213,6 +213,12 @@ GET Coaches Error Response
 
 `GET /appointment/:id`
 
+Parameters
+
+| Name       |  Type  | Description         | Required |
+| :--------- | :----: | :-------------      | :------: |
+| role       | String | role_id of the user |   Yes    |
+
 **GET** This will get all user appointments at the provided `id` (id is the coach.id or student id) and we need to send a body with an object = {"role": role_id} (role_id from the user)
 
 **Examples**
