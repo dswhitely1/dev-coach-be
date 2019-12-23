@@ -66,3 +66,6 @@ yarn.lock
 
 # ignore sqlite3 database
 *.db3
+
+# vscode debugger
+.vscode/
