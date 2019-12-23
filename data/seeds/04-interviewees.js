@@ -9,7 +9,6 @@ exports.seed = function(knex) {
           user_id: 4,
           experience_level: 1,
           confidence_level: 1,
-          avatar_url: 'www.stripe.com',
         },
         {
           user_id: 5,

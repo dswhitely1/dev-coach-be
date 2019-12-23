@@ -7,7 +7,6 @@ exports.seed = function(knex) {
       return knex('coaches').insert([
         {
           user_id: 1,
-          avatar_url: 'google.com',
           experience_level: 1,
           skill_level: 1,
           description:
@@ -15,15 +14,17 @@ exports.seed = function(knex) {
         },
         {
           user_id: 2,
-          avatar_url: 'Github.com',
           experience_level: 1,
           skill_level: 1,
+          description:
+            'Liam is now studying with Lambda School',
         },
         {
           user_id: 3,
-          avatar_url: 'Paypal.com',
           experience_level: 1,
           skill_level: 1,
+          description:
+            'Funmi is now studying with Lambda School',
         },
       ]);
     });
