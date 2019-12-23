@@ -58,14 +58,16 @@ async function add(appointment) {
   return findById(id);
 }
 
-function cancel(canceled, id) {
-  return db('appointments')
-    .where('id', id )
-    .update({canceled});
-};
+async function cancel(canceled, id) {
+  await db('appointments')
+    .where('id', id)
+    .update({ canceled });
+
+  return findById(id);
+}
 
 module.exports = {
   get_appointments,
   add,
-  cancel
+  cancel,
 };
