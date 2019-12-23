@@ -17,6 +17,32 @@ async function findBy(email) {
   const user = await db('users')
     .where(email)
     .first();
+
+  return user;
+}
+
+async function findByForLogin(email) {
+  let user = await db('users')
+    .where(email)
+    .first();
+
+  if (user.role_id) {
+    const { id } = user;
+
+    if (user.role_id === 1) {
+      user = await db('users')
+        .join('students', 'students.user_id', '=', 'users.id')
+        .where('users.id', '=', id)
+        .first();
+    } else {
+      user = await db('users')
+        .join('coaches', 'coaches.user_id', '=', 'users.id')
+        .where('users.id', '=', id)
+        .first();
+    }
+    return user;
+  }
+
   return user;
 }
 
@@ -49,6 +75,7 @@ async function remove(id) {
 module.exports = {
   find,
   findBy,
+  findByForLogin,
   findById,
   add,
   remove,
