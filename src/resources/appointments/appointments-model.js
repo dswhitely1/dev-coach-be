@@ -10,7 +10,7 @@ async function findById(id) {
 
 async function get_appointments(role, coach_student_id) {
   let appointments;
-  if (role === 1) {
+  if (role === '1') {
     appointments = await db('users')
       .join('coaches AS c', 'c.user_id', '=', 'users.id')
       .join('appointments AS a', 'a.coach_id', '=', 'c.id')
