@@ -3,9 +3,10 @@ const Appointments = require('./appointments-model');
 exports.appointments = async (req, res) => {
   try {
     const appointments = await Appointments.get_appointments(
-      req.body.role,
+      req.query.role,
       req.params.id,
     );
+
     if (appointments) {
       res.status(200).json({
         appointments,
@@ -20,9 +21,7 @@ exports.appointments = async (req, res) => {
 
 exports.add_appointment = async (req, res) => {
   try {
-    const appointment = await Appointments.add(
-      req.body
-    );
+    const appointment = await Appointments.add(req.body);
     if (appointment) {
       res.status(200).json({
         appointment,
@@ -38,8 +37,8 @@ exports.add_appointment = async (req, res) => {
 exports.cancel_appointment = async (req, res) => {
   try {
     const appointment = await Appointments.cancel(
-      "true",
-      req.params.id
+      'true',
+      req.params.id,
     );
     if (appointment) {
       res.status(200).json({
