@@ -29,7 +29,7 @@ async function findByForLogin(email) {
   if (user.role_id) {
     const { id } = user;
 
-    if (user.role_id === 1) {
+    if (user.role_id === '1') {
       user = await db('users')
         .join('students', 'students.user_id', '=', 'users.id')
         .where('users.id', '=', id)
