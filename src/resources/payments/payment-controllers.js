@@ -6,8 +6,6 @@ const uuid = require('uuid/v4');
 exports.stripe = async (req, res) => {
   console.log('Request:', req.body);
 
-  let error;
-  let status;
   try {
     const { product, token } = req.body;
 
@@ -40,11 +38,9 @@ exports.stripe = async (req, res) => {
       },
     );
     console.log('Charge:', { charge });
-    status = 'success';
-  } catch (err) {
-    console.error('Error:', err);
-    status = 'failure';
+    res.status(200).json({ status: 'success' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error, status: 'failure' });
   }
-
-  res.json({ error, status });
 };
