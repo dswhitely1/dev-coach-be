@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('appointments')
+  return knex('appointment_length')
     .del()
     .then(function() {
       // Inserts seed entries
