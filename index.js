@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRouter = require('./src/resources/users/user-router');
 const appointmentRouter = require('./src/resources/appointments/appointments-router');
 const profileRouter = require('./src/resources/profiles/profile-router');
+const paymentRouter = require('./src/resources/payments/payment-router');
 
 const server = express();
 
@@ -23,6 +24,7 @@ server.get('/', (req, res) => {
 server.use('/user', userRouter);
 server.use('/appointment', appointmentRouter);
 server.use('/profile', profileRouter);
+server.use('/payment', paymentRouter);
 
 // catch-all endpoint
 server.all('*', (req, res) => {
