@@ -22,6 +22,12 @@ exports.up = function(knex) {
     .unsigned()
     .references('id')
     .inTable('appointment_topics');
+    table
+    .integer('topic_length')
+    .notNullable()
+    .unsigned()
+    .references('id')
+    .inTable('appointment_length');
   });
 };
 
