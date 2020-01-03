@@ -23,7 +23,7 @@ exports.up = function(knex) {
     .references('id')
     .inTable('appointment_topics');
     table
-    .integer('topic_length')
+    .integer('length_id')
     .notNullable()
     .unsigned()
     .references('id')
