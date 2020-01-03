@@ -4,12 +4,12 @@ exports.seed = function(knex) {
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('appointments').insert([
+      return knex('appointment_length').insert([
         {
-          length: '30 Minutes',
+          appointment_length: '30 Minutes',
         },
         {
-          length: '1 Hour',
+          appointment_length: '1 Hour',
         },
       ]);
     });

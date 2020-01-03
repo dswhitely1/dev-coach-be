@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('appointment_length', table => {
     table.increments();
-    table.string('length');
+    table.string('appointment_length');
   });
 };
 
