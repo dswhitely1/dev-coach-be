@@ -41,8 +41,8 @@ exports.stripe = async (req, res) => {
     );
     console.log('Charge:', { charge });
     status = 'success';
-  } catch (error) {
-    console.error('Error:', error);
+  } catch (err) {
+    console.error('Error:', err);
     status = 'failure';
   }
 
