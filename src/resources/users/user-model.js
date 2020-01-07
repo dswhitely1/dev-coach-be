@@ -60,8 +60,8 @@ async function add(user) {
   return findById(id);
 }
 
-async function update(user, id) {
-  const newUser = await db('users')
+function update({ role_id }, id) {
+  return db('users')
     .where({ id })
     .update({ role_id })
 };
@@ -85,4 +85,5 @@ module.exports = {
   findById,
   add,
   remove,
+  update,
 };
