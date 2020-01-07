@@ -10,7 +10,7 @@ async function findById(id, tableName) {
 async function add(data, tableName) {
   const [id] = await db(tableName).insert(data, 'id');
 
-  return findById(id);
+  return findById(id, tableName);
 }
 
 module.exports = {
