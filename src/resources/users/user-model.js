@@ -60,6 +60,12 @@ async function add(user) {
   return findById(id);
 }
 
+function update(id, body) {
+  return db('users')
+    .where({ id })
+    .update(body)
+};
+
 async function remove(id) {
   const user = await findById(id);
   if (user) {
@@ -79,4 +85,5 @@ module.exports = {
   findById,
   add,
   remove,
+  update,
 };

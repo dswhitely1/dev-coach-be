@@ -46,7 +46,7 @@ exports.login = async (req, res) => {
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
-        user
+        user,
       });
     } else {
       res.status(401).json({ message: 'Auth Failed' });
@@ -68,5 +68,18 @@ exports.delete = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: 'Could not delete user' });
+  }
+};
+
+exports.put = async (req, res) => {
+  try {
+    const updatedUser = await Users.update(req.params.id, req.body);
+    if (updatedUser) {
+      res.status(200).json({
+        messge: 'User updated successfully',
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Unable to update user ' });
   }
 };
