@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('appointment_feedback', table => {
     table.increments();
-    table.string('feedback', 1000).notNullable();
+    table.text('feedback', 5000).notNullable();
     table.integer('rating').notNullable();
   });
 };

@@ -34,6 +34,7 @@ async function getAppointments(role, coach_student_id) {
       .join('students AS s', 's.user_id', '=', 'users.id')
       .join('appointments AS a', 'a.student_id', '=', 's.id')
       .join('appointment_topics AS at', 'at.id', '=', 'a.topic_id')
+      .join('appointment_length AS al', 'al.id', '=', 'a.topic_id')
       .where('a.coach_id', '=', coach_student_id)
       .select(
         'users.first_name',
@@ -47,6 +48,7 @@ async function getAppointments(role, coach_student_id) {
         'a.appointment_datetime',
         'a.canceled',
         'at.appointment_topic',
+        'al.appointment_length'
       );
   }
   return appointments;

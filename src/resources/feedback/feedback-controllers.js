@@ -2,7 +2,7 @@ const Feedback = require('./feedback-model');
 
 exports.feedback = async (req, res) => {
   try {
-    const feedback = await Feedback.get_Feedback(
+    const feedback = await Feedback.getFeedback(
       req.params.id,
     );
 

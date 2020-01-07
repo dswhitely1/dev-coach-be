@@ -27,6 +27,7 @@ exports.seed = function(knex) {
           topic_id: 3,
           appointment_datetime: 'Wed Mar 25 2015 01:00:00 GMT',
           length_id: 1,
+          feedback_id: 3,
         },
         {
           coach_id: 1,
@@ -34,6 +35,7 @@ exports.seed = function(knex) {
           topic_id: 1,
           appointment_datetime: 'Wed Mar 25 2015 01:00:00 GMT',
           length_id: 2,
+          feedback_id: 4,
         },
         {
           coach_id: 3,
@@ -41,6 +43,7 @@ exports.seed = function(knex) {
           topic_id: 1,
           appointment_datetime: 'Wed Mar 25 2015 01:00:00 GMT',
           length_id: 1,
+          feedback_id: 5,
         },
         {
           coach_id: 2,
@@ -48,6 +51,7 @@ exports.seed = function(knex) {
           topic_id: 5,
           appointment_datetime: 'Wed Mar 25 2015 01:00:00 GMT',
           length_id: 1,
+          feedback_id: 6,
         },
       ]);
     });
