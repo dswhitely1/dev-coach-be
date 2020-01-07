@@ -1,10 +1,10 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('appointments')
+  return knex('appointment_feedback')
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('appointments').insert([
+      return knex('appointment_feedback').insert([
         {
           feedback: `Overall you did a decent job but could still use a bit of extra work to
           get better when it comes to handling the clearInterval properly, using higher order components,
