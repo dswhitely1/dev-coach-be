@@ -60,10 +60,10 @@ async function add(user) {
   return findById(id);
 }
 
-function update({ role_id }, id) {
+function update(id, body) {
   return db('users')
     .where({ id })
-    .update({ role_id })
+    .update(body)
 };
 
 async function remove(id) {

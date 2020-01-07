@@ -4,5 +4,7 @@ const userController = require('./profile-controllers');
 const checkAuth = require('../../utils/check-auth');
 
 router.get('/coaches', checkAuth, userController.coaches);
+router.post('/coaches', checkAuth, userController.addCoach);
+router.post('/students', checkAuth, userController.addStudent);
 
 module.exports = router;
