@@ -60,6 +60,12 @@ async function add(user) {
   return findById(id);
 }
 
+async function update(user, id) {
+  const newUser = await db('users')
+    .where({ id })
+    .update({ role_id })
+};
+
 async function remove(id) {
   const user = await findById(id);
   if (user) {
