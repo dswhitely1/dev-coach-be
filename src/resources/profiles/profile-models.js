@@ -1,5 +1,4 @@
 const db = require('../../../data/dbConfig');
-const utils = require('../../utils/modelHelpers');
 
 async function get_coaches() {
   const coaches = await db('users').join(

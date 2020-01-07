@@ -76,10 +76,10 @@ exports.put = async (req, res) => {
     const updatedUser = await Users.update(req.params.id, req.body);
     if (updatedUser) {
       res.status(200).json({
-        messge: 'User updated successfully',
+        message: 'User updated successfully',
       });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Unable to update user ' });
+    res.status(500).json({ message: 'Unable to update user' });
   }
 };
