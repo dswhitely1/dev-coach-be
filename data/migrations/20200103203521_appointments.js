@@ -28,11 +28,6 @@ exports.up = function(knex) {
       .unsigned()
       .references('id')
       .inTable('appointment_length');
-    table
-      .integer('feedback_id')
-      .unsigned()
-      .references('id')
-      .inTable('appointment_feedback');
   });
 };
 

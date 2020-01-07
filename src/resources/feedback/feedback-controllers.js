@@ -1,4 +1,5 @@
 const Feedback = require('./feedback-model');
+const ModelHelper = require('../../utils/modelHelpers');
 
 exports.feedback = async (req, res) => {
   try {
@@ -18,9 +19,9 @@ exports.feedback = async (req, res) => {
   }
 };
 
-exports.add_feedback = async (req, res) => {
+exports.addFeedback = async (req, res) => {
   try {
-    const feedback = await Feedback.add(req.body);
+    const feedback = await ModelHelper.add(req.body, 'appointment_feedback');
     if (feedback) {
       res.status(200).json({
         feedback,

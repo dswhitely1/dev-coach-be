@@ -13,6 +13,8 @@ border with whether this was a Yes/No, but I think if this was a real interview,
 suggested a followup interview since it was good but not excellent yet. Overall though
 communication was good and I enjoyed chatting with him in the end as well.`,
           rating: 4,
+          user_role_id: 2,
+          appointment_id: 1,
         },
         {
           feedback: `Overall you did a decent job but could still use a bit of extra work to
@@ -22,6 +24,8 @@ border with whether this was a Yes/No, but I think if this was a real interview,
 suggested a followup interview since it was good but not excellent yet. Overall though
 communication was good and I enjoyed chatting with him in the end as well.`,
           rating: 3,
+          user_role_id: 2,
+          appointment_id: 2,
         },
         {
           feedback: `Overall you did a decent job but could still use a bit of extra work to
@@ -31,18 +35,26 @@ border with whether this was a Yes/No, but I think if this was a real interview,
 suggested a followup interview since it was good but not excellent yet. Overall though
 communication was good and I enjoyed chatting with him in the end as well.`,
           rating: 2,
+          user_role_id: 2,
+          appointment_id: 3,
         },
         {
           feedback: `Great job, you did amazing during your Frontend Interview!!!.`,
           rating: 5,
+          user_role_id: 1,
+          appointment_id: 4,
         },
         {
           feedback: `Fantastic job, I would only like that you learn more about Time and Space Complexity`,
           rating: 3,
+          user_role_id: 1,
+          appointment_id: 5,
         },
         {
           feedback: `Great work, you did an amazing job. I don't have any improvements for you`,
           rating: 5,
+          user_role_id: 1,
+          appointment_id: 6,
         },
       ]);
     });
