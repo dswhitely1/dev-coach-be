@@ -1,6 +1,6 @@
 const db = require('../../../data/dbConfig');
 
-async function get_coaches() {
+async function getCoaches() {
   const coaches = await db('users').join(
     'coaches',
     'coaches.user_id',
@@ -11,5 +11,5 @@ async function get_coaches() {
 }
 
 module.exports = {
-  get_coaches,
+  getCoaches,
 };

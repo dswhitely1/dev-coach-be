@@ -8,7 +8,7 @@ async function findById(id) {
   return feedback;
 }
 
-async function get_feedback(student_id) {
+async function getFeedback(student_id) {
   return db('students')
     .join('appointments AS a', 'a.student_id', '=', 'students.id')
     .join('appointment_feedback AS f', 'a.feedback_id', '=', 'f.id')
@@ -25,6 +25,6 @@ async function add(feedback) {
 }
 
 module.exports = {
-  get_feedback,
+  getFeedback,
   add,
 };

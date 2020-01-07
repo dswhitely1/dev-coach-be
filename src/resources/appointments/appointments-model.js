@@ -8,7 +8,7 @@ async function findById(id) {
   return appointment;
 }
 
-async function get_appointments(role, coach_student_id) {
+async function getAppointments(role, coach_student_id) {
   let appointments;
   if (role === '1') {
     appointments = await db('users')
@@ -67,7 +67,7 @@ async function cancel(canceled, id) {
 }
 
 module.exports = {
-  get_appointments,
+  getAppointments,
   add,
   cancel,
 };
