@@ -50,7 +50,6 @@ async function findById(id) {
   const user = await db('users')
     .where({ id })
     .first();
-
   return user;
 }
 

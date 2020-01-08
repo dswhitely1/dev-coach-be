@@ -3,6 +3,15 @@ const Users = require('./user-model');
 
 const generateToken = require('../../utils/generate-token');
 
+exports.getUserByID = async (req, res) => {
+  const users = await Users.findById(req.params.id);
+  if (users) {
+    res.status(200).json(users);
+  } else {
+    res.status(500).json("User not found");
+  }
+}
+
 exports.register = async (req, res) => {
   const user = await Users.findBy({ email: req.body.email });
   if (user) {
