@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
 const userController = require('./profile-controllers');
-const checkAuth = require('../../utils/check-auth');
+// const checkAuth = require('../../utils/check-auth'); currently throwing an error
 
 router.get('/coaches', userController.coaches);
-// TODO: add checkAuth middleware since this route should be protected
+router.get('/students', userController.students);
 router.post('/coaches', userController.addCoach);
 router.post('/students', userController.addStudent);
 
