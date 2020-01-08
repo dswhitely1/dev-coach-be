@@ -10,11 +10,11 @@ const {
   validateLogin,
 } = userMiddleware;
 
-router.get('/', userController.getUsers);
-router.get('/:id', userController.getUserByID);
-router.post('/register', validateRegister, userController.register);
-router.post('/login', validateLogin, userController.login);
+router.get('/', checkAuth, userController.getUsers);
+router.get('/:id', checkAuth, userController.getUserByID);
+router.post('/register', checkAuth, validateRegister, userController.register);
+router.post('/login', checkAuth, validateLogin, userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
-router.put('/:id', userController.put);
+router.put('/:id', checkAuth, userController.put);
 
 module.exports = router;
