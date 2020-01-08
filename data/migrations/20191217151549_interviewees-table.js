@@ -3,8 +3,9 @@ exports.up = function(knex) {
     table.increments();
     table
       .integer('user_id')
-      .notNullable()
       .unsigned()
+      .unique()
+      .notNullable()
       .references('id')
       .inTable('users');
     table.string('avatar_url', 50);
