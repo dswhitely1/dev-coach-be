@@ -4,7 +4,7 @@ const Users = require('./user-model');
 const generateToken = require('../../utils/generate-token');
 
 exports.getUsers = async (req, res) => {
-  const users = Users.find();
+  const users = await Users.getAllUsers();
   if (users) {
     res.status(200).json(users);
   } else {
