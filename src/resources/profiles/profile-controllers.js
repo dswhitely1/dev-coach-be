@@ -16,7 +16,7 @@ exports.students = async (req, res) => {
 
 exports.coaches = async (req, res) => {
   try {
-    const coaches = await Profile.get_coaches();
+    const coaches = await Profile.getCoaches();
     if (coaches) {
       res.status(200).json({
         coaches,
