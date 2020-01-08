@@ -42,13 +42,6 @@ exports.seed = function(knex) {
           password: bcrypt.hashSync('bob', 10),
           role_id: 1,
         },
-        {
-          first_name: 'Peter',
-          last_name: 'Grabow',
-          email: 'peter@google.com',
-          password: bcrypt.hashSync('peter', 10),
-          role_id: 1,
-        },
       ]);
     });
 };
