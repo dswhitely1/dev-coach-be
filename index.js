@@ -6,6 +6,7 @@ const userRouter = require('./src/resources/users/user-router');
 const appointmentRouter = require('./src/resources/appointments/appointments-router');
 const profileRouter = require('./src/resources/profiles/profile-router');
 const paymentRouter = require('./src/resources/payments/payment-router');
+const feedbackRouter = require('./src/resources/feedback/feedback-router');
 
 const server = express();
 
@@ -25,6 +26,7 @@ server.use('/user', userRouter);
 server.use('/appointment', appointmentRouter);
 server.use('/profile', profileRouter);
 server.use('/payment', paymentRouter);
+server.use('/feedback', feedbackRouter);
 
 // catch-all endpoint
 server.all('*', (req, res) => {
