@@ -49,7 +49,9 @@ exports.login = async (req, res) => {
         user,
       });
     } else {
-      res.status(401).json({ message: 'Auth Failed' });
+      res
+        .status(401)
+        .json({ message: 'Email or password is incorrect' });
     }
   } catch (error) {
     res
