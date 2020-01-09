@@ -3,7 +3,7 @@ const Appointments = require('./appointments-model');
 exports.appointments = async (req, res) => {
   try {
     const appointments = await Appointments.getAppointments(
-      req.body.role,
+      req.query.role,
       req.params.id,
     );
 
