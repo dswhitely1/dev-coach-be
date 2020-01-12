@@ -1,12 +1,14 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const userRouter = require('./src/resources/users/user-router');
 const appointmentRouter = require('./src/resources/appointments/appointments-router');
 const profileRouter = require('./src/resources/profiles/profile-router');
 const paymentRouter = require('./src/resources/payments/payment-router');
 const feedbackRouter = require('./src/resources/feedback/feedback-router');
+const videoRouter = require('./src/resources/video/video-router');
 
 const server = express();
 
@@ -14,8 +16,8 @@ const server = express();
 server.use(helmet());
 server.use(cors());
 
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 
 // catch-all endpoint
 server.get('/', (req, res) => {
@@ -27,6 +29,7 @@ server.use('/appointment', appointmentRouter);
 server.use('/profile', profileRouter);
 server.use('/payment', paymentRouter);
 server.use('/feedback', feedbackRouter);
+server.use('/video', videoRouter);
 
 // catch-all endpoint
 server.all('*', (req, res) => {
