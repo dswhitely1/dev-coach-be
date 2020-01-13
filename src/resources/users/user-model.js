@@ -62,8 +62,8 @@ async function add(user) {
 function update(id, body) {
   return db('users')
     .where({ id })
-    .update(body)
-};
+    .update(body);
+}
 
 async function remove(id) {
   const user = await findById(id);

@@ -94,7 +94,8 @@ exports.put = async (req, res) => {
     const updatedUser = await Users.update(req.params.id, req.body);
     if (updatedUser) {
       res.status(200).json({
-        message: 'User updated successfully',
+        updatedUser,
+        message: 'Your profile has been updated successfully',
       });
     }
   } catch (error) {
