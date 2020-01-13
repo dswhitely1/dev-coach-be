@@ -58,13 +58,20 @@ exports.login = async (req, res) => {
 
   try {
     const user = await Users.findByForLogin({ email });
-
+    console.log(user)
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user.id);
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
-        user,
+        user: {
+          id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+          location: user.location,
+          role_id: user.role_id,
+        }
       });
     } else {
       res
