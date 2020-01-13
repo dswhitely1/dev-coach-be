@@ -40,7 +40,6 @@ exports.register = async (req, res) => {
       if (newUser) {
         try {
           const fullUserDetails = await Users.findByForLogin({ email: newUser.email });
-          console.log(fullUserDetails)
           const token = generateToken(newUser.id);
           res.status(201).json({
             message: `Welcome ${newUser.first_name}`,
@@ -71,7 +70,6 @@ exports.login = async (req, res) => {
 
   try {
     const user = await Users.findByForLogin({ email });
-    console.log(user);
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user.id);
       res.status(200).json({

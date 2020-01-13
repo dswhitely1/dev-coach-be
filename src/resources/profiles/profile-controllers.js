@@ -43,14 +43,12 @@ exports.addStudent = async (req, res) => {
 exports.addCoach = async (req, res) => {
   try {
     const coach = await Helpers.add(req.body, 'coaches');
-    console.log(coach)
     if (coach) {
       res.status(200).json({
         coach,
       });
     }
   } catch (error) {
-    console.log(error)
     res.status(500).json({ message: 'Unable to add new coach' });
   }
 }; 
