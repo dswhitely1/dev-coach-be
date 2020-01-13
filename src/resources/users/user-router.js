@@ -10,8 +10,8 @@ const {
   validateLogin,
 } = userMiddleware;
 
-router.get('/', checkAuth, userController.getUsers);
-router.get('/:id', checkAuth, userController.getUserByID);
+router.get('/', userController.getUsers);
+router.get('/:id', userController.getUserByID);
 router.post('/register', validateRegister, userController.register);
 router.post('/login', validateLogin, userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);

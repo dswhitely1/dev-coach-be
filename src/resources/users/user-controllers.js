@@ -27,9 +27,9 @@ exports.register = async (req, res) => {
     res.status(409).json({
       message: 'Email already exists',
     });
-  } else {
+  } else {  
     try {
-      const newUser = await Users.add({
+      const newUser = await Users.add({ 
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         password: bcrypt.hashSync(req.body.password, 10),
@@ -38,12 +38,25 @@ exports.register = async (req, res) => {
       });
 
       if (newUser) {
-        const token = generateToken(newUser.id);
-        res.status(201).json({
-          message: `Welcome ${newUser.first_name}`,
-          token,
-          user_id: newUser.id,
-        });
+        try {
+          const fullUserDetails = await Users.findByForLogin({ email: newUser.email });
+          console.log(fullUserDetails)
+          const token = generateToken(newUser.id);
+          res.status(201).json({
+            message: `Welcome ${newUser.first_name}`,
+            token,
+            user: {
+              id: fullUserDetails.id,
+              first_name: fullUserDetails.first_name,
+              last_name: fullUserDetails.last_name,
+              email: fullUserDetails.email,
+              location: fullUserDetails.location,
+              role_id: fullUserDetails.role_id,
+            },
+          });
+        } catch (error) {
+          res.status(500).json("Account registered, but error retrieving coach or student details")
+        }
       }
     } catch (error) {
       res.status(500).json({
@@ -58,7 +71,7 @@ exports.login = async (req, res) => {
 
   try {
     const user = await Users.findByForLogin({ email });
-    console.log(user)
+    console.log(user);
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user.id);
       res.status(200).json({
@@ -71,7 +84,7 @@ exports.login = async (req, res) => {
           email: user.email,
           location: user.location,
           role_id: user.role_id,
-        }
+        },
       });
     } else {
       res
