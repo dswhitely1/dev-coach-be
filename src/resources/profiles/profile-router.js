@@ -3,9 +3,8 @@ const router = require('express').Router();
 const userController = require('./profile-controllers');
 const checkAuth = require('../../utils/check-auth');
 
-router.get('/coaches', userController.coaches);
-// TODO: add checkAuth middleware since this route should be protected
-router.post('/coaches', userController.addCoach);
-router.post('/students', userController.addStudent);
+router.get('/coaches', checkAuth, userController.coaches);
+router.post('/coaches', checkAuth, userController.addCoach);
+router.post('/students', checkAuth, userController.addStudent);
 
 module.exports = router;

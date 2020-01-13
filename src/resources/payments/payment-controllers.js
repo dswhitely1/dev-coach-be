@@ -4,8 +4,6 @@ const stripe = require('stripe')(
 const uuid = require('uuid/v4');
 
 exports.stripe = async (req, res) => {
-  console.log('Request:', req.body);
-
   try {
     const { product, token } = req.body;
 
@@ -15,7 +13,7 @@ exports.stripe = async (req, res) => {
     });
 
     const idempotency_key = uuid();
-    const charge = await stripe.charges.create(
+    await stripe.charges.create(
       {
         amount: product.price * 100,
         currency: 'usd',
@@ -37,10 +35,8 @@ exports.stripe = async (req, res) => {
         idempotency_key,
       },
     );
-    console.log('Charge:', { charge });
     res.status(200).json({ status: 'success' });
   } catch (error) {
-    console.error('Error:', error);
     res.status(500).json({ error, status: 'failure' });
   }
 };
