@@ -1,5 +1,9 @@
 const db = require('../../../data/dbConfig');
 
+function getAllUsers() {
+  return db('users');
+}
+
 async function find() {
   const users = await db('users').select(
     'id',
@@ -50,7 +54,6 @@ async function findById(id) {
   const user = await db('users')
     .where({ id })
     .first();
-
   return user;
 }
 
@@ -79,6 +82,7 @@ async function remove(id) {
 }
 
 module.exports = {
+  getAllUsers,
   find,
   findBy,
   findByForLogin,
