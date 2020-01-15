@@ -30,7 +30,7 @@ exports.seed = function(knex) {
           hourly_rate: 50,
         },
         {
-          user_id: 4,
+          user_id: 6,
           experience_level: 3,
           skill_level: 3,
           description:
@@ -38,7 +38,7 @@ exports.seed = function(knex) {
           hourly_rate: 90,
         },
         {
-          user_id: 5,
+          user_id: 7,
           experience_level: 2,
           skill_level: 2,
           description:
@@ -46,7 +46,7 @@ exports.seed = function(knex) {
           hourly_rate: 30,
         },
         {
-          user_id: 6,
+          user_id: 8,
           experience_level: 1,
           skill_level: 1,
           description:
@@ -54,7 +54,7 @@ exports.seed = function(knex) {
           hourly_rate: 44,
         },
         {
-          user_id: 7,
+          user_id: 9,
           experience_level: 2,
           skill_level: 1,
           description:
@@ -62,7 +62,7 @@ exports.seed = function(knex) {
           hourly_rate: 49,
         },
         {
-          user_id: 8,
+          user_id: 10,
           experience_level: 3,
           skill_level: 1,
           description:
@@ -70,7 +70,7 @@ exports.seed = function(knex) {
           hourly_rate: 44,
         },
         {
-          user_id: 9,
+          user_id: 11,
           experience_level: 1,
           skill_level: 2,
           description:
@@ -78,7 +78,7 @@ exports.seed = function(knex) {
           hourly_rate: 20,
         },
         {
-          user_id: 10,
+          user_id: 12,
           experience_level: 3,
           skill_level: 1,
           description:
@@ -86,7 +86,7 @@ exports.seed = function(knex) {
           hourly_rate: 50,
         },
         {
-          user_id: 11,
+          user_id: 13,
           experience_level: 1,
           skill_level: 2,
           description:
