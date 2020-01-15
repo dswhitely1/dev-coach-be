@@ -78,17 +78,17 @@ async function update(id, body) {
   }
 }
 
-// async function remove(id) {
-//   const user = await findById(id);
-//   if (user) {
-//     const deleted = await db('users')
-//       .where({ id })
-//       .del();
-//     if (deleted) {
-//       return user;
-//     }
-//   }
-// }
+async function remove(id) {
+  const user = await findById(id);
+  if (user) {
+    const deleted = await db('users')
+      .where({ id })
+      .del();
+    if (deleted) {
+      return user;
+    }
+  }
+}
 
 module.exports = {
   find,
