@@ -63,10 +63,15 @@ async function add(user) {
   return findById(id);
 }
 
-function update(id, body) {
-  return db('users')
+async function update(id, body) {
+  const updatedUser = await db('users')
     .where({ id })
     .update(body);
+
+  if (updatedUser) {
+    const user = await findById(id);
+    return user;
+  }
 }
 
 async function remove(id) {

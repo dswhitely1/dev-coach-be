@@ -27,9 +27,9 @@ exports.register = async (req, res) => {
     res.status(409).json({
       message: 'Email already exists',
     });
-  } else {  
+  } else {
     try {
-      const newUser = await Users.add({ 
+      const newUser = await Users.add({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         password: bcrypt.hashSync(req.body.password, 10),
@@ -39,7 +39,9 @@ exports.register = async (req, res) => {
 
       if (newUser) {
         try {
-          const fullUserDetails = await Users.findByForLogin({ email: newUser.email });
+          const fullUserDetails = await Users.findByForLogin({
+            email: newUser.email,
+          });
           const token = generateToken(newUser.id);
           res.status(201).json({
             message: `Welcome ${newUser.first_name}`,
@@ -54,7 +56,11 @@ exports.register = async (req, res) => {
             },
           });
         } catch (error) {
-          res.status(500).json("Account registered, but error retrieving coach or student details")
+          res
+            .status(500)
+            .json(
+              'Account registered, but error retrieving coach or student details',
+            );
         }
       }
     } catch (error) {
@@ -114,7 +120,8 @@ exports.put = async (req, res) => {
     const updatedUser = await Users.update(req.params.id, req.body);
     if (updatedUser) {
       res.status(200).json({
-        message: 'User updated successfully',
+        updatedUser,
+        message: 'user updated successfully',
       });
     }
   } catch (error) {
