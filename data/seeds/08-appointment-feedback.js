@@ -43,11 +43,13 @@ communication was good and I enjoyed chatting with him in the end as well.`,
           feedback: `Great job, you did amazing during your Frontend Interview!!!.`,
           rating: 5,
           appointment_id: 4,
+          user_role_id: 2,
         },
         {
           feedback: `Fantastic job, I would only like that you learn more about Time and Space Complexity`,
           rating: 3,
           appointment_id: 5,
+          user_role_id: 1,
         },
         {
           feedback: `Great work Bob! You did an amazing job. I don't have any improvements for you`,
