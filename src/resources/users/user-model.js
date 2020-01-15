@@ -63,14 +63,6 @@ async function add(user) {
   return findById(id);
 }
 
-// async function update(id, body) {
-//   const userUpdate = await db('users')
-//     .where({ id })
-//     .update(body);
-
-//   return findById(id);
-// }
-
 async function update(id, body) {
   const updatedUser = await db('users')
     .where({ id })
