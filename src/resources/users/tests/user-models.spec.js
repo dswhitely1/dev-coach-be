@@ -4,7 +4,7 @@ describe('Users model', () => {
   describe('.find()', () => {
     test('should find all users in the db', async () => {
       const users = await Users.find();
-      expect(users.length).toBe(10);
+      expect(users.length).toBe(18);
     });
   });
 
@@ -18,9 +18,10 @@ describe('Users model', () => {
       });
       const users = await Users.find();
       expect(user).toEqual({
+        "avatar_url": null,
         email: 'funtee@gmail.com',
         first_name: 'fun',
-        id: 11,
+        id: 19,
         last_name: 'tee',
         location: null,
         password: '12345',
