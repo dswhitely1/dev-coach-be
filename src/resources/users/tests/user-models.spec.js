@@ -30,13 +30,4 @@ describe('Users model', () => {
       expect(users.length).toBe(19);
     });
   });
-
-  describe('.remove()', () => {
-    test('should remove a user successfully from the database', async () => {
-      const removed = await Users.remove(8);
-      const users = await Users.find();
-      expect(removed).toBeTruthy();
-      expect(users.length).toBe(10);
-    });
-  });
 });
