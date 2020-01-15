@@ -97,10 +97,31 @@ exports.put = async (req, res) => {
     if (updatedUser) {
       res.status(200).json({
         updatedUser,
-        message: 'Your profile has been updated successfully',
+        message: 'user updated successfully',
       });
     }
   } catch (error) {
     res.status(500).json({ message: 'Unable to update user' });
   }
 };
+
+// exports.put = async (req, res) => {
+//   try {
+//     const userUpdate = {
+//       first_name: req.body.first_name,
+//       last_name: req.body.last_name,
+//       password: bcrypt.hashSync(req.body.password, 10),
+//       email: req.body.email,
+//     };
+
+//     const updatedUser = await Users.update(req.params.id, req.body);
+//     if (updatedUser) {
+//       res.status(200).json({
+//         updatedUser,
+//         message: 'Your profile has been updated successfully',
+//       });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: 'Unable to update user' });
+//   }
+// };

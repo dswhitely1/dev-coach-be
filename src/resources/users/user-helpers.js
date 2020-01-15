@@ -1,4 +1,5 @@
 const Users = require('../users/user-model');
+const bcrypt = require('bcryptjs');
 
 exports.validateRegister = (req, res, next) => {
   const {
@@ -12,6 +13,25 @@ exports.validateRegister = (req, res, next) => {
     res.status(400).json({
       message: 'Please make sure required fields are filled in.',
     });
+  } else {
+    next();
+  }
+};
+
+exports.validatePasswordUpdate = (req, res, next) => {
+  const { password, confirm_password } = req.body;
+
+  if (password || confirm_password) {
+    if (password !== confirm_password) {
+      res.status(400).json({
+        message:
+          'please make sure new password and confirm password match',
+      });
+    } else {
+      req.body.password = bcrypt.hashSync(password, 10);
+      delete req.body.confirm_password;
+      next();
+    }
   } else {
     next();
   }
