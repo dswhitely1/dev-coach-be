@@ -6,6 +6,7 @@ exports.up = function(knex) {
     table.string('email', 128).notNullable();
     table.string('password', 128).notNullable();
     table.string('location');
+    table.string('avatar_url', 128);
     table
       .integer('role_id')
       .defaultTo(null)

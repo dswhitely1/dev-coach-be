@@ -8,7 +8,6 @@ exports.up = function(knex) {
       .notNullable()
       .references('id')
       .inTable('users');
-    table.string('avatar_url', 50);
     table.integer('experience_level').notNullable();
     table.integer('confidence_level').notNullable();
   });
