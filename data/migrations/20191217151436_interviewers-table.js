@@ -11,7 +11,7 @@ exports.up = function(knex) {
     table.integer('experience_level').notNullable();
     table.integer('skill_level').notNullable();
     table.string('description', 400);
-    table.float('rating');
+    table.integer('rating');
     table.float('hourly_rate');
     table.string('contact_url', 128);
   });
