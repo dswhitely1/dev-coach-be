@@ -22,6 +22,7 @@ async function getAppointments(role, coach_student_id) {
         'users.last_name',
         'users.email',
         'users.avatar_url',
+        'users.role_id',
         'c.user_id',
         'c.experience_level',
         'c.skill_level',
@@ -30,7 +31,7 @@ async function getAppointments(role, coach_student_id) {
         'a.appointment_datetime',
         'a.canceled',
         'at.appointment_topic',
-        'al.appointment_length'
+        'al.appointment_length',
       );
   } else {
     appointments = await db('users')
@@ -43,6 +44,7 @@ async function getAppointments(role, coach_student_id) {
         'users.first_name',
         'users.last_name',
         'users.email',
+        'users.role_id',
         'users.avatar_url',
         's.user_id',
         's.experience_level',
@@ -52,7 +54,7 @@ async function getAppointments(role, coach_student_id) {
         'a.appointment_datetime',
         'a.canceled',
         'at.appointment_topic',
-        'al.appointment_length'
+        'al.appointment_length',
       );
   }
   return appointments;
