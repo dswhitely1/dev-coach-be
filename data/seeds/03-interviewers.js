@@ -12,6 +12,7 @@ exports.seed = function(knex) {
           description:
             'Jayne worked as a singing teacher for 9 years and is now studying with Lambda School',
           hourly_rate: 80,
+          rating: 5,
         },
         {
           user_id: 2,
@@ -20,6 +21,7 @@ exports.seed = function(knex) {
           description:
             'Liam is now studying in Lambda School, Hello there! I am a full-stack web developer with QualityHub on their Core and InterviewQ teams. I am happy to coach you toward career success!',
           hourly_rate: 70,
+          rating: 5,
         },
         {
           user_id: 3,
@@ -28,6 +30,7 @@ exports.seed = function(knex) {
           description:
             'Hello there! I am a full-stack web developer with QualityHub on their Core and InterviewQ teams. I am happy to coach you toward career success!',
           hourly_rate: 50,
+          rating: 4,
         },
         {
           user_id: 6,
@@ -36,6 +39,7 @@ exports.seed = function(knex) {
           description:
             'I am working as a singing teacher for 9 years and is now studying with Lambda School',
           hourly_rate: 90,
+          rating: 4,
         },
         {
           user_id: 7,
@@ -44,6 +48,7 @@ exports.seed = function(knex) {
           description:
             'I am now studying in Lambda School, Hello there! I am a full-stack web developer with QualityHub on their Core and InterviewQ teams. I am happy to coach you toward career success!',
           hourly_rate: 30,
+          rating: 4,
         },
         {
           user_id: 8,
@@ -52,6 +57,7 @@ exports.seed = function(knex) {
           description:
             'Hello there! I am a full-stack web developer with QualityHub on their Core and InterviewQ teams. I am happy to coach you toward career success!',
           hourly_rate: 44,
+          rating: 4,
         },
         {
           user_id: 9,
@@ -68,6 +74,7 @@ exports.seed = function(knex) {
           description:
             'I am now studying in Lambda School, Hello there! I am a full-stack web developer with QualityHub on their Core and InterviewQ teams. I am happy to coach you toward career success!',
           hourly_rate: 44,
+          rating: 4,
         },
         {
           user_id: 11,
@@ -84,6 +91,7 @@ exports.seed = function(knex) {
           description:
             'I working as a singing teacher for 9 years and is now studying with Lambda School',
           hourly_rate: 50,
+          rating: 4,
         },
         {
           user_id: 13,

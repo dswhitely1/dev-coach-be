@@ -10,7 +10,7 @@ exports.students = async (req, res) => {
       });
     }
   } catch (error) {
-      res.status(500).json({ message: 'Could not find any students.' });
+    res.status(500).json({ message: 'Could not find any students.' });
   }
 };
 
@@ -51,4 +51,4 @@ exports.addCoach = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Unable to add new coach' });
   }
-}; 
+};

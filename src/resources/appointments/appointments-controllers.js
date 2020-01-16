@@ -1,5 +1,9 @@
-const nodemailer = require('nodemailer');
-const mailGun = require('nodemailer-mailgun-transport');
+const API_KEY = process.env.EMAIL_KEY;
+const DOMAIN = process.env.EMAIL_DOMAIN;
+const mailgun = require('mailgun-js')({
+  apiKey: API_KEY,
+  domain: DOMAIN,
+});
 const Appointments = require('./appointments-model');
 
 exports.appointments = async (req, res) => {
@@ -57,15 +61,6 @@ exports.addAppointment = async (req, res) => {
 exports.sendAppointmentEmail = async (req, res) => {
   const { email, text, subject } = req.body;
 
-  const auth = {
-    auth: {
-      api_key: process.env.EMAIL_KEY,
-      domain: process.env.EMAIL_DOMAIN,
-    },
-  };
-
-  const transporter = nodemailer.createTransport(mailGun(auth));
-
   const maiOptions = {
     from: 'qualityhub@gmx.de',
     to: email,
@@ -73,7 +68,7 @@ exports.sendAppointmentEmail = async (req, res) => {
     text,
   };
 
-  transporter.sendMail(maiOptions, function(error, data) {
+  mailgun.messages().send(maiOptions, (error, data) => {
     if (error) {
       res
         .status(500)
