@@ -8,6 +8,8 @@ cache:
 env:
   global:
     - DB_ENV=testing
+    - EMAIL_KEY='kjnkj'
+    - EMAIL_DOMAIN='igöl'
 services:
   - postgresql
 before_script:
