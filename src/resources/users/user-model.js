@@ -67,7 +67,6 @@ async function update(id, body) {
   const updatedUser = await db('users')
     .where({ id })
     .update(body);
-
   if (updatedUser) {
     const user = await findById(id);
     return user;
