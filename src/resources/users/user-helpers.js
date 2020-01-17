@@ -20,8 +20,11 @@ exports.validateRegister = (req, res, next) => {
 
 exports.validatePasswordUpdate = (req, res, next) => {
   const { password, confirm_password } = req.body;
-
-  if (password || confirm_password) {
+  if (password === '' && confirm_password === '') {
+    delete req.body.password;
+    delete req.body.confirm_password;
+    next();
+  } else if (password || confirm_password) {
     if (password !== confirm_password) {
       res.status(400).json({
         message:
