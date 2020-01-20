@@ -31,6 +31,21 @@ exports.auth = (req, res) => {
   res.status(authData.status).send(authData.body);
 };
 
+exports.getUserRooms = (req, res) => {
+  const { userId } = req.body;
+
+  chatkit
+    .getUserJoinableRooms({
+      userId,
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 exports.createRoom = (req, res) => {
   const { creatorId, name, userIds } = req.body;
 
@@ -41,11 +56,11 @@ exports.createRoom = (req, res) => {
       userIds,
     })
     .then(() => {
-      res.status(200).json({ message: 'Room created successfully' });
+      res.status(200).json({ message: 'Room successfully created' });
     })
     .catch(error => {
       res
         .status(500)
-        .json({ error, message: 'Room created successfully' });
+        .json({ error, message: `I couldn't create this room` });
     });
 };
