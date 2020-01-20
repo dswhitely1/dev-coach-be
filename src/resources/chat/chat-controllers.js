@@ -15,13 +15,15 @@ exports.chat = (req, res) => {
     })
     .then(() => res.sendStatus(201))
     .catch(error => {
-      if (
-        error.error ===
-        'services/chatkit/user_already_exists'
-      ) {
+      if (error.error === 'services/chatkit/user_already_exists') {
         res.sendStatus(200);
       } else {
         res.status(error.statusCode).json(error);
       }
     });
+};
+
+exports.authenticate = (req, res) => {
+  const { grant_type } = req.body;
+  res.json(chatkit.authenticate({ grant_type }, req.query.user_id));
 };
