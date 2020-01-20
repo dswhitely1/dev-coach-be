@@ -5,7 +5,7 @@ const chatkit = new Chatkit.default({
   key: process.env.PUSHER_CHAT_KEY,
 });
 
-exports.chat = async (req, res) => {
+exports.chat = (req, res) => {
   const { email } = req.body;
 
   chatkit
@@ -13,11 +13,11 @@ exports.chat = async (req, res) => {
       id: email,
       name: email,
     })
-    .then(() => res.status(201))
+    .then(() => res.sendStatus(201))
     .catch(error => {
       if (
-        error.error_type ===
-        'services/chatkit/user/user_already_exists'
+        error.error ===
+        'services/chatkit/user_already_exists'
       ) {
         res.sendStatus(200);
       } else {
