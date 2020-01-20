@@ -27,7 +27,7 @@ describe('Users model', () => {
         password: '12345',
         role_id: null,
         github: null,
-        Linkedin: null,
+        linkedin: null,
       });
       expect(users.length).toBe(19);
     });
