@@ -35,14 +35,16 @@ exports.getUserRooms = (req, res) => {
   const { userId } = req.body;
 
   chatkit
-    .getUserJoinableRooms({
+    .getUserRooms({
       userId,
     })
-    .then(res => {
-      console.log(res);
+    .then(response => {
+      res.status(200).json({ rooms: response });
     })
-    .catch(err => {
-      console.log(err);
+    .catch(error => {
+      res
+        .status(500)
+        .json({ message: `Couldn't get anything!`, error });
     });
 };
 
