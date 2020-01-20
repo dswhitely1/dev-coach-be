@@ -5,7 +5,7 @@ const chatkit = new Chatkit.default({
   key: process.env.PUSHER_CHAT_KEY,
 });
 
-exports.chat = (req, res) => {
+exports.createUser = (req, res) => {
   const { username } = req.body;
 
   chatkit
@@ -29,4 +29,23 @@ exports.auth = (req, res) => {
   });
 
   res.status(authData.status).send(authData.body);
+};
+
+exports.createRoom = (req, res) => {
+  const { creatorId, name, userIds } = req.body;
+
+  chatkit
+    .createRoom({
+      creatorId,
+      name,
+      userIds,
+    })
+    .then(() => {
+      res.status(200).json({ message: 'Room created successfully' });
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ error, message: 'Room created successfully' });
+    });
 };
