@@ -6,12 +6,12 @@ const chatkit = new Chatkit.default({
 });
 
 exports.chat = (req, res) => {
-  const { email } = req.body;
+  const { username } = req.body;
 
   chatkit
     .createUser({
-      id: email,
-      name: email,
+      id: username,
+      name: username,
     })
     .then(() => res.sendStatus(201))
     .catch(error => {
@@ -23,9 +23,10 @@ exports.chat = (req, res) => {
     });
 };
 
-exports.authenticate = (req, res) => {
-  const { grant_type } = req.body;
-  res.json(
-    chatkit.authenticate({ grant_type, userId: req.query.user_id }),
-  );
+exports.auth = (req, res) => {
+  const authData = chatkit.authenticate({
+    userId: req.query.user_id,
+  });
+
+  res.status(authData.status).send(authData.body);
 };
