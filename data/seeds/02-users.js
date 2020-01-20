@@ -15,8 +15,8 @@ exports.seed = function(knex) {
           role_id: 2,
           location: 'Aberdeen',
           avatar_url: 'https://bit.ly/325XJrX',
-          linkedin: '',
-          github: '',
+          linkedin: 'https://linkedin.com/in/jaynecarmichaelnorrie',
+          github: 'https://github.com/jaynecn',
         },
         {
           first_name: 'Liam',
@@ -27,7 +27,7 @@ exports.seed = function(knex) {
           location: 'Manchester',
           avatar_url: 'https://bit.ly/2Q0cbgm',
           linkedin: 'https://www.linkedin.com/in/liam-sutton-86254618b/',
-          github: '',
+          github: 'https://github.com/curm90',
         },
         {
           first_name: 'Funmi',
@@ -37,8 +37,8 @@ exports.seed = function(knex) {
           role_id: 2,
           location: 'Aberdeen',
           avatar_url: 'https://bit.ly/36SwAec',
-          linkedin: '',
-          github: '',
+          linkedin: 'https://www.linkedin.com/in/funmilayo-talabi/',
+          github: 'https://github.com/funmi7',
         },
         {
           first_name: 'Bob',
@@ -79,8 +79,8 @@ exports.seed = function(knex) {
           role_id: 2,
           location: 'Aberdeen',
           avatar_url: 'https://bit.ly/35I1kOT',
-          linkedin: '',
-          github: '',
+          linkedin: 'https://www.linkedin.com/in/oladimejiojo/',
+          github: 'https://github.com/ojokure',
         },
         {
           first_name: 'Benjamin',
@@ -90,8 +90,8 @@ exports.seed = function(knex) {
           role_id: 2,
           location: 'Berlin',
           avatar_url: 'https://avatars2.githubusercontent.com/u/45399252?s=460&v=4',
-          linkedin: '',
-          github: '',
+          linkedin: 'https://www.linkedin.com/in/benjamin-grabow/',
+          github: 'https://github.com/BenjaminGrabow',
         },
         {
           first_name: 'Peter',
