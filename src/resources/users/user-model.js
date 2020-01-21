@@ -13,6 +13,7 @@ async function find() {
     'email',
     'location',
     'role_id',
+    'avatar_url'
   );
   return users;
 }
