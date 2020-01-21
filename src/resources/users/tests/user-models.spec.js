@@ -18,7 +18,7 @@ describe('Users model', () => {
       });
       const users = await Users.find();
       expect(user).toEqual({
-        avatar_url: null,
+        avatar_url: '',
         email: 'funtee@gmail.com',
         first_name: 'fun',
         id: 19,
