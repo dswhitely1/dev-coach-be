@@ -39,8 +39,6 @@ server.all('*', (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
-// server.listen(port, console.log(`Listening on Port ${port}`));
-
 /* 
   With respect to listen EADDRINUSE :::5000 error returned when testing
   The problem is this: once the execution of the first test ends, the server is still listening on the port 5000. So when we require('../index') again in the second test file, it errors out because is port is still in use by the previous test file’s process.
