@@ -68,3 +68,14 @@ exports.createRoom = (req, res) => {
         .json({ error, message: `I couldn't create this room` });
     });
 };
+
+exports.roomById = (req, res) => {
+  const { roomId } = req.body;
+
+  chatkit
+    .getRoom({
+      roomId,
+    })
+    .then(room => console.log('got room', room))
+    .catch(err => console.error(err));
+};
