@@ -38,14 +38,12 @@ exports.getUserRooms = (req, res) => {
     .getUserRooms({
       userId,
     })
-    .then(response => {
-      res.status(200).json({ rooms: response });
-    })
-    .catch(error => {
+    .then(response => res.status(200).json({ rooms: response }))
+    .catch(error =>
       res
         .status(500)
-        .json({ message: `Couldn't get anything!`, error });
-    });
+        .json({ message: `Couldn't get anything!`, error }),
+    );
 };
 
 exports.createRoom = (req, res) => {
@@ -59,14 +57,14 @@ exports.createRoom = (req, res) => {
       id,
       customData,
     })
-    .then(() => {
-      res.status(200).json({ message: 'Room successfully created' });
-    })
-    .catch(error => {
+    .then(() =>
+      res.status(200).json({ message: 'Room successfully created' }),
+    )
+    .catch(error =>
       res
         .status(500)
-        .json({ error, message: `I couldn't create this room` });
-    });
+        .json({ error, message: `I couldn't create this room` }),
+    );
 };
 
 exports.roomById = (req, res) => {
@@ -76,6 +74,6 @@ exports.roomById = (req, res) => {
     .getRoom({
       roomId,
     })
-    .then(room => console.log('got room', room))
-    .catch(err => console.error(err));
+    .then(room => res.status(200).json({ room }))
+    .catch(error => res.status(500).json({ error }));
 };

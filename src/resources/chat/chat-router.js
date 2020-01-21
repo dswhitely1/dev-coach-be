@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
 const chatController = require('./chat-controllers');
-const checkAuth = require('../../utils/check-auth');
 
-router.post('/', checkAuth, chatController.createUser);
-router.post('/auth', checkAuth, chatController.auth);
-router.post('/room', checkAuth, chatController.createRoom);
-router.post('/user_room', checkAuth, chatController.getUserRooms);
+router.post('/', chatController.createUser);
+router.post('/auth', chatController.auth);
+router.post('/room', chatController.createRoom);
+router.post('/user_room', chatController.getUserRooms);
+router.post('/room_id',  chatController.roomById);
 module.exports = router;
