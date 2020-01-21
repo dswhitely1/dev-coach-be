@@ -10,8 +10,8 @@ env:
     - DB_ENV=testing
     - EMAIL_KEY='kjnkj'
     - EMAIL_DOMAIN='igöl'
-    - PUSHER_INSTANCE='v1:us1:02d03086-c977-4990-bbb8-d915c9090f74'
-    - PUSHER_CHAT_KEY=''
+    - PUSHER_INSTANCE=v1:us1:02d03086-c977-4990-bbb8-d915c9090f74
+    - PUSHER_CHAT_KEY='ljl'
 services:
   - postgresql
 before_script:
