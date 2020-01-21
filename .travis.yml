@@ -10,6 +10,8 @@ env:
     - DB_ENV=testing
     - EMAIL_KEY='kjnkj'
     - EMAIL_DOMAIN='igöl'
+    - PUSHER_INSTANCE='dsfsd'
+    - PUSHER_CHAT_KEY='dfs'
 services:
   - postgresql
 before_script:
