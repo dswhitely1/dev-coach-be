@@ -13,6 +13,7 @@ async function find() {
     'email',
     'location',
     'role_id',
+    'avatar_url'
   );
   return users;
 }
@@ -67,7 +68,6 @@ async function update(id, body) {
   const updatedUser = await db('users')
     .where({ id })
     .update(body);
-
   if (updatedUser) {
     const user = await findById(id);
     return user;

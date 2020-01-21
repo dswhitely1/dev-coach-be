@@ -53,6 +53,7 @@ exports.register = async (req, res) => {
               email: fullUserDetails.email,
               location: fullUserDetails.location,
               role_id: fullUserDetails.role_id,
+              avatar_url: '',
             },
           });
         } catch (error) {
@@ -88,6 +89,7 @@ exports.login = async (req, res) => {
           email: user.email,
           location: user.location,
           role_id: user.role_id,
+          avatar_url: user.avatar_url,
         },
       });
     } else {
