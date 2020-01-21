@@ -89,6 +89,7 @@ exports.login = async (req, res) => {
           email: user.email,
           location: user.location,
           role_id: user.role_id,
+          avatar_url: user.avatar_url,
         },
       });
     } else {
