@@ -49,13 +49,14 @@ exports.getUserRooms = (req, res) => {
 };
 
 exports.createRoom = (req, res) => {
-  const { creatorId, name, userIds } = req.body;
+  const { creatorId, name, userIds, id } = req.body;
 
   chatkit
     .createRoom({
       creatorId,
       name,
       userIds,
+      id,
     })
     .then(() => {
       res.status(200).json({ message: 'Room successfully created' });
