@@ -53,7 +53,7 @@ exports.register = async (req, res) => {
               email: fullUserDetails.email,
               location: fullUserDetails.location,
               role_id: fullUserDetails.role_id,
-              avatar_url: fullUserDetails.avatar_url,
+              avatar_url: '',
             },
           });
         } catch (error) {
