@@ -1,5 +1,9 @@
 const db = require('../../../data/dbConfig');
 
+function getAllUsers() {
+  return db('users');
+}
+
 async function find() {
   const users = await db('users').select(
     'id',
@@ -9,6 +13,7 @@ async function find() {
     'email',
     'location',
     'role_id',
+    'avatar_url'
   );
   return users;
 }
@@ -50,7 +55,6 @@ async function findById(id) {
   const user = await db('users')
     .where({ id })
     .first();
-
   return user;
 }
 
@@ -60,10 +64,14 @@ async function add(user) {
   return findById(id);
 }
 
-function update(id, body) {
-  return db('users')
+async function update(id, body) {
+  const updatedUser = await db('users')
     .where({ id })
     .update(body);
+  if (updatedUser) {
+    const user = await findById(id);
+    return user;
+  }
 }
 
 async function remove(id) {
@@ -79,6 +87,7 @@ async function remove(id) {
 }
 
 module.exports = {
+  getAllUsers,
   find,
   findBy,
   findByForLogin,

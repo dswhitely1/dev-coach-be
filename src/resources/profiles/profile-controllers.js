@@ -1,16 +1,29 @@
 const Profile = require('./profile-models');
 const Helpers = require('../../utils/modelHelpers.js');
 
+exports.students = async (req, res) => {
+  try {
+    const students = await Profile.getStudents();
+    if (students) {
+      res.status(200).json({
+        students,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Could not find any students.' });
+  }
+};
+
 exports.coaches = async (req, res) => {
   try {
-    const coaches = await Profile.getCoaches();
+    const coaches = await Profile.get_coaches();
     if (coaches) {
       res.status(200).json({
         coaches,
       });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Could not find any coaches' });
+    res.status(500).json({ message: 'Could not find any coaches.' });
   }
 };
 

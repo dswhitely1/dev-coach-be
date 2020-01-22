@@ -18,7 +18,6 @@ describe('usersController', () => {
       expect(response.status).toBe(201);
       expect(response.body).toHaveProperty('message');
       expect(response.body).toHaveProperty('token');
-      expect(response.body).toHaveProperty('user_id');
     });
 
     test('Throws an error for missing user data', async () => {

@@ -103,7 +103,6 @@ describe('user', () => {
         .post('/user/register')
         .send(newUser);
       expect(response.status).toEqual(201);
-      expect(response.body).toHaveProperty('user_id');
     });
 
     test('POST LOGIN wrong data 400 ', () => {

@@ -8,11 +8,14 @@ const {
   validateId,
   validateRegister,
   validateLogin,
+  validatePasswordUpdate,
 } = userMiddleware;
 
+router.get('/', checkAuth, userController.getUsers);
+router.get('/:id', checkAuth, userController.getUserByID);
 router.post('/register', validateRegister, userController.register);
 router.post('/login', validateLogin, userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
-router.put('/:id', userController.put)
+router.put('/:id', validatePasswordUpdate, userController.put);
 
 module.exports = router;

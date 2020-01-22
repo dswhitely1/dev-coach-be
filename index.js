@@ -9,6 +9,7 @@ const profileRouter = require('./src/resources/profiles/profile-router');
 const paymentRouter = require('./src/resources/payments/payment-router');
 const feedbackRouter = require('./src/resources/feedback/feedback-router');
 const videoRouter = require('./src/resources/video/video-router');
+const chatRouter = require('./src/resources/chat/chat-router');
 
 const server = express();
 
@@ -30,6 +31,7 @@ server.use('/profile', profileRouter);
 server.use('/payment', paymentRouter);
 server.use('/feedback', feedbackRouter);
 server.use('/video', videoRouter);
+server.use('/chat', chatRouter);
 
 // catch-all endpoint
 server.all('*', (req, res) => {
@@ -39,8 +41,6 @@ server.all('*', (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
-// server.listen(port, console.log(`Listening on Port ${port}`));
-
 /* 
   With respect to listen EADDRINUSE :::5000 error returned when testing
   The problem is this: once the execution of the first test ends, the server is still listening on the port 5000. So when we require('../index') again in the second test file, it errors out because is port is still in use by the previous test file’s process.
