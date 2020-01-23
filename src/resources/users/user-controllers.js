@@ -136,7 +136,7 @@ exports.putSettings = async (req, res) => {
   const copyBody = req.body;
   await delete copyBody.oldEmail;
   try {
-    const updatedUser = await Users.update(email, copyBody);
+    const updatedUser = await Users.updateSettings(email, copyBody);
     if (updatedUser) {
       res.status(200).json({
         updatedUser,
