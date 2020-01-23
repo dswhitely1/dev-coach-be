@@ -5,7 +5,7 @@ const server = require('../../../../index');
 const testUser = {
   first_name: 'fun',
   last_name: 'tee',
-  email: 'funtee@gmail.com',
+  email: 'funteeeee@gmail.com',
   password: '12345',
 };
 
