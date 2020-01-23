@@ -71,12 +71,12 @@ describe('user', () => {
         .expect(201);
     });
 
-    test('POST REGISTER duplicate data 409 ', () => {
+    test('POST REGISTER duplicate data 500 ', () => {
       return request(server)
         .post('/user/register')
         .send(duplicateData)
         .set('Accept', 'application/json')
-        .expect(409)
+        .expect(500)
         .expect('Content-Type', /json/);
     });
 
