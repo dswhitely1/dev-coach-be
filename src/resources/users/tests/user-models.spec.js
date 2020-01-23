@@ -21,7 +21,7 @@ describe('Users model', () => {
         avatar_url: '',
         email: 'funtee@gmail.com',
         first_name: 'fun',
-        id: 20,
+        id: 19,
         last_name: 'tee',
         location: null,
         password: '12345',
