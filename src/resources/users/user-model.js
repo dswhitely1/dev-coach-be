@@ -65,14 +65,10 @@ async function add(user) {
 }
 
 async function update(email, body) {
-
   const updatedUser = await db('users')
     .where({ email })
     .update(body);
-  // if (updatedUser) {
-  //   const user = await findById(email);
-  //   return user;
-  // }
+
   return updatedUser;
 }
 
