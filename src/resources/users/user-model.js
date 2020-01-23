@@ -13,7 +13,7 @@ async function find() {
     'email',
     'location',
     'role_id',
-    'avatar_url'
+    'avatar_url',
   );
   return users;
 }
@@ -64,14 +64,16 @@ async function add(user) {
   return findById(id);
 }
 
-async function update(id, body) {
+async function update(email, body) {
+
   const updatedUser = await db('users')
-    .where({ id })
+    .where({ email })
     .update(body);
-  if (updatedUser) {
-    const user = await findById(id);
-    return user;
-  }
+  // if (updatedUser) {
+  //   const user = await findById(email);
+  //   return user;
+  // }
+  return updatedUser;
 }
 
 async function remove(id) {
