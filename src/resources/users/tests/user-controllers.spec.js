@@ -39,23 +39,6 @@ describe('usersController', () => {
     });
   });
 
-  describe('POST /login', () => {
-    test('should login in a user succesfully', async () => {
-      await db('users').insert(testUser);
-      const userData = {
-        email: 'fun@gmail.com',
-        password: '12345',
-      };
-      const response = await request(server)
-        .post('/user/login')
-        .send(userData)
-        .set('Content-Type', 'application/json');
-      expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty('message');
-      expect(response.body).toHaveProperty('token');
-    });
-  });
-
   describe('DELETE /:id', () => {
     test('It should not delete a user without a valid token', async () => {
       const response = await request(server).delete('/user/1');
