@@ -5,7 +5,7 @@ const server = require('../../../../index');
 const testUser = {
   first_name: 'fun',
   last_name: 'tee',
-  email: 'funteeeee@gmail.com',
+  email: 'fun@gmail.com',
   password: '12345',
 };
 
@@ -43,7 +43,7 @@ describe('usersController', () => {
     test('should login in a user succesfully', async () => {
       await db('users').insert(testUser);
       const userData = {
-        email: 'funte55e@gmail.com',
+        email: 'fun@gmail.com',
         password: '12345',
       };
       const response = await request(server)
