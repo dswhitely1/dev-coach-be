@@ -43,7 +43,7 @@ describe('usersController', () => {
     test('should login in a user succesfully', async () => {
       await db('users').insert(testUser);
       const userData = {
-        email: 'funtee@gmail.com',
+        email: 'funte55e@gmail.com',
         password: '12345',
       };
       const response = await request(server)
