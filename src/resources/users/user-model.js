@@ -20,7 +20,7 @@ async function find() {
 
 async function findBy(email) {
   const user = await db('users')
-    .where(email)
+    .where({ email })
     .first();
 
   return user;
@@ -69,6 +69,10 @@ async function update(email, body) {
     .where({ email })
     .update(body);
 
+  if (updatedUser) {
+    const user = await findBy(body.email);
+    return user;
+  }
   return updatedUser;
 }
 
