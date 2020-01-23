@@ -118,25 +118,11 @@ exports.delete = async (req, res) => {
 };
 
 exports.put = async (req, res) => {
-  try {
-    const updatedUser = await Users.update(req.params.id, req.Body);
-    if (updatedUser) {
-      res.status(200).json({
-        updatedUser,
-        message: 'user updated successfully',
-      });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Unable to update user' });
-  }
-};
-
-exports.putSettings = async (req, res) => {
   const email = req.body.oldEmail;
   const copyBody = req.body;
   await delete copyBody.oldEmail;
   try {
-    const updatedUser = await Users.updateSettings(email, copyBody);
+    const updatedUser = await Users.update(email, copyBody);
     if (updatedUser) {
       res.status(200).json({
         updatedUser,
