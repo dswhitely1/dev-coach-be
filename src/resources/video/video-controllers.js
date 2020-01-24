@@ -1,6 +1,6 @@
 const Pusher = require('pusher');
 
-let channels = [];
+const channels = [];
 
 const pusher = new Pusher({
   appId: process.env.PUSHER_ID,
