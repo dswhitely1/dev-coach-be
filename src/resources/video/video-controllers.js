@@ -39,3 +39,21 @@ exports.login = async (req, res) => {
 
   return res.status(500).send('invalid user');
 };
+
+exports.users = async (req, res) => {
+  const { channel, username } = req.body;
+  const channel_data = channels.find((ch) => {
+    return ch.name === channel;
+  });
+
+  let channel_users = [];
+  if (channel_data) {
+    channel_users = channel_data.users.filter((user) => {
+      return user !== username;
+    });
+  }
+
+  return res.json({
+    users: channel_users
+  });
+};
