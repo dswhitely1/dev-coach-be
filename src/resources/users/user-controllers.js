@@ -130,3 +130,20 @@ exports.put = async (req, res) => {
     res.status(500).json({ message: 'Unable to update user' });
   }
 };
+
+exports.putSettings = async (req, res) => {
+  const email = req.body.oldEmail;
+  const copyBody = req.body;
+  await delete copyBody.oldEmail;
+  try {
+    const updatedUser = await Users.updateSettings(email, copyBody);
+    if (updatedUser) {
+      res.status(200).json({
+        updatedUser,
+        message: 'user updated successfully',
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Unable to update user' });
+  }
+};

@@ -5,7 +5,7 @@ const server = require('../../../../index');
 const testUser = {
   first_name: 'fun',
   last_name: 'tee',
-  email: 'funtee@gmail.com',
+  email: 'fun@gmail.com',
   password: '12345',
 };
 
@@ -36,23 +36,6 @@ describe('usersController', () => {
       expect(response.body).toEqual({
         message: 'Please make sure required fields are filled in.',
       });
-    });
-  });
-
-  describe('POST /login', () => {
-    test('should login in a user succesfully', async () => {
-      await db('users').insert(testUser);
-      const userData = {
-        email: 'funtee@gmail.com',
-        password: '12345',
-      };
-      const response = await request(server)
-        .post('/user/login')
-        .send(userData)
-        .set('Content-Type', 'application/json');
-      expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty('message');
-      expect(response.body).toHaveProperty('token');
     });
   });
 

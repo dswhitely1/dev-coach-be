@@ -1,5 +1,5 @@
-const Users = require('../users/user-model');
 const bcrypt = require('bcryptjs');
+const Users = require('../users/user-model');
 
 exports.validateRegister = (req, res, next) => {
   const {
