@@ -1,16 +1,10 @@
 const Pusher = require('pusher');
 
+let channels = [];
+
 const pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
+  appId: process.env.PUSHER_ID,
   key: process.env.PUSHER_KEY,
   secret: process.env.PUSHER_SECRET,
-  cluster: 'eu',
-  useTLS: true,
+  cluster: process.env.PUSHER_CLUSTER,
 });
-
-exports.video = async (req, res) => {
-  const socketId = req.body.socket_id;
-  const channel = req.body.channel_name;
-  const auth = pusher.authenticate(socketId, channel);
-  res.send(auth);
-};
