@@ -64,9 +64,9 @@ async function add(user) {
   return findById(id);
 }
 
-async function update(id, body) {
+async function update(email, body) {
   const updatedUser = await db('users')
-    .where({ id })
+    .where({ email })
     .update(body);
   if (updatedUser) {
     const user = await findById(id);

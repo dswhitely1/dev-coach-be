@@ -119,7 +119,7 @@ exports.delete = async (req, res) => {
 
 exports.put = async (req, res) => {
   try {
-    const updatedUser = await Users.update(req.params.id, req.body);
+    const updatedUser = await Users.update(req.body, req.body);
     if (updatedUser) {
       res.status(200).json({
         updatedUser,
