@@ -2,8 +2,7 @@ const router = require('express').Router();
 
 const videoController = require('./video-controllers');
 
-router.post('/auth', videoController.auth);
-router.post('/login', videoController.login);
-router.post('/users', videoController.users);
+router.get('/token', videoController.getToken);
+router.post('/token', videoController.postToken);
 
 module.exports = router;
