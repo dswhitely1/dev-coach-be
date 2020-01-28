@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
 const videoController = require('./video-controllers');
-// const checkAuth = require('../../utils/check-auth');
 
-router.post('/', videoController.video);
+router.get('/token', videoController.getToken);
+router.post('/token', videoController.postToken);
 
 module.exports = router;

@@ -31,6 +31,7 @@
     "pg": "^7.12.1",
     "pusher": "^3.0.0",
     "stripe": "^7.15.0",
+    "twilio": "^3.39.3",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
