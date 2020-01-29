@@ -37,9 +37,9 @@ exports.cancelAppointment = async (req, res) => {
       });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'You dont can cancel this appointment' });
+    res.status(500).json({
+      message: 'Sorry, You can not cancel this appointment',
+    });
   }
 };
 
@@ -54,7 +54,7 @@ exports.addAppointment = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: 'You dont can make this appointment' });
+      .json({ message: "You can't make this appointment" });
   }
 };
 
@@ -72,7 +72,7 @@ exports.sendAppointmentEmail = async (req, res) => {
     if (error) {
       res
         .status(500)
-        .json({ error, message: `This wasn't successful` });
+        .json({ error, message: `sending email failed!` });
     } else {
       res.status(200).json({ data });
     }
