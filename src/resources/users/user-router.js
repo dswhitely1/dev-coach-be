@@ -16,7 +16,12 @@ router.get('/:id', checkAuth, userController.getUserByID);
 router.post('/register', validateRegister, userController.register);
 router.post('/login', validateLogin, userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
-router.put('/settings', validatePasswordUpdate, userController.putSettings);
+router.put(
+  '/settings',
+  validatePasswordUpdate,
+  userController.putSettings,
+);
 router.put('/:id', validatePasswordUpdate, userController.put);
+router.post('/resetPassword', userController.resetPasswordEmail);
 
 module.exports = router;

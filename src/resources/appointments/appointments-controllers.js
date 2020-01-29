@@ -61,14 +61,14 @@ exports.addAppointment = async (req, res) => {
 exports.sendAppointmentEmail = async (req, res) => {
   const { email, text, subject } = req.body;
 
-  const maiOptions = {
+  const mailOptions = {
     from: 'qualityhub@gmx.de',
     to: email,
     subject,
     text,
   };
 
-  mailgun.messages().send(maiOptions, (error, data) => {
+  mailgun.messages().send(mailOptions, (error, data) => {
     if (error) {
       res
         .status(500)

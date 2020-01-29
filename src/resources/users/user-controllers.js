@@ -1,7 +1,47 @@
 const bcrypt = require('bcryptjs');
+const API_KEY = process.env.EMAIL_KEY;
+const DOMAIN = process.env.EMAIL_DOMAIN;
+const mailgun = require('mailgun-js')({
+  apiKey: API_KEY,
+  domain: DOMAIN,
+});
 const Users = require('./user-model');
 
 const generateToken = require('../../utils/generate-token');
+const tokenize = require('../../utils/tokenize');
+
+exports.resetPasswordEmail = async (req, res) => {
+  const { email } = req.body;
+  const user = await Users.findByForLogin({ email });
+  if (!user) {
+    res.status(400).json({
+      message:
+        'that email address is not recognized. Please try again',
+    });
+  } else {
+    const token = tokenize(user);
+
+    const mailOptions = {
+      from: 'qualityhub@gmx.de',
+      to: `${user.email}`,
+      subject: 'Link To Reset Password',
+      text:
+        'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+        'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n' +
+        `http://localhost:5000/reset/${token}\n\n` +
+        'If you did not request this, please ignore this email and your password will remain unchanged.\n',
+    };
+    mailgun.messages().send(mailOptions, (error, data) => {
+      if (error) {
+        res
+          .status(500)
+          .json({ error, message: `sending email failed!` });
+      } else {
+        res.status(200).json({ data });
+      }
+    });
+  }
+};
 
 exports.getUsers = async (req, res) => {
   const users = await Users.getAllUsers();
