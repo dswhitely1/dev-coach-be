@@ -1,5 +1,7 @@
 require('dotenv');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const API_KEY = process.env.EMAIL_KEY;
 const DOMAIN = process.env.EMAIL_DOMAIN;
 const mailgun = require('mailgun-js')({
@@ -12,40 +14,61 @@ const Users = require('./user-model');
 const generateToken = require('../../utils/generate-token');
 const tokenize = require('../../utils/tokenize');
 
+exports.accountRecovery = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+    const decoded = jwt.verify(token, process.env.SECRET);
+    req.decoded = decoded;
+
+    next();
+  } catch (error) {
+    res
+      .status(401)
+      .json({
+        message: 'password reset link is invalid or has expired',
+      });
+  }
+};
+
 exports.resetPasswordEmail = async (req, res) => {
   const { email } = req.body;
-  const user = await Users.findByForLogin({ email });
-  if (!user) {
-    res.status(400).json({
-      message:
-        'that email address is not recognized. Please try again',
-    });
-  } else {
-    const token = tokenize(user);
-    console.log(token);
-    const mailOptions = {
-      from: 'qualityhub@gmx.de',
-      to: `${user.email}`,
-      subject: 'Link To Reset Password',
-      text:
-        'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-        'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n' +
-        `http://localhost:5000/reset/${token}\n\n` +
-        'If you did not request this, please ignore this email and your password will remain unchanged.\n',
-    };
+  const user = await Users.findBy(email);
+  try {
+    if (!user) {
+      res.status(400).json({
+        message:
+          'that email address is not recognized. Please try again',
+      });
+    } else {
+      const token = tokenize(user);
+      const mailOptions = {
+        from: 'ojokuredim@gmail.com',
+        to: `${user.email}`,
+        subject: 'Link To Reset Password',
+        text:
+          'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n' +
+          `http://localhost:3000/reset/${token}\n\n` +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n',
+      };
 
-    mailgun.messages().send(mailOptions, (error, data) => {
-      if (error) {
-        res.status(500).json({
-          error,
-          message: `sending email failed!`,
-        });
-      } else {
-        console.log(data);
-        res.status(200).json({
-          message: 'reset password email sent successfully',
-        });
-      }
+      mailgun.messages().send(mailOptions, (error, data) => {
+        if (error) {
+          res.status(500).json({
+            error,
+            message: `sending email failed!`,
+          });
+        } else {
+          res.status(200).json({
+            data,
+            message: 'reset password email sent successfully',
+          });
+        }
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: error,
     });
   }
 };

@@ -23,5 +23,6 @@ router.put(
 );
 router.put('/:id', validatePasswordUpdate, userController.put);
 router.post('/resetPassword', userController.resetPasswordEmail);
+router.get('/accountRecovery', userController.accountRecovery);
 
 module.exports = router;
