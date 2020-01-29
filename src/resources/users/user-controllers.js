@@ -1,10 +1,12 @@
+require('dotenv');
 const bcrypt = require('bcryptjs');
 const API_KEY = process.env.EMAIL_KEY;
 const DOMAIN = process.env.EMAIL_DOMAIN;
 const mailgun = require('mailgun-js')({
-  apiKey: API_KEY,
+  apiKey: '4b2c09b1b9e2f31963b6b18e126e256c-0a4b0c40-b71a91a4',
   domain: DOMAIN,
 });
+
 const Users = require('./user-model');
 
 const generateToken = require('../../utils/generate-token');
@@ -20,7 +22,7 @@ exports.resetPasswordEmail = async (req, res) => {
     });
   } else {
     const token = tokenize(user);
-
+    console.log(token);
     const mailOptions = {
       from: 'qualityhub@gmx.de',
       to: `${user.email}`,
@@ -31,13 +33,18 @@ exports.resetPasswordEmail = async (req, res) => {
         `http://localhost:5000/reset/${token}\n\n` +
         'If you did not request this, please ignore this email and your password will remain unchanged.\n',
     };
+
     mailgun.messages().send(mailOptions, (error, data) => {
       if (error) {
-        res
-          .status(500)
-          .json({ error, message: `sending email failed!` });
+        res.status(500).json({
+          error,
+          message: `sending email failed!`,
+        });
       } else {
-        res.status(200).json({ data });
+        console.log(data);
+        res.status(200).json({
+          message: 'reset password email sent successfully',
+        });
       }
     });
   }
