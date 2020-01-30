@@ -25,13 +25,15 @@ exports.accountRecovery = async (req, res) => {
     }
   } catch (error) {
     res.status(401).json({
-      message: 'password reset link is invalid or has expired',
+      error: {
+        message: 'password reset link is invalid or has expired',
+      },
     });
   }
 };
 
 exports.resetPasswordEmail = async (req, res) => {
-  const { email } = req.body;
+  const email = req.body.email;
   const user = await Users.findBy(email);
   try {
     if (!user) {

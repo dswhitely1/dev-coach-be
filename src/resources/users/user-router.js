@@ -10,7 +10,7 @@ const {
   validateLogin,
   validatePasswordUpdate,
 } = userMiddleware;
-
+router.post('/resetPassword', userController.resetPasswordEmail);
 router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
 router.get('/:id', checkAuth, userController.getUserByID);
@@ -23,6 +23,5 @@ router.put(
   userController.putSettings,
 );
 router.put('/:id', validatePasswordUpdate, userController.put);
-router.post('/resetPassword', userController.resetPasswordEmail);
 
 module.exports = router;
