@@ -16,17 +16,18 @@ const tokenize = require('../../utils/tokenize');
 
 exports.accountRecovery = async (req, res, next) => {
   try {
-    const token = req.headers.authorization;
+    const token = req.query.resetPasswordToken;
     const decoded = jwt.verify(token, process.env.SECRET);
     req.decoded = decoded;
-
+    res.status(200).json({
+      email: req.decoded.email,
+      message: 'password reset link is okay',
+    });
     next();
   } catch (error) {
-    res
-      .status(401)
-      .json({
-        message: 'password reset link is invalid or has expired',
-      });
+    res.status(401).json({
+      message: 'password reset link is invalid or has expired',
+    });
   }
 };
 
