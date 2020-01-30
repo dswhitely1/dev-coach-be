@@ -1,7 +1,6 @@
 exports.up = function(knex) {
   return knex.schema.createTable('appointments', table => {
     table.increments();
-    table.timestamp('created_at').defaultTo(knex.fn.now());
     table.string('appointment_datetime', 100);
     table.boolean('canceled').defaultTo(false);
     table
