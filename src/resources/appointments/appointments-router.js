@@ -14,7 +14,7 @@ router.put(
 // appointment/appointment_id
 router.post(
   '/email',
-  checkAuth,
+  // checkAuth,
   appointmentsController.sendAppointmentEmail,
 );
 module.exports = router;

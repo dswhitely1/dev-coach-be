@@ -74,7 +74,7 @@ exports.sendAppointmentEmail = async (req, res) => {
         .status(500)
         .json({ error, message: `sending email failed!` });
     } else {
-      res.status(200).json({ data });
+      res.status(200).json({ data, message: 'sent' });
     }
   });
 };

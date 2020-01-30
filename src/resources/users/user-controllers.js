@@ -1,13 +1,9 @@
 require('dotenv');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-const API_KEY = process.env.EMAIL_KEY;
-const DOMAIN = process.env.EMAIL_DOMAIN;
-const mailgun = require('mailgun-js')({
-  apiKey: '4b2c09b1b9e2f31963b6b18e126e256c-0a4b0c40-b71a91a4',
-  domain: DOMAIN,
-});
+const nodemailer = require('nodemailer');
+// const user = proccess.env.NODEMAILER_ADDRESS;
+// const pass = proccess.env.NODEMAILER_PASSWORD;
 
 const Users = require('./user-model');
 
@@ -42,9 +38,18 @@ exports.resetPasswordEmail = async (req, res) => {
       });
     } else {
       const token = tokenize(user);
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'qualityhubemail@gmail.com',
+          pass: 'labseu3qualityhub',
+        },
+      });
+
       const mailOptions = {
-        from: 'ojokuredim@gmail.com',
-        to: `${user.email}`,
+        from: 'qualityhubemail@gmail.com',
+        to: 'ojokuredim@gmail.com',
         subject: 'Link To Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -53,7 +58,7 @@ exports.resetPasswordEmail = async (req, res) => {
           'If you did not request this, please ignore this email and your password will remain unchanged.\n',
       };
 
-      mailgun.messages().send(mailOptions, (error, data) => {
+      transporter.sendMail(mailOptions, (error, response) => {
         if (error) {
           res.status(500).json({
             error,
@@ -61,7 +66,7 @@ exports.resetPasswordEmail = async (req, res) => {
           });
         } else {
           res.status(200).json({
-            data,
+            response,
             message: 'reset password email sent successfully',
           });
         }
