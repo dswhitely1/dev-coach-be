@@ -2,8 +2,6 @@ require('dotenv');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-// const user = proccess.env.NODEMAILER_ADDRESS;
-// const pass = proccess.env.NODEMAILER_PASSWORD;
 
 const Users = require('./user-model');
 
@@ -22,11 +20,10 @@ exports.accountRecovery = async (req, res) => {
       });
     } else {
       res.status(401).json({
-        message: 'invalid link',
+        message: 'invalid User',
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(401).json({
       message: 'password reset link is invalid or has expired',
     });
@@ -48,14 +45,14 @@ exports.resetPasswordEmail = async (req, res) => {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'qualityhubemail@gmail.com',
-          pass: 'labseu3qualityhub',
+          user: process.env.NODEMAILER_ADDRESS,
+          pass: process.env.NODEMAILER_PASSWORD,
         },
       });
 
       const mailOptions = {
         from: 'qualityhubemail@gmail.com',
-        to: 'ojokuredim@gmail.com',
+        to: `${user.email}`,
         subject: 'Link To Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +

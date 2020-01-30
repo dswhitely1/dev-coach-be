@@ -1,10 +1,3 @@
-// const API_KEY = process.env.EMAIL_KEY;
-// const DOMAIN = process.env.EMAIL_DOMAIN;
-// const mailgun = require('mailgun-js')({
-//   apiKey: API_KEY,
-//   domain: DOMAIN,
-// });
-
 const nodemailer = require('nodemailer');
 
 const Appointments = require('./appointments-model');
@@ -67,8 +60,8 @@ exports.sendAppointmentEmail = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'qualityhubemail@gmail.com',
-      pass: 'labseu3qualityhub',
+      user: process.env.NODEMAILER_ADDRESS,
+      pass: process.env.NODEMAILER_PASSWORD,
     },
   });
 
