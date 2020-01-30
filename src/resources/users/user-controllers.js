@@ -52,12 +52,12 @@ exports.resetPasswordEmail = async (req, res) => {
 
       const mailOptions = {
         from: 'qualityhubemail@gmail.com',
-        to: 'ojokuredim@gmail.com',
+        to: `${user.email}`,
         subject: 'Link To Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n' +
-          `http://localhost:3000/accountRecovery/${token}\n\n` +
+          `https://www.dev-coach.com/accountRecovery/${token}\n\n` +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n',
       };
 
