@@ -13,7 +13,6 @@ exports.up = function(knex) {
     table.string('description', 400);
     table.integer('rating');
     table.float('hourly_rate');
-    table.string('contact_url', 128);
   });
 };
 
