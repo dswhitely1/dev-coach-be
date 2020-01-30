@@ -52,7 +52,7 @@ exports.resetPasswordEmail = async (req, res) => {
 
       const mailOptions = {
         from: 'qualityhubemail@gmail.com',
-        to: `${user.email}`,
+        to: 'ojokuredim@gmail.com',
         subject: 'Link To Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -198,7 +198,7 @@ exports.delete = async (req, res) => {
 
 exports.put = async (req, res) => {
   try {
-    const updatedUser = await Users.update(req.body, req.body);
+    const updatedUser = await Users.update(req.params.id, req.body);
     if (updatedUser) {
       res.status(200).json({
         updatedUser,

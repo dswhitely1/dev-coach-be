@@ -64,7 +64,7 @@ async function add(user) {
   return findById(id);
 }
 
-async function update(email, body) {
+async function update(id, body) {
   const updatedUser = await db('users')
     .where({ email })
     .update(body);
@@ -109,5 +109,5 @@ module.exports = {
   add,
   remove,
   update,
-  updateSettings
+  updateSettings,
 };
