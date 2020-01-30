@@ -86,13 +86,3 @@ exports.sendAppointmentEmail = async (req, res) => {
     }
   });
 };
-// mailgun.messages().send(mailOptions, (error, data) => {
-//   if (error) {
-//     res
-//       .status(500)
-//       .json({ error, message: `sending email failed!` });
-//   } else {
-//     res.status(200).json({ data, message: 'sent' });
-//   }
-// });
-// };
