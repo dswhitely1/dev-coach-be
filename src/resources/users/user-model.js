@@ -109,5 +109,5 @@ module.exports = {
   add,
   remove,
   update,
-  updateSettings
+  updateSettings,
 };
