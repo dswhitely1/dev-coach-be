@@ -10,17 +10,23 @@ const Users = require('./user-model');
 const generateToken = require('../../utils/generate-token');
 const tokenize = require('../../utils/tokenize');
 
-exports.accountRecovery = async (req, res, next) => {
+exports.accountRecovery = async (req, res) => {
   try {
-    const token = req.query.resetPasswordToken;
+    const token = req.query.token;
     const decoded = jwt.verify(token, process.env.SECRET);
-    req.decoded = decoded;
-    res.status(200).json({
-      email: req.decoded.email,
-      message: 'password reset link is okay',
-    });
-    next();
+    const user = await Users.findBy(decoded.email);
+    if (user) {
+      res.status(200).json({
+        user,
+        message: 'password reset link is okay',
+      });
+    } else {
+      res.status(401).json({
+        message: 'invalid link',
+      });
+    }
   } catch (error) {
+    console.log(error);
     res.status(401).json({
       message: 'password reset link is invalid or has expired',
     });
@@ -54,7 +60,7 @@ exports.resetPasswordEmail = async (req, res) => {
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n' +
-          `http://localhost:3000/reset/${token}\n\n` +
+          `http://localhost:3000/accountRecovery/${token}\n\n` +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n',
       };
 

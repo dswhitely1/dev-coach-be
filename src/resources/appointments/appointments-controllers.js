@@ -1,9 +1,12 @@
-const API_KEY = process.env.EMAIL_KEY;
-const DOMAIN = process.env.EMAIL_DOMAIN;
-const mailgun = require('mailgun-js')({
-  apiKey: API_KEY,
-  domain: DOMAIN,
-});
+// const API_KEY = process.env.EMAIL_KEY;
+// const DOMAIN = process.env.EMAIL_DOMAIN;
+// const mailgun = require('mailgun-js')({
+//   apiKey: API_KEY,
+//   domain: DOMAIN,
+// });
+
+const nodemailer = require('nodemailer');
+
 const Appointments = require('./appointments-model');
 
 exports.appointments = async (req, res) => {
@@ -61,20 +64,42 @@ exports.addAppointment = async (req, res) => {
 exports.sendAppointmentEmail = async (req, res) => {
   const { email, text, subject } = req.body;
 
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'qualityhubemail@gmail.com',
+      pass: 'labseu3qualityhub',
+    },
+  });
+
   const mailOptions = {
-    from: 'qualityhub@gmx.de',
+    from: 'qualityhubemail@gmail.com',
     to: email,
     subject,
     text,
   };
 
-  mailgun.messages().send(mailOptions, (error, data) => {
+  transporter.sendMail(mailOptions, (error, response) => {
     if (error) {
-      res
-        .status(500)
-        .json({ error, message: `sending email failed!` });
+      res.status(500).json({
+        error,
+        message: `sending email failed!`,
+      });
     } else {
-      res.status(200).json({ data, message: 'sent' });
+      res.status(200).json({
+        response,
+        message: 'email sent successfully',
+      });
     }
   });
 };
+// mailgun.messages().send(mailOptions, (error, data) => {
+//   if (error) {
+//     res
+//       .status(500)
+//       .json({ error, message: `sending email failed!` });
+//   } else {
+//     res.status(200).json({ data, message: 'sent' });
+//   }
+// });
+// };

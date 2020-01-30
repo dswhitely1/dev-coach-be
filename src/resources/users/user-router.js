@@ -11,6 +11,7 @@ const {
   validatePasswordUpdate,
 } = userMiddleware;
 
+router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
 router.get('/:id', checkAuth, userController.getUserByID);
 router.post('/register', validateRegister, userController.register);
@@ -23,6 +24,5 @@ router.put(
 );
 router.put('/:id', validatePasswordUpdate, userController.put);
 router.post('/resetPassword', userController.resetPasswordEmail);
-router.get('/accountRecovery', userController.accountRecovery);
 
 module.exports = router;
