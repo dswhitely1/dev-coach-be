@@ -18,6 +18,18 @@ exports.validateRegister = (req, res, next) => {
   }
 };
 
+exports.validateEmail = async (req, res, next) => {
+  const email = await Users.findBy(req.body.email);
+
+  if (email) {
+    res.status(409).json({
+      message: 'Email already exists',
+    });
+  } else {
+    next();
+  }
+};
+
 exports.validatePasswordUpdate = (req, res, next) => {
   const { password, confirm_password } = req.body;
   if (password === '' && confirm_password === '') {

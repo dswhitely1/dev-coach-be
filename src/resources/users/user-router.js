@@ -10,13 +10,18 @@ const {
   validateRegister,
   validateLogin,
   validatePasswordUpdate,
+  validateEmail,
 } = userMiddleware;
 
 router.post('/resetPassword', userController.resetPasswordEmail);
 router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
 router.get('/:id', checkAuth, userController.getUserByID);
-router.post('/register', validateRegister, userController.register);
+router.post(
+  '/register',
+  [validateRegister, validateEmail],
+  userController.register,
+);
 router.post('/login', validateLogin, userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
 router.put(
