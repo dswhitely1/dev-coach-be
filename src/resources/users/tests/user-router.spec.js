@@ -76,7 +76,7 @@ describe('user', () => {
         .post('/user/register')
         .send(duplicateData)
         .set('Accept', 'application/json')
-        .expect(500)
+        .expect(409)
         .expect('Content-Type', /json/);
     });
 
@@ -119,7 +119,7 @@ describe('user', () => {
         .post('/user/login')
         .send(wrongPassword)
         .set('Accept', 'application/json')
-        .expect(401)
+        .expect(400)
         .expect('Content-Type', /json/);
     });
 
@@ -152,7 +152,7 @@ describe('user', () => {
       return request(server)
         .post('/user/login')
         .send(jayneData)
-        .expect(401)
+        .expect(400)
         .expect('Content-Type', /json/);
     });
 
