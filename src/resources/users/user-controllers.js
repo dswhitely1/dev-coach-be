@@ -10,7 +10,7 @@ const tokenize = require('../../utils/tokenize');
 
 exports.accountRecovery = async (req, res) => {
   try {
-    const token = req.query.token;
+    const { token } = req.query;
     const decoded = jwt.verify(token, process.env.SECRET);
     const user = await Users.findBy(decoded.email);
     if (user) {
@@ -33,7 +33,7 @@ exports.accountRecovery = async (req, res) => {
 };
 
 exports.resetPasswordEmail = async (req, res) => {
-  const email = req.body.email;
+  const { email } = req.body;
   const user = await Users.findBy(email);
   try {
     if (!user) {
@@ -79,7 +79,7 @@ exports.resetPasswordEmail = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      error: error,
+      error,
     });
   }
 };
