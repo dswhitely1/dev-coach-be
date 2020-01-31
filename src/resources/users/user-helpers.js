@@ -21,9 +21,12 @@ exports.validateRegister = (req, res, next) => {
 exports.validatePassword = async (req, res, next) => {
   const user = await Users.findBy(req.body.email);
 
-  if (user && !bcrypt.compareSync(req.body.password, user.password)) {
+  if (
+    !user ||
+    (user && !bcrypt.compareSync(req.body.password, user.password))
+  ) {
     res.status(400).json({
-      message: 'Passwords do not match',
+      message: 'Email or password is incorrect',
     });
   } else {
     next();
