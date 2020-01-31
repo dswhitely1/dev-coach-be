@@ -4,7 +4,7 @@ describe('Users model', () => {
   describe('.find()', () => {
     test('should find all users in the db', async () => {
       const users = await Users.find();
-      expect(users.length).toBe(18);
+      expect(users.length).toBe(17);
     });
   });
 
@@ -29,7 +29,7 @@ describe('Users model', () => {
         github: null,
         linkedin: null,
       });
-      expect(users.length).toBe(19);
+      expect(users.length).toBe(18);
     });
   });
 });

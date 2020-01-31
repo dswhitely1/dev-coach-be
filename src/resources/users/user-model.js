@@ -13,14 +13,14 @@ async function find() {
     'email',
     'location',
     'role_id',
-    'avatar_url'
+    'avatar_url',
   );
   return users;
 }
 
 async function findBy(email) {
   const user = await db('users')
-    .where(email)
+    .where({ email })
     .first();
 
   return user;
@@ -68,10 +68,24 @@ async function update(id, body) {
   const updatedUser = await db('users')
     .where({ id })
     .update(body);
+
   if (updatedUser) {
     const user = await findById(id);
     return user;
   }
+  return updatedUser;
+}
+
+async function updateSettings(email, body) {
+  const updatedUser = await db('users')
+    .where({ email })
+    .update(body);
+
+  if (updatedUser) {
+    const user = await findBy(body.email);
+    return user;
+  }
+  return updatedUser;
 }
 
 async function remove(id) {
@@ -95,4 +109,5 @@ module.exports = {
   add,
   remove,
   update,
+  updateSettings,
 };

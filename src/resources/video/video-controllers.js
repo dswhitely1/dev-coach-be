@@ -1,16 +1,25 @@
-const Pusher = require('pusher');
+const { videoToken } = require('./tokens');
+const config = require('./config');
 
-const pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
-  key: process.env.PUSHER_KEY,
-  secret: process.env.PUSHER_SECRET,
-  cluster: 'eu',
-  useTLS: true,
-});
+const sendTokenResponse = (token, res) => {
+  res.set('Content-Type', 'application/json');
+  res.send(
+    JSON.stringify({
+      token: token.toJwt()
+    })
+  );
+};
 
-exports.video = async (req, res) => {
-  const socketId = req.body.socket_id;
-  const channel = req.body.channel_name;
-  const auth = pusher.authenticate(socketId, channel);
-  res.send(auth);
+exports.getToken = (req, res) => {
+  const { identity } = req.query;
+  const { room } = req.query;
+  const token = videoToken(identity, room, config);
+  sendTokenResponse(token, res);
+};
+
+exports.postToken = (req, res) => {
+  const { identity } = req.body;
+  const { room } = req.body;
+  const token = videoToken(identity, room, config);
+  sendTokenResponse(token, res);
 };
