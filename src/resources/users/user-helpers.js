@@ -18,10 +18,22 @@ exports.validateRegister = (req, res, next) => {
   }
 };
 
-exports.validateEmail = async (req, res, next) => {
-  const email = await Users.findBy(req.body.email);
+exports.validatePassword = async (req, res, next) => {
+  const user = await Users.findBy(req.body.email);
 
-  if (email) {
+  if (user && !bcrypt.compareSync(req.body.password, user.password)) {
+    res.status(400).json({
+      message: 'Passwords do not match',
+    });
+  } else {
+    next();
+  }
+};
+
+exports.validateEmail = async (req, res, next) => {
+  const user = await Users.findBy(req.body.email);
+
+  if (user) {
     res.status(409).json({
       message: 'Email already exists',
     });

@@ -11,6 +11,7 @@ const {
   validateLogin,
   validatePasswordUpdate,
   validateEmail,
+  validatePassword,
 } = userMiddleware;
 
 router.post('/resetPassword', userController.resetPasswordEmail);
@@ -22,7 +23,11 @@ router.post(
   [validateRegister, validateEmail],
   userController.register,
 );
-router.post('/login', validateLogin, userController.login);
+router.post(
+  '/login',
+  [validateLogin, validatePassword],
+  userController.login,
+);
 router.delete('/:id', checkAuth, validateId, userController.delete);
 router.put(
   '/settings',

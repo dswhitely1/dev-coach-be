@@ -103,12 +103,6 @@ exports.getUserByID = async (req, res) => {
 };
 
 exports.register = async (req, res) => {
-  // const user = await Users.findBy({ email: req.body.email });
-  // if (user) {
-  //   res.status(409).json({
-  //     message: 'Email already exists',
-  //   });
-  // } else {
   try {
     const newUser = await Users.add({
       first_name: req.body.first_name,
