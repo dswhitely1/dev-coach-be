@@ -75,7 +75,5 @@ exports.roomById = (req, res) => {
       roomId,
     })
     .then(() => res.status(201).json({ message: 'successful' }))
-    .catch(() =>
-      res.status(200).json({ message: 'unsuccessful' }),
-    );
+    .catch(() => res.status(200).json({ message: 'unsuccessful' }));
 };
