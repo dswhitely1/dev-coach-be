@@ -18,6 +18,33 @@ exports.validateRegister = (req, res, next) => {
   }
 };
 
+exports.validatePassword = async (req, res, next) => {
+  const user = await Users.findBy(req.body.email);
+
+  if (
+    !user ||
+    (user && !bcrypt.compareSync(req.body.password, user.password))
+  ) {
+    res.status(400).json({
+      message: 'Email or password is incorrect',
+    });
+  } else {
+    next();
+  }
+};
+
+exports.validateEmail = async (req, res, next) => {
+  const user = await Users.findBy(req.body.email);
+
+  if (user) {
+    res.status(409).json({
+      message: 'Email already exists',
+    });
+  } else {
+    next();
+  }
+};
+
 exports.validatePasswordUpdate = (req, res, next) => {
   const { password, confirm_password } = req.body;
   if (password === '' && confirm_password === '') {
