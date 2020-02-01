@@ -8,13 +8,12 @@ const pusher = new Pusher({
   useTLS: true,
 });
 
+exports.updateEditor = (req, res) => {
+  const { update, channelName } = req.body;
 
-
-app.post('/update-editor', (req, res) => {
-  
-  pusher.trigger('editor', 'text-update', {
-   ...req.body,
+  pusher.trigger(channelName, 'text-update', {
+    ...update,
   });
 
   res.status(200).send('OK');
-});
+};
