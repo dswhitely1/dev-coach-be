@@ -4,12 +4,14 @@ const router = require('express').Router();
 const userController = require('./user-controllers');
 const checkAuth = require('../../utils/check-auth');
 const userMiddleware = require('../users/user-helpers');
+
 const {
   validateId,
   validateRegister,
   validateLogin,
   validatePasswordUpdate,
 } = userMiddleware;
+
 router.post('/resetPassword', userController.resetPasswordEmail);
 router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
