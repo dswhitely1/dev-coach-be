@@ -129,6 +129,9 @@ exports.register = async (req, res) => {
             location: fullUserDetails.location,
             role_id: fullUserDetails.role_id,
             avatar_url: '',
+            hourly_rate: fullUserDetails.hourly_rate,
+            linkedin: fullUserDetails.linkedin,
+            github: fullUserDetails.github,
           },
         });
       } catch (error) {
@@ -164,6 +167,9 @@ exports.login = async (req, res) => {
           location: user.location,
           role_id: user.role_id,
           avatar_url: user.avatar_url,
+          hourly_rate: user.hourly_rate,
+          linkedin: user.linkedin,
+          github: user.github,
         },
       });
     } else {
