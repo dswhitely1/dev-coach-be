@@ -9,7 +9,7 @@ router.post('/coaches', checkAuth, userController.addCoach);
 router.post('/students', checkAuth, userController.addStudent);
 router.put(
   '/coachesSettings/:id',
-  //   checkAuth,
+  checkAuth,
   userController.updateCoach,
 );
 
