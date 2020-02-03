@@ -130,8 +130,8 @@ exports.register = async (req, res) => {
             role_id: fullUserDetails.role_id,
             avatar_url: '',
             hourly_rate: fullUserDetails.hourly_rate,
-            linkedin: fullUserDetails.linkedin,
-            github: fullUserDetails.github,
+            linkedin_url: fullUserDetails.linkedin,
+            github_url: fullUserDetails.github,
           },
         });
       } catch (error) {
@@ -215,11 +215,8 @@ exports.putSettings = async (req, res) => {
   const email = req.body.oldEmail;
   const copyBody = req.body;
   await delete copyBody.oldEmail;
-  console.log('1', copyBody);
-  console.log('2', email);
   try {
     const updatedUser = await Users.updateSettings(email, copyBody);
-    console.log('5', updatedUser);
     if (updatedUser) {
       res.status(200).json({
         updatedUser,
@@ -230,3 +227,5 @@ exports.putSettings = async (req, res) => {
     res.status(500).json({ message: 'Unable to update user' });
   }
 };
+
+
