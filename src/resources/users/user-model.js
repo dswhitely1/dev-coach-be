@@ -80,7 +80,6 @@ async function updateSettings(email, body) {
   const updatedUser = await db('users')
     .where({ email })
     .update(body);
-
   if (updatedUser) {
     const user = await findBy(body.email);
     return user;

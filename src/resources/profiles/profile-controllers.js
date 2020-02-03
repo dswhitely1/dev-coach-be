@@ -52,3 +52,21 @@ exports.addCoach = async (req, res) => {
     res.status(500).json({ message: 'Unable to add new coach' });
   }
 };
+
+exports.updateCoach = async (req, res) => {
+  try {
+    const coach = await Profile.update(
+      req.body.hourly_rate,
+      req.params.id,
+    );
+    if (coach) {
+      res.status(200).json({
+        coach,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Sorry, Update failed !',
+    });
+  }
+};
