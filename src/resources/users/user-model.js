@@ -77,10 +77,13 @@ async function update(id, body) {
 }
 
 async function updateSettings(email, body) {
+  console.log('3', email);
+  console.log('4', body);
+
   const updatedUser = await db('users')
     .where({ email })
     .update(body);
-
+  console.log('6', updatedUser);
   if (updatedUser) {
     const user = await findBy(body.email);
     return user;

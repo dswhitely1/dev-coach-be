@@ -216,8 +216,11 @@ exports.putSettings = async (req, res) => {
   const email = req.body.oldEmail;
   const copyBody = req.body;
   await delete copyBody.oldEmail;
+  console.log('1', copyBody);
+  console.log('2', email);
   try {
     const updatedUser = await Users.updateSettings(email, copyBody);
+    console.log('5', updatedUser);
     if (updatedUser) {
       res.status(200).json({
         updatedUser,
