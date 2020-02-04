@@ -1,12 +1,30 @@
-# Quality Hub Backend
+# DevCoach Backend
 
-[dev-coach.com](https://www.dev-coach.com)
+## Project Overview
 
-[Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
+DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It allows developers to sign up, book coaches, communicate with them over instant messaging and video chat, and work collaboratively on coding challenges. It was built by Ben, Liam, Dom, Ola, Funmi, and Jayne for their Lambda School Labs project.
 
-[Trello Board](https://trello.com/b/SlF9gway/quality-hub)
+See the deployed product at [dev-coach.com](https://www.dev-coach.com). We would love to hear your feedback - you can use the chatbox in the bottom right of the screen, or message a member of the team on Slack.
 
-### The following dependencies were used:
+Look through the documents we used to plan and organise the project here:
+
+- [Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
+
+- [Trello Board](https://trello.com/b/SlF9gway/quality-hub)
+
+# Team
+Team Lead: [Benjamin Grabow](https://github.com/BenjaminGrabow) | [Oladimeji Ojo](https://github.com/ojokure)  | [Liam Sutton](https://github.com/curm90) | [Funmilayo Talabi](https://github.com/Funmi7)| [Jayne Carmichael Norrie](https://github.com/jaynecn) | [Dom Eccleston](https://github.com/domeccleston)<br>
+| --- | --- | --- | --- | --- | --- |
+[<img src="https://ca.slack-edge.com/T4JUEB3ME-UGG6CMVMJ-f9508210bec6-512" />](https://github.com/benjamingrabow) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULN0Q2CBC-cd4e7fdb68ec-512" />](https://github.com/ojokure) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULW2F383A-7d224505b235-512" />](https://github.com/curm90) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVUWMC13-9917d69cee28-512" />](https://github.com/funmi7) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UF3TL8CLS-45731806fd60-512" />](https://github.com/jaynecn) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXH09K8X-gaec6ed8a28c-512" />](https://github.com/domeccleston)
+[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/benjamingrabow) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/domeccleston)
+
+## Dependencies
+
+The server for this project was written in Node.js, using the Express framework. Our database is a PostgresSql DB hosted on ElephantSQL, with Knex.js as our SQL query builder. For authentication, we used JsonWebToken and Bcryptjs. Our development dependencies were the file watcher Nodemon and the testing libraries Jest and Supertest. The libraries cross-env and dotenv were used to manage environment variables. We made use of the Express middleware Cors and Helmet for secure resource sharing.
+
+Our other dependencies - Pusher, Mailgun, and Stripe - were necessary for the chat, email, and payment services on the frontend.
+
+### Full list of dependencies:
 
 - Node
 - Express
@@ -18,237 +36,91 @@
 - Cors
 - Helmet
 - Dotenv
+- Pusher
+- @Pusher/chatkit-server
+- Mailgun
+- Stripe
+- Uuid
 - Nodemon (Development)
 - Cross-Env (Development)
 - Jest (Development)
 - SuperTest (Development)
 
+
 ## Getting Started
 
-### Install dependencies
+To get this server running on your local machine, you'll need to download, install the Node.JS dependencies, and run the database migrations. Some of the endpoints will return empty unless you seed the db.
 
-`npm install`
+```
+git clone https://github.com/LABS-EU3/quality_hub_backend.git
+cd quality_hub_backend
+npm i
+npm run seed
+npm run migrate
+npm run server
+```
+## Environment Variables
 
-### Run Database Migrations
+Several of the API services are dependent on environment variables in a .env file which is untracked by git. You should create a .env file in the root folder and structure it as follows:
 
-`npm run migrate`
-
-### Run Database Seeds
-
-`npm run seed`
-
-### Run Server
-
-`npm run server`
-
-## Auth Routes
-
-### Register
-
-`POST /user/register`
-
-Parameters
-
-| Name       |  Type  | Description    | Required |
-| :--------- | :----: | :------------- | :------: |
-| first_name | String | Users forename |   Yes    |
-| last_name  | String | Users surname  |   Yes    |
-| email      | String | Users email    |   Yes    |
-| password   | String | Users password |   Yes    |
-
-**POST** This will create a new user and send back a token
-
-**Examples**
-
-Register Request
-
-```javascript
-{
-	"first_name": "dom",
-	"last_name": "eccleston",
-	"email": "dom12@gmail.com",
-	"password": "123"
-}
+```
+DATABASE_DEV= // go to elephantsql.com -> create your database -> add your URL here
+DATABASE_URL= // go to elephantsql.com -> create your database -> add your URL here
+DATABASE_TEST= // go to elephantsql.com -> create your database -> add your URL here
+SECRET=<ADD YOUR SECRET>
+PUSHER_APP_ID=<PUSHER APP ID>
+PUSHER_KEY=<PUSHER KEY>
+PUSHER_SECRET=<PUSHER SECRET>
+EMAIL_KEY=<MAILGUN EMAIL KEY>
+EMAIL_DOMAIN=<MAILGUN EMAIL DOMAIN>
+PUSHER_INSTANCE=<PUSHER INSTANCE>
+PUSHER_CHAT_KEY=<PUSHER CHAT KEY>
 ```
 
-Register Success Response
+## Directory Structure
 
-```javascript
-{
-  "message": "Welcome dom",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NzY2NzA1NDQsImV4cCI6MTU3Njc1Njk0NH0.jpyV3IoB3sYehy8CdQ_h1EPhSjIrglvmVEEgUyqo_Zs",
-  "user_id": 18
-}
-```
+├───.github
+├───.vscode
+├───data
+│   ├───migrations
+│   └───seeds
+├───src
+│   ├───resources
+│   │   ├───appointments
+│   │   ├───chat
+│   │   ├───feedback
+│   │   ├───payments
+│   │   ├───profiles
+│   │   ├───users
+│   │   │   └───tests
+│   │   └───video
+│   └───utils
+└───_test_
 
-Register Error Response
+### Test
 
-```javascript
-{
-  "message": "Please make sure required fields are filled in."
-}
-```
+`npm run test`
 
-## Login
+## Postman Documentation
 
-`POST /user/login`
+The details of our API endpoints are found [here](https://documenter.getpostman.com/view/8698539/SWEE1vA3?version=latest). 
 
-Parameters
+# Contributing
 
-| Name     |  Type  | Description    | Required |
-| :------- | :----: | :------------- | :------: |
-| email    | String | Users email    |   Yes    |
-| password | String | Users password |   Yes    |
+If you're interested in contributing to DevCoach, thanks for your interest! You can submit a pull request according to the guidelines below. We're particularly interested in improving our app's performance and styling. Please let one of us know beforehand if you plan to to contribute a new feature to the project.
 
-**POST** This will log the user in and send back a token
+Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too.
 
-**Examples**
+## Coding Style
 
-Login Request
+Our project makes use of the [AirBNB Javascript style guide](https://github.com/airbnb/javascript). Its rules are enforced by ESLint, so you can ensure your code is consistent with our style by checking the console for ESLint warnings.
 
-```javascript
-{
-	"email": "dom12@gmail.com",
-	"password": "123"
-}
-```
+## Bugs
 
-Login Success Response
+If you notice a bug on the app, please file an issue letting us know your OS, browser version, what you did, what you expected to see, and what you did see. 
 
-```javascript
-{
-    "message": "Welcome Back Lizzo!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NzY4MzM1NDQsImV4cCI6MTU3NjkxOTk0NH0.SJgkKCi8rezDfWseszQ4HkSNyDbQNdeEmX0Kp48Dvic",
-    "user": {
-        "id": 2,
-        "first_name": "Lizzo",
-        "last_name": "Smith",
-        "email": "lizzo@google.com",
-        "password": "$2a$10$32yN0PhBtC.F9DESU4JCnO0oHKo6Z2Bz1QjK83hxn/fflvhGKjY4W",
-        "location": null,
-        "role_id": 1,
-        "user_id": 5,
-        "avatar_url": null,
-        "experience_level": 2,
-        "confidence_level": 2
-    }
-}
-```
+## Submission and Review
 
-Login Error Response
+Please submit your PR according to the provided template. Your code will need to be approved by at least one other developer prior to being merged, so please at at least two reviewers to your PR.
 
-```javascript
-{
-  "message": "Please make sure required fields are filled in."
-}
-```
-
-## Delete User
-
-`DELETE /user/:id`
-
-**DELETE** This will delete a user at the provided `id`
-
-**Examples**
-
-Delete User Success Response
-
-```javascript
-{
-  "message": "User deleted"
-}
-```
-
-Delete User Error Response
-
-```javascript
-{
-  "message": "Unable to find user"
-}
-```
-
-## Get Coaches
-
-`GET /profile/coaches`
-
-**GET** This will get all coaches 
-
-**Examples**
-
-GET Coaches Success Response
-
-```javascript
-{
-    "coaches": [
-        {
-            "id": 1,
-            "first_name": "Jayne",
-            "last_name": "Carmichael Norrie",
-            "email": "jayne@musicisourforte.co.uk",
-            "password": "$2a$10$3LmQzlDtk/1NYys6kn5Ea.FH680/SzfqPWNTC3X9qZQ9.a.I1Z3vi",
-            "location": null,
-            "role_id": 2,
-            "user_id": 1,
-            "avatar_url": "google.com",
-            "experience_level": 1,
-            "skill_level": 1,
-            "description": "Jayne worked as a singing teacher for 9 years and is now studying with Lambda School",
-            "rating": null,
-            "hourly_rate": null,
-            "contact_url": null
-        }
-      ]
-    }
-```
-
-GET Coaches Error Response
-
-```javascript
-{
-    "message": "Auth Failed"
-}
-```
-
-## Get Appointments
-
-`GET /appointment/:id`
-
-Parameters
-
-| Name       |  Type  | Description         | Required |
-| :--------- | :----: | :-------------      | :------: |
-| role       | String | role_id of the user |   Yes    |
-
-**GET** This will get all user appointments at the provided `id` (id is the coach.id or student id) and we need to send a body with an object = {"role": role_id} (role_id from the user)
-
-**Examples**
-
-GET Appointments Success Response
-
-```javascript
-{
-    "appointments": [
-        {
-            "first_name": "Bob",
-            "last_name": "Smith",
-            "email": "bob@google.com",
-            "experience_level": 1,
-            "confidence_level": 1,
-            "avatar_url": "www.stripe.com",
-            "id": 1,
-            "created_at": "2019-12-20T07:50:04.203Z",
-            "appointment_datetime": null,
-            "canceled": false,
-            "appointment_topic": "Frontend"
-        }
-      ]
-    }
-```
-
-GET Appointments Error Response
-
-```javascript
-{
-    "message": "Auth Failed"
-}
-```
+Adapted from https://github.com/nayafia/contributing-template/blob/master/CONTRIBUTING-template.md.
