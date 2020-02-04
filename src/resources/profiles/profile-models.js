@@ -15,12 +15,23 @@ function getStudents() {
     'students',
     'students.user_id',
     '=',
-    'users.id'
-  )
+    'users.id',
+  );
   return students;
+}
+
+async function update(hourly_rate, id) {
+  await db('coaches')
+    .where('id', id)
+    .update({ hourly_rate });
+  return db('users')
+    .join('coaches', 'coaches.user_id', '=', 'users.id')
+    .where('users.id', '=', id)
+    .first();
 }
 
 module.exports = {
   get_coaches,
   getStudents,
+  update,
 };

@@ -130,8 +130,8 @@ exports.register = async (req, res) => {
             role_id: fullUserDetails.role_id,
             avatar_url: '',
             hourly_rate: fullUserDetails.hourly_rate,
-            linkedin: fullUserDetails.linkedin,
-            github: fullUserDetails.github,
+            linkedin_url: fullUserDetails.linkedin,
+            github_url: fullUserDetails.github,
           },
         });
       } catch (error) {
@@ -227,3 +227,5 @@ exports.putSettings = async (req, res) => {
     res.status(500).json({ message: 'Unable to update user' });
   }
 };
+
+
