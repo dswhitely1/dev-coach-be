@@ -3,6 +3,7 @@ exports.up = function(knex) {
     table.increments();
     table.string('appointment_datetime', 100);
     table.boolean('canceled').defaultTo(false);
+    table.boolean('finished').defaultTo(false);
     table
       .integer('coach_id')
       .notNullable()
