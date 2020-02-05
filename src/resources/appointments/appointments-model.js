@@ -64,10 +64,10 @@ async function add(appointment) {
   return findById(id);
 }
 
-async function cancel(canceled, id) {
+async function cancel(data, id) {
   await db('appointments')
     .where('id', id)
-    .update({ canceled });
+    .update(data);
 
   return findById(id);
 }

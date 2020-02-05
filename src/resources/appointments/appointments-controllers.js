@@ -24,7 +24,7 @@ exports.appointments = async (req, res) => {
 exports.cancelAppointment = async (req, res) => {
   try {
     const appointment = await Appointments.cancel(
-      'true',
+      req.body,
       req.params.id,
     );
     if (appointment) {
