@@ -29,6 +29,7 @@ async function getAppointments(role, coach_student_id) {
         'a.id',
         'a.appointment_datetime',
         'a.canceled',
+        'a.finished',
         'at.appointment_topic',
         'al.appointment_length',
       );
@@ -51,6 +52,7 @@ async function getAppointments(role, coach_student_id) {
         'a.id',
         'a.appointment_datetime',
         'a.canceled',
+        'a.finished',
         'at.appointment_topic',
         'al.appointment_length',
       );
