@@ -64,7 +64,7 @@ async function add(appointment) {
   return findById(id);
 }
 
-async function cancel(data, id) {
+async function update(data, id) {
   await db('appointments')
     .where('id', id)
     .update(data);
@@ -75,5 +75,5 @@ async function cancel(data, id) {
 module.exports = {
   getAppointments,
   add,
-  cancel,
+  update,
 };
