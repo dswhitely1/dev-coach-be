@@ -78,7 +78,8 @@ PUSHER_CHAT_KEY=<PUSHER CHAT KEY>
 ```
 
 ## Directory Structure
-
+```
+quality_hub_backend
 ├───.github
 ├───.vscode
 ├───data
@@ -96,6 +97,7 @@ PUSHER_CHAT_KEY=<PUSHER CHAT KEY>
 │   │   └───video
 │   └───utils
 └───_test_
+```
 
 ### Test
 
