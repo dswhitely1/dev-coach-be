@@ -1,5 +1,7 @@
 # DevCoach Backend
 
+Server URL: https://dev-coach-staging.herokuapp.com/
+
 ## Project Overview
 
 DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It allows developers to sign up, book coaches, communicate with them over instant messaging and video chat, and work collaboratively on coding challenges. It was built by Ben, Liam, Dom, Ola, Funmi, and Jayne for their Lambda School Labs project.
