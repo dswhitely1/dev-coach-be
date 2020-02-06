@@ -34,8 +34,8 @@ communication was good and I enjoyed chatting with him in the end as well.`,
           appointment_id: 2,
         },
         {
-          feedback: `Overall you did a decent job Liam!!!.`,
-          rating: 3,
+          feedback: `Good try Liam. For your next interview, make sure to revise data structures and algorithms and practice pair programming!`,
+          rating: 1,
           user_role_id: 2,
           appointment_id: 3,
         },
@@ -58,11 +58,11 @@ communication was good and I enjoyed chatting with him in the end as well.`,
           user_role_id: 1,
         },
         {
-          feedback: `Great work Liam! You did an amazing job. I don't have any improvements for you`,
-          rating: 5,
+          feedback: `Great work Liam! Strong improvements from your last session. I recommend revising JS closures and ES6 syntax`,
+          rating: 3,
           appointment_id: 6,
           user_role_id: 2,
-        }
+        },
       ]);
     });
 };
