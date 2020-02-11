@@ -26,29 +26,29 @@ async function findBy(email) {
   return user;
 }
 
-async function findByForLogin(email) {
-  let user = await db('users')
+function findByForLogin(email) {
+  return db('users')
     .where(email)
     .first();
 
-  if (user.role_id) {
-    const { id } = user;
+  // if (user.role_id) {
+  //   const { id } = user;
 
-    if (user.role_id === 1) {
-      user = await db('users')
-        .join('students', 'students.user_id', '=', 'users.id')
-        .where('users.id', '=', id)
-        .first();
-    } else {
-      user = await db('users')
-        .join('coaches', 'coaches.user_id', '=', 'users.id')
-        .where('users.id', '=', id)
-        .first();
-    }
-    return user;
-  }
+  //   if (user.role_id === 1) {
+  //     user = await db('users')
+  //       .join('students', 'students.user_id', '=', 'users.id')
+  //       .where('users.id', '=', id)
+  //       .first();
+  //   } else {
+  //     user = await db('users')
+  //       .join('coaches', 'coaches.user_id', '=', 'users.id')
+  //       .where('users.id', '=', id)
+  //       .first();
+  //   }
+  //   return user;
+  // }
 
-  return user;
+  // return user;
 }
 
 async function findById(id) {
