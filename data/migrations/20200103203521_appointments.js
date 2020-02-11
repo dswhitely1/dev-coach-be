@@ -15,7 +15,7 @@ exports.up = function(knex) {
       .notNullable()
       .unsigned()
       .references('id')
-      .inTable('students');
+      .inTable('users');
     table
       .integer('topic_id')
       .notNullable()
