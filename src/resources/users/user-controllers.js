@@ -110,6 +110,12 @@ exports.register = async (req, res) => {
       password: bcrypt.hashSync(req.body.password, 10),
       email: req.body.email,
       location: req.body.location,
+      role_id: req.body.role_id,
+      experience_level: req.body.experience_level,
+      hourly_rate: req.body.hourly_rate,
+      linkedin: req.body.linkedin,
+      github: req.body.github,
+      description: req.body.description,
     });
 
     if (newUser) {
@@ -130,8 +136,10 @@ exports.register = async (req, res) => {
             role_id: fullUserDetails.role_id,
             avatar_url: '',
             hourly_rate: fullUserDetails.hourly_rate,
-            linkedin_url: fullUserDetails.linkedin,
-            github_url: fullUserDetails.github,
+            experience_level: fullUserDetails.experience_level,
+            linkedin: fullUserDetails.linkedin,
+            github: fullUserDetails.github,
+            description: fullUserDetails.description,
           },
         });
       } catch (error) {
@@ -170,6 +178,7 @@ exports.login = async (req, res) => {
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
           github: user.github,
+          description: user.description,
         },
       });
     } else {
@@ -227,5 +236,3 @@ exports.putSettings = async (req, res) => {
     res.status(500).json({ message: 'Unable to update user' });
   }
 };
-
-
