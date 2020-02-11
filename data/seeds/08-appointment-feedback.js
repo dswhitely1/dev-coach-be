@@ -28,9 +28,9 @@ get better when it comes to handling the clearInterval properly, using higher or
 and being able to figure out the logic for coding challenge type questions better. I was on the
 border with whether this was a Yes/No, but I think if this was a real interview, I would have 
 suggested a followup interview since it was good but not excellent yet. Overall though
-communication was good and I enjoyed chatting with him in the end as well. SUBERB LIAM!!!`,
+communication was good and I enjoyed chatting with him in the end as well. SUBERB FUNMI!!!`,
           rating: 3,
-          user_id: 2,
+          user_id: 3,
           appointment_id: 2,
         },
         {
