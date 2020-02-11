@@ -20,10 +20,10 @@ function getStudents() {
   return students;
 }
 
-async function update(hourly_rate, id) {
+async function update(rating, id) {
   await db('coaches')
     .where('id', id)
-    .update({ hourly_rate });
+    .update({ rating });
   return db('users')
     .join('coaches', 'coaches.user_id', '=', 'users.id')
     .where('users.id', '=', id)

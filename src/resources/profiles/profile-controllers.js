@@ -56,7 +56,7 @@ exports.addCoach = async (req, res) => {
 exports.updateCoach = async (req, res) => {
   try {
     const coach = await Profile.update(
-      req.body.hourly_rate,
+      req.body.rating,
       req.params.id,
     );
     if (coach) {
