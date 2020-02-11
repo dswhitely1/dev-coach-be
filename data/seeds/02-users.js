@@ -53,6 +53,7 @@ exports.seed = function(knex) {
             'Funmi is currently studying full stack web development at Lambda School. She is interested in React, Express, and Redux.',
           hourly_rate: 100,
           rating: 5,
+        experience_level: 3,
         },
         {
           first_name: 'Bob',
