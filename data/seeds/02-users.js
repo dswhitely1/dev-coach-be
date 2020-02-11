@@ -17,6 +17,11 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/325XJrX',
           linkedin: 'https://linkedin.com/in/jaynecarmichaelnorrie',
           github: 'https://github.com/jaynecn',
+          description:
+            'Jayne worked as a singing teacher for 9 years and is now studying with Lambda School',
+          hourly_rate: 80,
+          rating: 5,
+          experience_level: 3,
         },
         {
           first_name: 'Liam',
@@ -28,6 +33,11 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/2Q0cbgm',
           linkedin: 'https://www.linkedin.com/in/liam-sutton-86254618b/',
           github: 'https://github.com/curm90',
+          description:
+          'Liam is currently studying full-stack web development at Lambda School. He is especially interested in GraphQL, MongoDB, and Javascript and is determined to finish Labs with more git commits than Dom.',
+        hourly_rate: 100,
+        rating: 5,
+        experience_level: 3,
         },
         {
           first_name: 'Funmi',
@@ -39,6 +49,10 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/36SwAec',
           linkedin: 'https://www.linkedin.com/in/funmilayo-talabi/',
           github: 'https://github.com/funmi7',
+          description:
+            'Funmi is currently studying full stack web development at Lambda School. She is interested in React, Express, and Redux.',
+          hourly_rate: 100,
+          rating: 5,
         },
         {
           first_name: 'Bob',
@@ -49,6 +63,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          experience_level: 1,
         },
         {
           first_name: 'Lizzo',
@@ -59,6 +74,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          experience_level: 1,
         },
         {
           first_name: 'Dom',
@@ -70,6 +86,11 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/2FtdD5O',
           linkedin: 'https://www.linkedin.com/in/dom-eccleston/',
           github: 'https://github.com/domeccleston',
+          description:
+          'I am currently studying full stack web development at Lambda School and in my spare time I enjoy fly fishing, mountain biking, and practicing the guitar',
+        hourly_rate: 50,
+        rating: 4,
+        experience_level: 3,
         },
         {
           first_name: 'Oladimeji',
@@ -81,6 +102,10 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/35I1kOT',
           linkedin: 'https://www.linkedin.com/in/oladimejiojo/',
           github: 'https://github.com/ojokure',
+          description: `Hi, My name is Oladimeji. I'm a software engineer currently studying CS with Lambda School and I'm all about programming. When not working, I find time to mentor on dev-coach and it will be my pleasure to help you land that dream job.`,
+          hourly_rate: 100,
+          rating: 5,
+          experience_level: 3,
         },
         {
           first_name: 'Benjamin',
@@ -92,6 +117,11 @@ exports.seed = function(knex) {
           avatar_url: 'https://avatars2.githubusercontent.com/u/45399252?s=460&v=4',
           linkedin: 'https://www.linkedin.com/in/benjamin-grabow/',
           github: 'https://github.com/BenjaminGrabow',
+          description:
+          "Hi, I am Ben, a full-stack developer from Berlin. I am proficient in Javascript, React, NodeJS, Express, and Python. After working in teams, researching, overcoming challenges, architecting scalable systems, I've developed strong creative problem-solving, communication, and organizational skills.",
+        hourly_rate: 50,
+        rating: 5,
+        experience_level: 3,
         },
         {
           first_name: 'Peter',
@@ -102,6 +132,11 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          description:
+          "I'm a full stack web developer hoping to share my skills in React, Redux, Node, and Express. I am happy to coach you toward career success!",
+        hourly_rate: 44,
+        rating: 4,
+        experience_level: 3,
         },
         {
           first_name: 'Riesen',
@@ -112,6 +147,10 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          description:
+            "Hi, I'm an experienced software engineer looking to share my knowledge of algorithms and data structures. Please get in touch to find out more.",
+          hourly_rate: 49,
+          experience_level: 3,
         },
         {
           first_name: 'Gabriel',
@@ -122,6 +161,11 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          description:
+            'Hello there! I am a full-stack web developer with DevCoach. Let me know how I can help you get a job in development',
+          hourly_rate: 44,
+          rating: 4,
+          experience_level: 3,
         },
         {
           first_name: 'Maria',
@@ -132,6 +176,10 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          description:
+          "Hi there, I'm an inexperienced web developer but have watched several tutorials on jQuery, PHP, and HTML. Would love to coach you towards career success",
+        hourly_rate: 20,
+        experience_level: 3,
         },
         {
           first_name: 'July',
@@ -142,6 +190,11 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          description:
+          'I am currently studying full stack web development at Lambda School and in my spare time I enjoy fly fishing, mountain biking, and practicing the guitar',
+        hourly_rate: 50,
+        rating: 4,
+        experience_level: 3,
         },
       ]);
     });
