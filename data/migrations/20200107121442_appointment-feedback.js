@@ -9,10 +9,10 @@ exports.up = function(knex) {
       .references('id')
       .inTable('appointments');
       table
-      .integer('user_role_id')
+      .integer('user_id')
       .unsigned()
       .references('id')
-      .inTable('user_roles');
+      .inTable('user');
   });
 };
 
