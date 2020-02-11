@@ -8,56 +8,17 @@ async function findById(id) {
   return appointment;
 }
 
-async function getAppointments(role, coach_student_id) {
-  let appointments;
-  if (role === '1') {
-    appointments = await db('users')
-      .join('coaches AS c', 'c.user_id', '=', 'users.id')
-      .join('appointments AS a', 'a.coach_id', '=', 'c.id')
-      .join('appointment_topics AS at', 'at.id', '=', 'a.topic_id')
-      .join('appointment_length AS al', 'al.id', '=', 'a.length_id')
-      .where('a.student_id', '=', coach_student_id)
-      .select(
-        'users.first_name',
-        'users.last_name',
-        'users.email',
-        'users.avatar_url',
-        'users.role_id',
-        'c.user_id',
-        'c.experience_level',
-        'c.skill_level',
-        'a.id',
-        'a.appointment_datetime',
-        'a.canceled',
-        'a.finished',
-        'at.appointment_topic',
-        'al.appointment_length',
+function getAppointments(user_id) {
+  return db('appointments')
+    .join('appointment_topics AS at', 'at.id', '=', 'appointments.topic_id')
+    .join('appointment_length AS al', 'al.id', '=', 'appointments.length_id')
+    .join('users', function() {
+      this.on('users.id', 'appointments.user_id_one').orOn(
+        'users.id',
+        'appointments.user_id_two',
       );
-  } else {
-    appointments = await db('users')
-      .join('students AS s', 's.user_id', '=', 'users.id')
-      .join('appointments AS a', 'a.student_id', '=', 's.id')
-      .join('appointment_topics AS at', 'at.id', '=', 'a.topic_id')
-      .join('appointment_length AS al', 'al.id', '=', 'a.length_id')
-      .where('a.coach_id', '=', coach_student_id)
-      .select(
-        'users.first_name',
-        'users.last_name',
-        'users.email',
-        'users.role_id',
-        'users.avatar_url',
-        's.user_id',
-        's.experience_level',
-        's.confidence_level',
-        'a.id',
-        'a.appointment_datetime',
-        'a.canceled',
-        'a.finished',
-        'at.appointment_topic',
-        'al.appointment_length',
-      );
-  }
-  return appointments;
+    })
+    .whereNot('users.id', user_id);
 }
 
 async function add(appointment) {
