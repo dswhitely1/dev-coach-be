@@ -21,7 +21,21 @@ function getAppointments(user_id) {
     .where('appointments.user_id_one', '=', user_id)
     .whereNot('users.id', user_id)
     .orWhere('appointments.user_id_two', '=', user_id)
-    .whereNot('users.id', user_id);
+    .whereNot('users.id', user_id)
+    .select(
+      'users.first_name',
+      'users.last_name',
+      'users.email',
+      'users.id as user_id',
+      'users.avatar_url',
+      'users.experience_level',
+      'appointments.id',
+      'appointments.appointment_datetime',
+      'appointments.canceled',
+      'appointments.finished',
+      'at.appointment_topic',
+      'al.appointment_length',
+    );
 }
 
 async function add(appointment) {
