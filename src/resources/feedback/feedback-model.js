@@ -17,7 +17,23 @@ function getFeedback(user_id) {
       );
     })
     .where('appointment_feedback.user_id', '=', user_id)
-    .whereNot('users.id', user_id);
+    .whereNot('users.id', user_id)
+    .select(
+      'users.first_name',
+      'users.last_name',
+      'users.email',
+      'users.id as user_id',
+      'users.avatar_url',
+      'users.experience_level',
+      'a.id',
+      'a.appointment_datetime',
+      'a.canceled',
+      'a.finished',
+      'at.appointment_topic',
+      'al.appointment_length',
+      'appointment_feedback.feedback',
+      'appointment_feedback.rating',
+    );
 }
 
 module.exports = {
