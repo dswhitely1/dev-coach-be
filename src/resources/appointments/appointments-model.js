@@ -18,6 +18,9 @@ function getAppointments(user_id) {
         'appointments.user_id_two',
       );
     })
+    .where('appointments.user_id_one', '=', user_id)
+    .whereNot('users.id', user_id)
+    .orWhere('appointments.user_id_two', '=', user_id)
     .whereNot('users.id', user_id);
 }
 

@@ -3,14 +3,9 @@ const router = require('express').Router();
 const appointmentsController = require('./appointments-controllers');
 const checkAuth = require('../../utils/check-auth');
 
-router.get('/:id', checkAuth, appointmentsController.appointments);
-// appointment/:coach_or_student_id (send the role id in a Object = {role: 1})
+router.get('/:id', appointmentsController.appointments);
 router.post('/', checkAuth, appointmentsController.addAppointment);
-router.put(
-  '/:id',
-  appointmentsController.updateAppointment,
-);
-// appointment/appointment_id
+router.put('/:id', appointmentsController.updateAppointment);
 router.post(
   '/email',
   checkAuth,
