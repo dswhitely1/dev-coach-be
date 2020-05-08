@@ -1,15 +1,17 @@
 const bcrypt = require('bcryptjs');
 const Users = require('../users/user-model');
-
+//working
 exports.validateRegister = (req, res, next) => {
   const {
     first_name: firstName,
     last_name: lastName,
     password,
     email,
+    //added
+    username,                
   } = req.body;
-
-  if (!(firstName && lastName && password && email)) {
+                                                     //added
+  if (!(firstName && lastName && password && email && username)) {
     res.status(400).json({
       message: 'Please make sure required fields are filled in.',
     });
@@ -44,6 +46,18 @@ exports.validateEmail = async (req, res, next) => {
     next();
   }
 };
+ //added
+exports.validateUsername = async (req, res, next) => {
+  const user = await Users.findByusername(req.body.username);
+
+  if (user) {
+    res.status(409).json({
+      message: 'Username already exists',
+    });
+  } else {
+    next();
+  }
+};
 
 exports.validatePasswordUpdate = (req, res, next) => {
   const { password, confirm_password } = req.body;
@@ -66,11 +80,11 @@ exports.validatePasswordUpdate = (req, res, next) => {
     next();
   }
 };
-
+                          //added
 exports.validateLogin = (req, res, next) => {
-  const { password, email } = req.body;
-
-  if (!(password && email)) {
+  const { password, email, username} = req.body;
+  
+  if (!(password && email || password && email)) {
     res.status(400).json({
       message: 'Please make sure required fields are filled in.',
     });
