@@ -26,9 +26,9 @@ async function findBy(email) {
   return user;
 }
 
-async function findByForLogin(email) {
+async function findByForLogin(filter) {
   let user = await db('users')
-    .where(email)
+    .where({ filter })
     .first();
 
   if (user.role_id) {

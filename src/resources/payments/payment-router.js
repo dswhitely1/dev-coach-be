@@ -1,8 +1,19 @@
-const router = require('express').Router();
+const express = require("express");
+require('dotenv')
 
-const paymentController = require('./payment-controllers');
+const router = express.Router()
+const SecretKey = process.env.STRIPE_SECRET_KEY;
+// const PublicKey = process.env.STRIPE_PUBLIC_KEY;
+const stripe = require("stripe")(SecretKey);
 const checkAuth = require('../../utils/check-auth');
 
-router.post('/stripe', checkAuth, paymentController.stripe);
+router.get('/secret', checkAuth, async (req, res) => {
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: req.body.price,
+    currency: 'usd',
+    metadata: {integration_check: 'accept_a_payment'}
+  });
+  res.json({client_secret: paymentIntent.client_secret});
+});
 
-module.exports = router;
+module.exports = router
