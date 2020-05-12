@@ -22,7 +22,7 @@ async function find() {
 
 async function findBy(email) {
   const user = await db('users')
-    .where({ email })
+    .where(email)
     .first();
 
   return user;
@@ -35,9 +35,10 @@ async function findByusername(username) {
   return user;
 }
 
-async function findByForLogin(email) {
+async function findByForLogin(EmailOrUsername) {
+  console.log("findByForLogin", EmailOrUsername)
   let user = await db('users')
-    .where(email)
+    .where(EmailOrUsername)
     .first();
 
   if (user.role_id) {

@@ -21,18 +21,48 @@ exports.validateRegister = (req, res, next) => {
 };
 
 exports.validatePassword = async (req, res, next) => {
-  const user = await Users.findBy(req.body.email);
-
-  if (
-    !user ||
-    (user && !bcrypt.compareSync(req.body.password, user.password))
-  ) {
-    res.status(400).json({
-      message: 'Email or password is incorrect',
-    });
+  if (req.body.username) {
+    try {
+      const user = await Users.findBy({username: req.body.username});
+       console.log("validatePassword",user)
+  
+    if (
+      !user ||
+      (user && !bcrypt.compareSync(req.body.password, user.password))
+    ) {
+      res.status(400).json({
+        message: 'Username or password is incorrect',
+      });
+    } else {
+      next();
+    }
+  
+    }catch(error) {
+      console.log("validatePassword", error.message)
+    }
+       
   } else {
-    next();
+    try {
+      const user = await Users.findBy({email: req.body.email});
+       console.log("validatePassword",user)
+  
+    if (
+      !user ||
+      (user && !bcrypt.compareSync(req.body.password, user.password))
+    ) {
+      res.status(400).json({
+        message: 'Email or password is incorrect',
+      });
+    } else {
+      next();
+    }
+  
+    }catch(error) {
+      console.log("validatePassword", error.message)
+    }
   }
+  
+  
 };
 
 exports.validateEmail = async (req, res, next) => {
@@ -82,15 +112,22 @@ exports.validatePasswordUpdate = (req, res, next) => {
 };
                           //added
 exports.validateLogin = (req, res, next) => {
-  const { password, email, username} = req.body;
-  
-  if (!(password && email || password && email)) {
-    res.status(400).json({
-      message: 'Please make sure required fields are filled in.',
-    });
-  } else {
-    next();
+  try {
+
+    const { password, email, username} = req.body;
+    console.log(req.body.username)
+    if (!(password && email || password  && username)) {
+      res.status(400).json({
+        message: 'Please make sure required fields are filled in.',
+      });
+    } else {
+      next();
+    }
+
+  }catch(error) {
+    console.log("Validation Login", error.message)
   }
+ 
 };
 
 exports.validateId = async (req, res, next) => {

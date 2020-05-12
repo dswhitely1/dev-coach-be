@@ -155,15 +155,14 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
                            //added
-  const { email, password} = req.body;
+  const { username, email, password} = req.body;
 
-  try {                                               //added
-    const user = await Users.findByForLogin({email});
-    //const usercolumn = await Users.findByForUsername({username})
-    //console.log(user2)
-    if (user && bcrypt.compareSync(password, user.password)
-    //|| user2 && bcrypt.compareSync(password, user.username)
-    
+  try {      
+        //added
+    if(username){
+      const user = await Users.findByForLogin({username});
+           if (user && bcrypt.compareSync(password, user.password)
+        
     ) {
       const token = generateToken(user.id);
       res.status(200).json({
@@ -189,10 +188,42 @@ exports.login = async (req, res) => {
         .status(401)
         .json({ message: 'Email or password is incorrect' });
     }
+    
+    } else {
+      const user = await Users.findByForLogin({email});
+           if (user && bcrypt.compareSync(password, user.password)
+        
+    ) {
+      const token = generateToken(user.id);
+      res.status(200).json({
+        message: `Welcome Back ${user.first_name}!`,
+        token,
+        user: {
+          id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+          location: user.location,
+          role_id: user.role_id,
+          avatar_url: user.avatar_url,
+          hourly_rate: user.hourly_rate,
+          linkedin: user.linkedin,
+          github: user.github,
+          //added
+          username:user.username
+        },
+      });
+    } else {
+      res
+        .status(401)
+        .json({ message: 'Email or password is incorrect' });
+    }
+    }
+        
   } catch (error) {
     res
       .status(500)
-      .json({ message: `Unable to login ${error.message}` });
+      .json({ message: `login Controller: Unable to login ${error.message}` });
   }
 };
 
