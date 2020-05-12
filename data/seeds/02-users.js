@@ -18,6 +18,7 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/325XJrX',
           linkedin: 'https://linkedin.com/in/jaynecarmichaelnorrie',
           github: 'https://github.com/jaynecn',
+          username:'mario'
         },
         {
           first_name: 'Liam',
@@ -30,6 +31,7 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/2Q0cbgm',
           linkedin: 'https://www.linkedin.com/in/liam-sutton-86254618b/',
           github: 'https://github.com/curm90',
+          username:'LiamS'
         },
         {
           first_name: 'Funmi',
@@ -42,6 +44,7 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/36SwAec',
           linkedin: 'https://www.linkedin.com/in/funmilayo-talabi/',
           github: 'https://github.com/funmi7',
+          username:'FunmiT'
         },
         {
           first_name: 'Bob',
@@ -53,6 +56,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          username:'BobS'
         },
         {
           first_name: 'Lizzo',
@@ -64,6 +68,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          username:'SmithL'
         },
         {
           first_name: 'Dom',
@@ -76,6 +81,7 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/2FtdD5O',
           linkedin: 'https://www.linkedin.com/in/dom-eccleston/',
           github: 'https://github.com/domeccleston',
+          username:'DomEcc'
         },
         {
           first_name: 'Oladimeji',
@@ -88,6 +94,7 @@ exports.seed = function(knex) {
           avatar_url: 'https://bit.ly/35I1kOT',
           linkedin: 'https://www.linkedin.com/in/oladimejiojo/',
           github: 'https://github.com/ojokure',
+          username:'OjoOLA'
         },
         {
           first_name: 'Benjamin',
@@ -100,6 +107,7 @@ exports.seed = function(knex) {
           avatar_url: 'https://avatars2.githubusercontent.com/u/45399252?s=460&v=4',
           linkedin: 'https://www.linkedin.com/in/benjamin-grabow/',
           github: 'https://github.com/BenjaminGrabow',
+          username:'BenMets'
         },
         {
           first_name: 'Peter',
@@ -111,6 +119,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          username:'PeteAlonso'
         },
         {
           first_name: 'Riesen',
@@ -122,6 +131,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          username:'SmallR'
         },
         {
           first_name: 'Gabriel',
@@ -133,6 +143,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          username:'BigG'
         },
         {
           first_name: 'Maria',
@@ -144,6 +155,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          username:'Luigi'
         },
         {
           first_name: 'July',
@@ -155,6 +167,7 @@ exports.seed = function(knex) {
           location: 'Aberdeen',
           linkedin: '',
           github: '',
+          username:'Brothers'
         },
       ]);
     });

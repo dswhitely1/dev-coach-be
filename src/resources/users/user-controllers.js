@@ -51,9 +51,10 @@ exports.resetPasswordEmail = async (req, res) => {
           pass: process.env.NODEMAILER_PASSWORD,
         },
       });
-
+      
       const mailOptions = {
-        from: 'qualityhubemail@gmail.com',
+        //added
+        from: 'nodemailerJoseR@gmail.com',
         to: `${user.email}`,
         subject: 'Link To Reset Password',
         text:
@@ -101,7 +102,7 @@ exports.getUserByID = async (req, res) => {
     res.status(500).json('User not found');
   }
 };
-
+//Working fine
 exports.register = async (req, res) => {
   try {
     const newUser = await Users.add({
@@ -110,13 +111,15 @@ exports.register = async (req, res) => {
       password: bcrypt.hashSync(req.body.password, 10),
       email: req.body.email,
       location: req.body.location,
+      //added
+      username:req.body.username
     });
 
     if (newUser) {
       try {
         const fullUserDetails = await Users.findByForLogin({
           email: newUser.email,
-        });
+        })
         const token = generateToken(newUser.id);
         res.status(201).json({
           message: `Welcome ${newUser.first_name}`,
@@ -132,6 +135,7 @@ exports.register = async (req, res) => {
             hourly_rate: fullUserDetails.hourly_rate,
             linkedin_url: fullUserDetails.linkedin,
             github_url: fullUserDetails.github,
+            username:fullUserDetails.username
           },
         });
       } catch (error) {
@@ -150,11 +154,16 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
+                           //added
+  const { username, email, password} = req.body;
 
-  try {
-    const user = await Users.findByForLogin({ email });
-    if (user && bcrypt.compareSync(password, user.password)) {
+  try {      
+        //added
+    if(username){
+      const user = await Users.findByForLogin({username});
+           if (user && bcrypt.compareSync(password, user.password)
+        
+    ) {
       const token = generateToken(user.id);
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
@@ -170,6 +179,8 @@ exports.login = async (req, res) => {
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
           github: user.github,
+          //added
+          username:user.username
         },
       });
     } else {
@@ -177,10 +188,42 @@ exports.login = async (req, res) => {
         .status(401)
         .json({ message: 'Email or password is incorrect' });
     }
+    
+    } else {
+      const user = await Users.findByForLogin({email});
+           if (user && bcrypt.compareSync(password, user.password)
+        
+    ) {
+      const token = generateToken(user.id);
+      res.status(200).json({
+        message: `Welcome Back ${user.first_name}!`,
+        token,
+        user: {
+          id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+          location: user.location,
+          role_id: user.role_id,
+          avatar_url: user.avatar_url,
+          hourly_rate: user.hourly_rate,
+          linkedin: user.linkedin,
+          github: user.github,
+          //added
+          username:user.username
+        },
+      });
+    } else {
+      res
+        .status(401)
+        .json({ message: 'Email or password is incorrect' });
+    }
+    }
+        
   } catch (error) {
     res
       .status(500)
-      .json({ message: `Unable to login ${error.message}` });
+      .json({ message: `login Controller: Unable to login ${error.message}` });
   }
 };
 

@@ -21,10 +21,10 @@ exports.appointments = async (req, res) => {
   }
 };
 
-exports.cancelAppointment = async (req, res) => {
+exports.updateAppointment = async (req, res) => {
   try {
-    const appointment = await Appointments.cancel(
-      'true',
+    const appointment = await Appointments.update(
+      req.body,
       req.params.id,
     );
     if (appointment) {

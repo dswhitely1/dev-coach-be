@@ -4,6 +4,7 @@ module.exports = user => {
   const payload = {
     subject: user.id,
     email: user.email,
+    username:user.username
   };
 
   const options = {

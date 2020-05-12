@@ -9,7 +9,7 @@ router.post('/', checkAuth, appointmentsController.addAppointment);
 router.put(
   '/:id',
   checkAuth,
-  appointmentsController.cancelAppointment,
+  appointmentsController.updateAppointment,
 );
 // appointment/appointment_id
 router.post(

@@ -5,6 +5,7 @@ function getAllUsers() {
 }
 
 async function find() {
+  //added username here
   const users = await db('users').select(
     'id',
     'first_name',
@@ -14,21 +15,61 @@ async function find() {
     'location',
     'role_id',
     'avatar_url',
+    'username'
   );
   return users;
 }
 
 async function findBy(email) {
   const user = await db('users')
-    .where({ email })
+    .where(email)
+    .first();
+
+  return user;
+}
+async function findByusername(username) {
+  const user = await db('users')
+    .where({ username })
     .first();
 
   return user;
 }
 
+<<<<<<< HEAD
 async function findByForLogin(filter) {
   let user = await db('users')
     .where({ filter })
+=======
+async function findByForLogin(EmailOrUsername) {
+  console.log("findByForLogin", EmailOrUsername)
+  let user = await db('users')
+    .where(EmailOrUsername)
+    .first();
+
+  if (user.role_id) {
+    const { id } = user;
+
+    if (user.role_id === 1) {
+      user = await db('users')
+        .join('students', 'students.user_id', '=', 'users.id')
+        .where('users.id', '=', id)
+        .first();
+    } else {
+      user = await db('users')
+        .join('coaches', 'coaches.user_id', '=', 'users.id')
+        .where('users.id', '=', id)
+        .first();
+    }
+    return user;
+  }
+
+  return user;
+}
+//added in case i need to add it to exports.register/*
+async function findByForUsername(username) {
+  let user = await db('users')
+    .where(username)
+>>>>>>> 0fb613274d1fa6d75a5f86ea9c23c22f38299920
     .first();
 
   if (user.role_id) {
@@ -109,4 +150,6 @@ module.exports = {
   remove,
   update,
   updateSettings,
+  findByForUsername,
+  findByusername
 };

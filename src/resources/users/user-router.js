@@ -12,6 +12,8 @@ const {
   validatePasswordUpdate,
   validateEmail,
   validatePassword,
+  //added
+  validateUsername
 } = userMiddleware;
 
 router.post('/resetPassword', userController.resetPasswordEmail);
@@ -19,8 +21,8 @@ router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
 router.get('/:id', checkAuth, userController.getUserByID);
 router.post(
-  '/register',
-  [validateRegister, validateEmail],
+  '/register',                       //added and working fine!
+  [validateRegister, validateEmail,validateUsername ],
   userController.register,
 );
 router.post(
