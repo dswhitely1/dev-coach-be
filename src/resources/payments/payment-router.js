@@ -7,7 +7,7 @@ const SecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = require("stripe")(SecretKey);
 const checkAuth = require('../../utils/check-auth');
 
-router.get('/secret', checkAuth, async (req, res) => {
+router.get('/secret', async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: req.body.price,
     currency: 'usd',
