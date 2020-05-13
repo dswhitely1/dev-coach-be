@@ -13,7 +13,8 @@ exports.accountRecovery = async (req, res) => {
     const { token } = req.query;
     const decoded = jwt.verify(token, process.env.SECRET);
     const user = await Users.findBy(decoded.email);
-    if (user) {
+    
+     if (user) {
       res.status(200).json({
         user,
         message: 'password reset link is okay',
@@ -31,6 +32,7 @@ exports.accountRecovery = async (req, res) => {
     });
   }
 };
+
 
 exports.resetPasswordEmail = async (req, res) => {
   const { email } = req.body;
@@ -73,7 +75,7 @@ exports.resetPasswordEmail = async (req, res) => {
          
           res.status(500).json({
             message1:error.message,
-            message: `sending email failed!`,
+            message2: `sending email failed!`,
           });
         } else {
           res.status(200).json({
