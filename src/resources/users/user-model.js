@@ -5,7 +5,6 @@ function getAllUsers() {
 }
 
 async function find() {
-  //added username here
   const users = await db('users').select(
     'id',
     'first_name',
@@ -23,13 +22,6 @@ async function find() {
 async function findBy(email) {
   const user = await db('users')
     .where(email)
-    .first();
-
-  return user;
-}
-async function findByusername(username) {
-  const user = await db('users')
-    .where({ username })
     .first();
 
   return user;
@@ -60,7 +52,7 @@ async function findByForLogin(EmailOrUsername) {
 
   return user;
 }
-//added in case i need to add it to exports.register/*
+
 async function findByForUsername(username) {
   let user = await db('users')
     .where(username)
@@ -144,6 +136,5 @@ module.exports = {
   remove,
   update,
   updateSettings,
-  findByForUsername,
-  findByusername
+  findByForUsername
 };

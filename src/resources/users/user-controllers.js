@@ -13,7 +13,8 @@ exports.accountRecovery = async (req, res) => {
     const { token } = req.query;
     const decoded = jwt.verify(token, process.env.SECRET);
     const user = await Users.findBy(decoded.email);
-    if (user) {
+    
+     if (user) {
       res.status(200).json({
         user,
         message: 'password reset link is okay',
@@ -32,9 +33,11 @@ exports.accountRecovery = async (req, res) => {
   }
 };
 
+
 exports.resetPasswordEmail = async (req, res) => {
   const { email } = req.body;
-  const user = await Users.findBy(email);
+  const user = await Users.findBy({email});
+ 
   try {
     if (!user) {
       res.status(400).json({
@@ -43,18 +46,20 @@ exports.resetPasswordEmail = async (req, res) => {
       });
     } else {
       const token = tokenize(user);
+      
 
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
           user: process.env.NODEMAILER_ADDRESS,
-          pass: process.env.NODEMAILER_PASSWORD,
+          pass: process.env.NODEMAILER_PASSWORD
         },
-      });
-      
+        
+      }); 
+      console.log(user.email)
       const mailOptions = {
-        //added
-        from: 'nodemailerJoseR@gmail.com',
+       
+        from: 'supportexample@coach-dev.com',
         to: `${user.email}`,
         subject: 'Link To Reset Password',
         text:
@@ -63,12 +68,13 @@ exports.resetPasswordEmail = async (req, res) => {
           `https://www.dev-coach.com/accountRecovery/${token}\n\n` +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n',
       };
-
+      
       transporter.sendMail(mailOptions, (error, response) => {
         if (error) {
+         
           res.status(500).json({
-            error,
-            message: `sending email failed!`,
+            message1:error.message,
+            message2: `sending email failed!`,
           });
         } else {
           res.status(200).json({
@@ -82,6 +88,7 @@ exports.resetPasswordEmail = async (req, res) => {
     res.status(500).json({
       error,
     });
+    
   }
 };
 
@@ -102,7 +109,7 @@ exports.getUserByID = async (req, res) => {
     res.status(500).json('User not found');
   }
 };
-//Working fine
+
 exports.register = async (req, res) => {
   try {
     const newUser = await Users.add({
@@ -111,7 +118,6 @@ exports.register = async (req, res) => {
       password: bcrypt.hashSync(req.body.password, 10),
       email: req.body.email,
       location: req.body.location,
-      //added
       username:req.body.username
     });
 
@@ -154,11 +160,9 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-                           //added
   const { username, email, password} = req.body;
 
-  try {      
-        //added
+  try {
     if(username){
       const user = await Users.findByForLogin({username});
            if (user && bcrypt.compareSync(password, user.password)
@@ -179,7 +183,6 @@ exports.login = async (req, res) => {
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
           github: user.github,
-          //added
           username:user.username
         },
       });
@@ -209,7 +212,6 @@ exports.login = async (req, res) => {
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
           github: user.github,
-          //added
           username:user.username
         },
       });
