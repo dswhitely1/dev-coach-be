@@ -34,7 +34,8 @@ exports.accountRecovery = async (req, res) => {
 
 exports.resetPasswordEmail = async (req, res) => {
   const { email } = req.body;
-  const user = await Users.findBy(email);
+  const user = await Users.findBy({email:email});
+ 
   try {
     if (!user) {
       res.status(400).json({
@@ -43,18 +44,21 @@ exports.resetPasswordEmail = async (req, res) => {
       });
     } else {
       const token = tokenize(user);
+      
 
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
           user: process.env.NODEMAILER_ADDRESS,
-          pass: process.env.NODEMAILER_PASSWORD,
+          pass: process.env.NODEMAILER_PASSWORD
         },
-      });
-      
+        
+      }); 
+      console.log(user.email)
       const mailOptions = {
+       
         //added
-        from: 'nodemailerJoseR@gmail.com',
+        from: 'supportexample@coach-dev.com',
         to: `${user.email}`,
         subject: 'Link To Reset Password',
         text:
@@ -63,11 +67,12 @@ exports.resetPasswordEmail = async (req, res) => {
           `https://www.dev-coach.com/accountRecovery/${token}\n\n` +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n',
       };
-
+      
       transporter.sendMail(mailOptions, (error, response) => {
         if (error) {
+         
           res.status(500).json({
-            error,
+            message1:error.message,
             message: `sending email failed!`,
           });
         } else {
@@ -82,6 +87,7 @@ exports.resetPasswordEmail = async (req, res) => {
     res.status(500).json({
       error,
     });
+    
   }
 };
 

@@ -21,8 +21,8 @@ router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
 router.get('/:id', checkAuth, userController.getUserByID);
 router.post(
-  '/register',                       //added and working fine!
-  [validateRegister, validateEmail,validateUsername ],
+  '/register',                       //added and working fine! validateUsername
+  [validateRegister, validateEmail, validateUsername ],
   userController.register,
 );
 router.post(

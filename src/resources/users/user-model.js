@@ -27,13 +27,6 @@ async function findBy(email) {
 
   return user;
 }
-async function findByusername(username) {
-  const user = await db('users')
-    .where({ username })
-    .first();
-
-  return user;
-}
 
 async function findByForLogin(EmailOrUsername) {
   console.log("findByForLogin", EmailOrUsername)
@@ -145,5 +138,5 @@ module.exports = {
   update,
   updateSettings,
   findByForUsername,
-  findByusername
+  
 };

@@ -2,22 +2,30 @@ const bcrypt = require('bcryptjs');
 const Users = require('../users/user-model');
 //working
 exports.validateRegister = (req, res, next) => {
-  const {
-    first_name: firstName,
-    last_name: lastName,
-    password,
-    email,
-    //added
-    username,                
-  } = req.body;
-                                                     //added
-  if (!(firstName && lastName && password && email && username)) {
-    res.status(400).json({
-      message: 'Please make sure required fields are filled in.',
-    });
-  } else {
-    next();
+  try {
+
+    const {
+      first_name: firstName,
+      last_name: lastName,
+      password,
+      email,
+      //added
+      username,                
+    } = req.body;
+                                                       //added
+    if (!(firstName && lastName && password && email && username)) {
+      console.log("validate register", req.body)
+      res.status(400).json({
+        message: 'Please make sure required fields are filled in.',
+      });
+    } else {
+      next();
+    }
+
+  }catch(error) {
+    console.log(error.message)
   }
+  
 };
 
 exports.validatePassword = async (req, res, next) => {
@@ -66,7 +74,8 @@ exports.validatePassword = async (req, res, next) => {
 };
 
 exports.validateEmail = async (req, res, next) => {
-  const user = await Users.findBy(req.body.email);
+  console.log("validate email", req.body.email )
+  const user = await Users.findBy({email:req.body.email});
 
   if (user) {
     res.status(409).json({
@@ -78,7 +87,8 @@ exports.validateEmail = async (req, res, next) => {
 };
  //added
 exports.validateUsername = async (req, res, next) => {
-  const user = await Users.findByusername(req.body.username);
+  console.log("validate email", req.body )
+  const user = await Users.findBy({username:req.body.username});
 
   if (user) {
     res.status(409).json({
