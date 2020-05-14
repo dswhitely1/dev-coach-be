@@ -5,12 +5,14 @@ const sgMail = require('@sendgrid/mail')
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
+
 const Users = require('./user-model');
 
 const generateToken = require('../../utils/generate-token');
 const tokenize = require('../../utils/tokenize');
 
 exports.accountRecovery = async (req, res) => {
+ 
   try {
     const { token } = req.query;
     const decoded = jwt.verify(token, process.env.SECRET);
@@ -37,8 +39,9 @@ exports.accountRecovery = async (req, res) => {
 
 
 exports.resetPasswordEmail = async (req, res) => {
+ 
   const { email } = req.body;
-  const user = await Users.findBy({email});
+  const user = await Users.findBy({email:email});
  
   try {
     if (!user) {
