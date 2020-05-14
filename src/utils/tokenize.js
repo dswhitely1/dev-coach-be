@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = user => {
+  
   const payload = {
     subject: user.id,
     email: user.email,
@@ -13,7 +14,7 @@ module.exports = user => {
 
   const result = jwt.sign(
     payload,
-    process.env.SECRET || 'open sesame',
+    process.env.SECRET,
     options,
   );
 

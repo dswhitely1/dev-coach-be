@@ -11,7 +11,7 @@ module.exports = user => {
 
   const result = jwt.sign(
     payload,
-    process.env.SECRET || 'Hello',
+    process.env.SECRET,
     options,
   );
 
