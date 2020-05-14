@@ -1,7 +1,9 @@
 require('dotenv');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail')
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const Users = require('./user-model');
 
@@ -46,22 +48,13 @@ exports.resetPasswordEmail = async (req, res) => {
       });
     } else {
       const token = tokenize(user);
-      
-
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.NODEMAILER_ADDRESS,
-          pass: process.env.NODEMAILER_PASSWORD
-        },
-        
-      }); 
-      console.log(user.email)
-      const mailOptions = {
        
-        from: 'supportexample@coach-dev.com',
+      console.log(user.email)
+      const msg = {
+       
         to: `${user.email}`,
-        subject: 'Link To Reset Password',
+        from: 'dallasjames42@gmail.com',
+        subject: 'Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n' +
@@ -69,21 +62,17 @@ exports.resetPasswordEmail = async (req, res) => {
           'If you did not request this, please ignore this email and your password will remain unchanged.\n',
       };
       
-      transporter.sendMail(mailOptions, (error, response) => {
-        if (error) {
-         
-          res.status(500).json({
-            message1:error.message,
-            message2: `sending email failed!`,
-          });
-        } else {
-          res.status(200).json({
-            response,
-            message: 'reset password email sent successfully',
-          });
-        }
-      });
-    }
+      sgMail.send(msg).then(() => {
+        console.log("message sent")
+        res.status(200).json({
+          message: "Email sent"
+        }).catch((err) => {
+          console.log(err)
+        })
+    }).catch((error) => {
+        console.log(error.response.body)
+    })
+  }
   } catch (error) {
     res.status(500).json({
       error,

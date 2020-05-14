@@ -69,3 +69,4 @@ yarn.lock
 
 # vscode debugger
 .vscode
+sendgrid.env

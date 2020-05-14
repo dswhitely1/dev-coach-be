@@ -14,7 +14,7 @@ module.exports = user => {
 
   const result = jwt.sign(
     payload,
-    process.env.SECRET || 'open sesame',
+    process.env.SECRET,
     options,
   );
 
