@@ -17,6 +17,7 @@ exports.accountRecovery = async (req, res) => {
     const { token } = req.query;
     const decoded = jwt.verify(token, process.env.SECRET);
     const user = await Users.findBy(decoded.email);
+    console.log(user)
     
      if (user) {
       res.status(200).json({
@@ -41,7 +42,8 @@ exports.accountRecovery = async (req, res) => {
 exports.resetPasswordEmail = async (req, res) => {
  
   const { email } = req.body;
-  const user = await Users.findBy({email:email});
+  console.log(req.body.email)
+  const user = await Users.findBy({email});
  
   try {
     if (!user) {
@@ -51,8 +53,6 @@ exports.resetPasswordEmail = async (req, res) => {
       });
     } else {
       const token = tokenize(user);
-       
-      console.log(user.email)
       const msg = {
        
         to: `${user.email}`,
