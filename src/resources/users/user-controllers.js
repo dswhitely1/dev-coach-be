@@ -56,7 +56,7 @@ exports.resetPasswordEmail = async (req, res) => {
       const msg = {
        
         to: `${user.email}`,
-        from: 'dallasjames42@gmail.com',
+        from: 'devcoachemail@gmail.com',
         subject: 'Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
