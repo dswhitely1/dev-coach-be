@@ -118,6 +118,29 @@ exports.validatePasswordUpdate = (req, res, next) => {
   }
 };
 
+exports.validateEmailUpdate = (req, res, next) => {
+
+  try {
+    const { oldEmail, email } = req.body;
+    if (oldEmail || email) {
+       if (oldEmail === email) {
+         res.status(400).json({
+           message:
+             'please make your new email is not the same as your current one!',
+         });
+       } else {
+         next();
+       }
+     } 
+
+  }catch(error) {
+    console.log("validateEmailUpdateHelper", error.message)
+  }
+ 
+};
+
+
+
 exports.validateLogin = (req, res, next) => {
   try {
 

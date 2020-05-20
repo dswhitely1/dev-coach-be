@@ -108,7 +108,7 @@ async function updateSettings(email, body) {
     .where({ email })
     .update(body);
   if (updatedUser) {
-    const user = await findBy(body.email);
+    const user = await findBy({email:body.email});
     return user;
   }
   return updatedUser;

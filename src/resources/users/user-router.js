@@ -12,7 +12,8 @@ const {
   validatePasswordUpdate,
   validateEmail,
   validatePassword,
-  validateUsername
+  validateUsername,
+  validateEmailUpdate
 } = userMiddleware;
 
 router.post('/resetPassword', userController.resetPasswordEmail);
@@ -31,8 +32,7 @@ router.post(
 );
 router.delete('/:id', checkAuth, validateId, userController.delete);
 router.put(
-  '/settings',
-  validatePasswordUpdate,
+  '/settings',validateEmailUpdate,
   userController.putSettings,
 );
 router.put('/:id', validatePasswordUpdate, userController.put);
