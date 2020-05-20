@@ -12,7 +12,7 @@ const {
   validatePasswordUpdate,
   validateEmail,
   validatePassword,
-  validateUsername
+  validateUsername,
 } = userMiddleware;
 
 router.post('/resetPassword', userController.resetPasswordEmail);
