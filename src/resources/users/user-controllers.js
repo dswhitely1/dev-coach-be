@@ -42,7 +42,6 @@ exports.accountRecovery = async (req, res) => {
 exports.resetPasswordEmail = async (req, res) => {
  
   const { email } = req.body;
-  console.log(req.body.email)
   const user = await Users.findBy({email});
  
   try {
@@ -109,6 +108,7 @@ exports.register = async (req, res) => {
       last_name: req.body.last_name,
       password: bcrypt.hashSync(req.body.password, 10),
       email: req.body.email,
+      tags: req.body.tags,
       location: req.body.location,
       username:req.body.username
     });
@@ -131,6 +131,7 @@ exports.register = async (req, res) => {
             location: fullUserDetails.location,
             role_id: fullUserDetails.role_id,
             avatar_url: '',
+            tags: fullUserDetails.tags,
             hourly_rate: fullUserDetails.hourly_rate,
             linkedin_url: fullUserDetails.linkedin,
             github_url: fullUserDetails.github,
@@ -173,6 +174,7 @@ exports.login = async (req, res) => {
           email: user.email,
           location: user.location,
           role_id: user.role_id,
+          tags: user.tags,
           avatar_url: user.avatar_url,
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
@@ -204,6 +206,7 @@ exports.login = async (req, res) => {
           email: user.email,
           location: user.location,
           role_id: user.role_id,
+          tags: user.tags,
           avatar_url: user.avatar_url,
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
@@ -252,18 +255,23 @@ exports.put = async (req, res) => {
   }
 };
 
-exports.putSettings = async (req, res) => {
-  const email = req.body.oldEmail;
-  const copyBody = req.body;
-  await delete copyBody.oldEmail;
-  try {
+exports.putSettings = async (req, res, next) => {
+    try {
+      const email = req.body.oldEmail;
+      const copyBody = {email:req.body.email};
+   
     const updatedUser = await Users.updateSettings(email, copyBody);
+    
     if (updatedUser) {
       res.status(200).json({
-        updatedUser,
-        message: 'user updated successfully',
+       updatedUser,
+       message: 'User Email updated successfully',
       });
-    }
+    }else ( error => {
+      res.status(400).json({
+         message: error.message,
+      });
+    })
   } catch (error) {
     res.status(500).json({ message: 'Unable to update user' });
   }
