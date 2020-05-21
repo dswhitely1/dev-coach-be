@@ -20,16 +20,8 @@ router.post('/resetPassword', userController.resetPasswordEmail);
 router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
 router.get('/:id', checkAuth, userController.getUserByID);
-router.post(
-  '/register',
-  [validateRegister, validateEmail, validateUsername ],
-  userController.register,
-);
-router.post(
-  '/login',
-  [validateLogin, validatePassword],
-  userController.login,
-);
+router.post('/register', [validateRegister, validateEmail, validateUsername ], userController.register);
+router.post('/login', [validateLogin, validatePassword], userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
 router.put(
   '/settings',validateEmailUpdate,

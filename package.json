@@ -6,7 +6,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "pretest": "npx knex migrate:latest --env testing && npx knex seed:run --env testing",
-    "test": "cross-env DB_ENV=testing jest --verbose --forceExit",
+    "test": "cross-env DB_ENV=testing jest --verbose --forceExit --coverage",
     "migrate": "npx knex migrate:latest",
     "seed": "npx knex seed:run"
   },

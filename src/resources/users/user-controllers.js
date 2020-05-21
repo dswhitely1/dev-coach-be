@@ -108,6 +108,7 @@ exports.register = async (req, res) => {
       last_name: req.body.last_name,
       password: bcrypt.hashSync(req.body.password, 10),
       email: req.body.email,
+      tags: req.body.tags,
       location: req.body.location,
       username:req.body.username
     });
@@ -130,6 +131,7 @@ exports.register = async (req, res) => {
             location: fullUserDetails.location,
             role_id: fullUserDetails.role_id,
             avatar_url: '',
+            tags: fullUserDetails.tags,
             hourly_rate: fullUserDetails.hourly_rate,
             linkedin_url: fullUserDetails.linkedin,
             github_url: fullUserDetails.github,
@@ -172,6 +174,7 @@ exports.login = async (req, res) => {
           email: user.email,
           location: user.location,
           role_id: user.role_id,
+          tags: user.tags,
           avatar_url: user.avatar_url,
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
@@ -203,6 +206,7 @@ exports.login = async (req, res) => {
           email: user.email,
           location: user.location,
           role_id: user.role_id,
+          tags: user.tags,
           avatar_url: user.avatar_url,
           hourly_rate: user.hourly_rate,
           linkedin: user.linkedin,
