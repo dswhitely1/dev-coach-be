@@ -84,10 +84,8 @@ exports.validateEmail = async (req, res, next) => {
   }
 };
 exports.validateUsername = async (req, res, next) => {
-  console.log("validate email", req.body )
-  const user = await Users.findBy({username:req.body.username});
-
-  if (user) {
+    const user = await Users.findBy({username:req.body.username});
+    if (user) {
     res.status(409).json({
       message: 'Username already exists',
     });
@@ -118,8 +116,8 @@ exports.validatePasswordUpdate = (req, res, next) => {
   }
 };
 
-exports.validateEmailUpdate = (req, res, next) => {
-
+exports.validateEmailUpdate = async (req, res, next) => {
+const currentEmail = await Users.findBy({email:req.body.oldEmail})
   try {
     const { oldEmail, email } = req.body;
     if (oldEmail || email) {
@@ -128,6 +126,11 @@ exports.validateEmailUpdate = (req, res, next) => {
            message:
              'please make your new email is not the same as your current one!',
          });
+       } else if(!currentEmail) {
+        res.status(400).json({
+          message:
+            'Please make sure to use your current email here',
+        });
        } else {
          next();
        }
