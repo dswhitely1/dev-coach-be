@@ -255,7 +255,7 @@ exports.put = async (req, res) => {
   }
 };
 
-exports.putSettings = async (req, res, next) => {
+exports.putSettings = async (req, res) => {
     try {
       const email = req.body.oldEmail;
       const copyBody = {email:req.body.email};
