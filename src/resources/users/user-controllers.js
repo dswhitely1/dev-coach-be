@@ -255,24 +255,24 @@ exports.put = async (req, res) => {
   }
 };
 
-exports.putSettings = async (req, res, next) => {
-    try {
-      const email = req.body.oldEmail;
-      const copyBody = {email:req.body.email};
-   
-    const updatedUser = await Users.updateSettings(email, copyBody);
-    
-    if (updatedUser) {
-      res.status(200).json({
-       updatedUser,
-       message: 'User Email updated successfully',
-      });
-    }else ( error => {
-      res.status(400).json({
-         message: error.message,
-      });
-    })
-  } catch (error) {
-    res.status(500).json({ message: 'Unable to update user' });
+exports.putSettings = async (req, res) => {
+  try {
+    const email = req.body.oldEmail;
+    const copyBody = {email:req.body.email};
+ 
+  const updatedUser = await Users.updateSettings(email, copyBody);
+  
+  if (updatedUser) {
+    res.status(200).json({
+     updatedUser,
+     message: 'User Email updated successfully',
+    });
+  } else {
+    res.status(400).json({
+       message: 'an error occurred'
+    });
   }
+} catch (error) {
+  res.status(500).json({ message: 'Unable to update user' });
+}
 };
