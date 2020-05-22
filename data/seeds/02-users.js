@@ -169,6 +169,18 @@ exports.seed = function(knex) {
           github: '',
           username:'Brothers'
         },
+        {
+          first_name: "David",
+          last_name: "York",
+          email: "daetor2012@hotmail.com",
+          password: bcrypt.hashSync('password123', 10),
+          role_id: 2,
+          tags: 'Back End',
+          location: "Indianapolis",
+          linkedin: '',
+          github: '',
+          username: 'daetor2020'
+        }
       ]);
     });
 };

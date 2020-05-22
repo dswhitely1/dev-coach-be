@@ -15,19 +15,19 @@ beforeAll((done) => {
 
 describe('feedback', () => {
     describe('[GET] /:id', () => {
-        test('Get feedback by ID', () => {
-            return request(server)
-                .post('/feedback/1?role=1')
-                .set('Authorization', `Bearer ${token}`)
-                .expect(request.statusCode).toBe(200)
-                .expect(request.type).toBe("application/json")
-                .expect(request).toHaveLength(749)
+        test('Get feedback by ID', async () => {
+            const response = await request(server)
+                .get(`/feedback/1?role=1`)
+                .set('Cookie', `Bearer ${token}`)
+            expect(response.statusCode).toBe(200)
+            expect(response.type).toBe("application/json")
         })
     })
     describe('[POST] /', () => {
-        test('Post new feedback', () => {
-            return request(server)
+        test('Post new feedback', async ()  => {
+            const response = await request(server)
                 .post('/feedback')
+                .set('Cookie', `Bearer ${token}`)
                 .send({ feedback: `Overall you did a decent job but could 
                 still use a bit of extra work to get better when it comes to 
                 handling the clearInterval properly using higher order 
@@ -41,10 +41,8 @@ describe('feedback', () => {
                 "rating": 3,
                 "user_role_id": 2,
                 "appointment_id": 2 })
-                .set('Authorization', `Bearer ${token}`)
-                .expect(request.statusCode).toBe(200)
-                .expect(request.type).toBe("application/json")
-                .expect(request).toHaveLength(600)
+            expect(response.statusCode).toBe(200)
+            expect(response.type).toBe("application/json")
 
         })
     })
