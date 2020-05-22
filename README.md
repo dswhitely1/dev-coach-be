@@ -2,16 +2,17 @@
 
 # Team
 
-Team Lead: [Benjamin Grabow](https://github.com/BenjaminGrabow) | [Oladimeji Ojo](https://github.com/ojokure)  | [Liam Sutton](https://github.com/curm90) | [Funmilayo Talabi](https://github.com/Funmi7)| [Jayne Carmichael Norrie](https://github.com/jaynecn) | [Dom Eccleston](https://github.com/domeccleston)<br>
-| --- | --- | --- | --- | --- | --- |
-[<img src="https://ca.slack-edge.com/T4JUEB3ME-UGG6CMVMJ-f9508210bec6-512" />](https://github.com/benjamingrabow) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULN0Q2CBC-cd4e7fdb68ec-512" />](https://github.com/ojokure) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULW2F383A-7d224505b235-512" />](https://github.com/curm90) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVUWMC13-9917d69cee28-512" />](https://github.com/funmi7) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UF3TL8CLS-45731806fd60-512" />](https://github.com/jaynecn) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXH09K8X-gaec6ed8a28c-512" />](https://github.com/domeccleston)
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/benjamingrabow) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/domeccleston)
+Team Lead: [Enoka Jaona](https://github.com/EJaona) [Nazifa Hossain](https://github.com/ampers-and)
+
+Back-end Team: [Jose Reinoso](https://github.com/bigtonito39) [Dallas James](https://github.com/dallasjames) [David York](https://github.com/daetor2012)
+
+Front-end Team: [Mandi Hamza](https://github.com/Mandihamza) [Anna Morris](https://github.com/clay-most)
 
 [dev-coach.com](https://www.dev-coach.com)
 
-[Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
+[Notion Document](https://www.notion.so/Dev-Coach-com-503a434aa6b4425595d2b4fa03a1d406)
 
-[Trello Board](https://trello.com/b/SlF9gway/quality-hub)
+[Trello Board](https://trello.com/b/3qTuFm1A/labspt10-dev-coach)
 
 ### The following dependencies were used:
 
