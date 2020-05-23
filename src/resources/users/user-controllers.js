@@ -275,4 +275,7 @@ exports.putSettings = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Unable to update user' });
   }
+} catch (error) {
+  res.status(500).json({ message: 'Unable to update user' });
+}
 };
