@@ -195,7 +195,6 @@ exports.login = async (req, res) => {
     ) {
       const token = generateToken(user.id);
       res.cookie("token", token)
-      console.log("***************************************", token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
@@ -275,7 +274,4 @@ exports.putSettings = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Unable to update user' });
   }
-} catch (error) {
-  res.status(500).json({ message: 'Unable to update user' });
-}
 };

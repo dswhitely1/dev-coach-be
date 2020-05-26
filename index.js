@@ -11,6 +11,8 @@ const feedbackRouter = require('./src/resources/feedback/feedback-router');
 const videoRouter = require('./src/resources/video/video-router');
 // const chatRouter = require('./src/resources/chat/chat-router');
 // const editorRouter = require('./src/resources/editor/editor-router');
+const cookieParse = require("cookie-parser")
+
 
 const server = express();
 
@@ -20,6 +22,7 @@ server.use(cors());
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+server.use(cookieParse())
 
 // catch-all endpoint
 server.get('/', (req, res) => {
