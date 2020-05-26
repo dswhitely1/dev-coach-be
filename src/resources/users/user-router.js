@@ -24,9 +24,9 @@ router.post('/register', [validateRegister, validateEmail, validateUsername ], u
 router.post('/login', [validateLogin, validatePassword], userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
 router.put(
-  '/settings',validateEmailUpdate,
+  '/settings',[checkAuth, validateEmailUpdate],
   userController.putSettings,
 );
-router.put('/:id', validatePasswordUpdate, userController.put);
+router.put('/:id',[checkAuth, validatePasswordUpdate], userController.put);
 
 module.exports = router;
