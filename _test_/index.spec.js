@@ -2,10 +2,6 @@ const request = require('supertest');
 const server = require('../index');
 
 describe('index', () => {
-  describe('[GET] / endpoint', () => {});
-  test('the db env is testing', () => {
-    expect(process.env.DB_ENV).toBe('testing');
-  });
 
   test(' GET should return 200', async () => {
     const response = await request(server).get('/');

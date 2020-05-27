@@ -1,4 +1,7 @@
-const nodemailer = require('nodemailer');
+require('dotenv')
+const sgMail = require('@sendgrid/mail')
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const Appointments = require('./appointments-model');
 
@@ -21,10 +24,10 @@ exports.appointments = async (req, res) => {
   }
 };
 
-exports.cancelAppointment = async (req, res) => {
+exports.updateAppointment = async (req, res) => {
   try {
-    const appointment = await Appointments.cancel(
-      'true',
+    const appointment = await Appointments.update(
+      req.body,
       req.params.id,
     );
     if (appointment) {
@@ -48,6 +51,7 @@ exports.addAppointment = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error)
     res
       .status(500)
       .json({ message: "You can't make this appointment" });
@@ -57,32 +61,19 @@ exports.addAppointment = async (req, res) => {
 exports.sendAppointmentEmail = async (req, res) => {
   const { email, text, subject } = req.body;
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.NODEMAILER_ADDRESS,
-      pass: process.env.NODEMAILER_PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: 'qualityhubemail@gmail.com',
+  const msg = {
     to: email,
+    from: 'devcoachemail@gmail.com',
     subject,
-    text,
-  };
+    text
+  }
 
-  transporter.sendMail(mailOptions, (error, response) => {
-    if (error) {
-      res.status(500).json({
-        error,
-        message: `sending email failed!`,
-      });
-    } else {
-      res.status(200).json({
-        response,
-        message: 'email sent successfully',
-      });
-    }
-  });
-};
+  sgMail.send(msg).then(() => {
+    console.log("message sent")
+    res.status(200).json({
+      message: "Email sent"
+    }).catch((err) => {
+      console.log(err)
+    })
+})
+}

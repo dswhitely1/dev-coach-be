@@ -14,21 +14,48 @@ async function find() {
     'location',
     'role_id',
     'avatar_url',
+    'username'
   );
   return users;
 }
 
 async function findBy(email) {
   const user = await db('users')
-    .where({ email })
+    .where(email)
     .first();
 
   return user;
 }
 
-async function findByForLogin(email) {
+async function findByForLogin(EmailOrUsername) {
+  console.log("findByForLogin", EmailOrUsername)
   let user = await db('users')
-    .where(email)
+    .where(EmailOrUsername)
+    .first();
+
+  if (user.role_id) {
+    const { id } = user;
+
+    if (user.role_id === 1) {
+      user = await db('users')
+        .join('students', 'students.user_id', '=', 'users.id')
+        .where('users.id', '=', id)
+        .first();
+    } else {
+      user = await db('users')
+        .join('coaches', 'coaches.user_id', '=', 'users.id')
+        .where('users.id', '=', id)
+        .first();
+    }
+    return user;
+  }
+
+  return user;
+}
+
+async function findByForUsername(username) {
+  let user = await db('users')
+    .where(username)
     .first();
 
   if (user.role_id) {
@@ -81,7 +108,7 @@ async function updateSettings(email, body) {
     .where({ email })
     .update(body);
   if (updatedUser) {
-    const user = await findBy(body.email);
+    const user = await findBy({email:body.email});
     return user;
   }
   return updatedUser;
@@ -109,4 +136,5 @@ module.exports = {
   remove,
   update,
   updateSettings,
+  findByForUsername
 };

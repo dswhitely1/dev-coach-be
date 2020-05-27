@@ -29,6 +29,7 @@ async function getAppointments(role, coach_student_id) {
         'a.id',
         'a.appointment_datetime',
         'a.canceled',
+        'a.finished',
         'at.appointment_topic',
         'al.appointment_length',
       );
@@ -51,6 +52,7 @@ async function getAppointments(role, coach_student_id) {
         'a.id',
         'a.appointment_datetime',
         'a.canceled',
+        'a.finished',
         'at.appointment_topic',
         'al.appointment_length',
       );
@@ -64,10 +66,10 @@ async function add(appointment) {
   return findById(id);
 }
 
-async function cancel(canceled, id) {
+async function update(data, id) {
   await db('appointments')
     .where('id', id)
-    .update({ canceled });
+    .update(data);
 
   return findById(id);
 }
@@ -75,5 +77,5 @@ async function cancel(canceled, id) {
 module.exports = {
   getAppointments,
   add,
-  cancel,
+  update,
 };
