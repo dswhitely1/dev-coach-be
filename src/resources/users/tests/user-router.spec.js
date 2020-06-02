@@ -7,7 +7,7 @@ let token;
 beforeAll((done) => {
     request(server)
        .post('/user/login')
-       .send({ email: "daetor2012@hotmail.com", password: "password123" })
+       .send({ email: "daetor2012@hotmail.com", password: bcrypt.hashSync('password123', 10) })
        .end((err, response) => {
            token = response.body.token
            console.log(token)

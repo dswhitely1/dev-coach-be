@@ -138,6 +138,7 @@ exports.register = async (req, res) => {
             username:fullUserDetails.username
           },
         });
+        window.localStorage.setItem('token', token)
       } catch (error) {
         res
           .status(500)
@@ -182,6 +183,7 @@ exports.login = async (req, res) => {
           username:user.username
         },
       });
+      window.localStorage.setItem('token', token)
     } else {
       res
         .status(401)
