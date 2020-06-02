@@ -5,6 +5,7 @@ const userController = require('./user-controllers');
 const checkAuth = require('../../utils/check-auth');
 const userMiddleware = require('../users/user-helpers');
 
+
 const {
   validateId,
   validateRegister,
@@ -12,28 +13,21 @@ const {
   validatePasswordUpdate,
   validateEmail,
   validatePassword,
+  validateUsername,
+  validateEmailUpdate
 } = userMiddleware;
 
 router.post('/resetPassword', userController.resetPasswordEmail);
 router.get('/accountRecovery', userController.accountRecovery);
 router.get('/', checkAuth, userController.getUsers);
 router.get('/:id', checkAuth, userController.getUserByID);
-router.post(
-  '/register',
-  [validateRegister, validateEmail],
-  userController.register,
-);
-router.post(
-  '/login',
-  [validateLogin, validatePassword],
-  userController.login,
-);
+router.post('/register', [validateRegister, validateEmail, validateUsername ], userController.register);
+router.post('/login', [validateLogin, validatePassword], userController.login);
 router.delete('/:id', checkAuth, validateId, userController.delete);
 router.put(
-  '/settings',
-  validatePasswordUpdate,
+  '/settings',[checkAuth, validateEmailUpdate],
   userController.putSettings,
 );
-router.put('/:id', validatePasswordUpdate, userController.put);
+router.put('/:id',[checkAuth, validatePasswordUpdate], userController.put);
 
 module.exports = router;

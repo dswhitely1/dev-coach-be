@@ -6,7 +6,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "pretest": "npx knex migrate:latest --env testing && npx knex seed:run --env testing",
-    "test": "cross-env DB_ENV=testing jest --verbose --forceExit",
+    "test": "cross-env DB_ENV=testing jest --verbose --forceExit --coverage",
     "migrate": "npx knex migrate:latest",
     "seed": "npx knex seed:run"
   },
@@ -18,8 +18,10 @@
   "license": "MIT",
   "dependencies": {
     "@pusher/chatkit-server": "^2.4.0",
+    "@sendgrid/mail": "^7.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
