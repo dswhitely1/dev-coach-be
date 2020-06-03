@@ -28,7 +28,7 @@ server.use(cookieParse())
 server.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to the Dev Coach API' });
 });
-
+server.use(cookieParse())
 server.use('/user', userRouter);
 server.use('/appointment', appointmentRouter);
 server.use('/profile', profileRouter);

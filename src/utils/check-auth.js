@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
   try {
-    const {token} = req.cookies;
+    const {token} = req.cookie;
        if (!token) {
       res.status(401).json({message: "User Not logged in"})
     }

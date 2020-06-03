@@ -3,8 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail')
 
-//sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-
 
 const Users = require('./user-model');
 
