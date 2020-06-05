@@ -3,7 +3,7 @@ const server = require("../../../index");
 
 let token;
 
-/*beforeAll((done) => {
+beforeAll((done) => {
     request(server)
         .post('/user/login')
         .send({ email: "daetor2012@hotmail.com", password: "password123" })
@@ -12,7 +12,7 @@ let token;
             console.log(token);
             done()
         })
-})*/
+}, 9000)
 
 describe('profiles', () => {
     beforeAll((done) => {
@@ -30,7 +30,7 @@ describe('profiles', () => {
         test('Get coaches list', async () => {
             const response = await request(server)
                 .get('/profile/coaches')
-                .set('Cookie', `Bearer ${token}`)
+                .set('Cookie', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
 
@@ -40,7 +40,7 @@ describe('profiles', () => {
         test('Get students list', async () => {
             const response = await request(server)
                 .get('/profile/students')
-                .set('Cookie', `Bearer ${token}`)
+                .set('Cookie', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
 
