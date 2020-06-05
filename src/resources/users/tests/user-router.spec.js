@@ -7,20 +7,19 @@ let token;
 beforeAll((done) => {
     request(server)
        .post('/user/login')
-       .send({ email: "daetor2012@hotmail.com", password: bcrypt.hashSync('password123', 10) })
+       .send({ email: "daetor2012@hotmail.com", password: 'password123', username: "daetor2005" })
        .end((err, response) => {
            token = response.body.token
-           console.log(token)
            done()
        })
-})
+}, 11000)
 
 describe('users', () => {
     describe('[GET] /', () => {
         test('Get list of users', async () => {
             const response = await request(server)
                 .get('/user')
-                .set('Cookie', `Bearer ${token}`)
+                .set('Cookie', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
         })
@@ -29,7 +28,9 @@ describe('users', () => {
         test('Get user by ID', async () => {
             const response = await request(server)
                 .get('/user/1')
-                .set('Cookie', `Bearer ${token}`)
+                .set('Cookie', `${token}`)
+                console.log(response.body)
+                console.log(token)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
         })
