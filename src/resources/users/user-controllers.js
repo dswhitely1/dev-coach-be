@@ -152,7 +152,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   const { username, email, password} = req.body;
 
   try {
@@ -221,9 +221,7 @@ exports.login = async (req, res) => {
     }
         
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: `login Controller: Unable to login ${error.message}` });
+    next(error)
   }
 };
 
