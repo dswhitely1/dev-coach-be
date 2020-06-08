@@ -152,7 +152,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   const { username, email, password} = req.body;
 
   try {
@@ -162,6 +162,7 @@ exports.login = async (req, res) => {
         
     ) {
       const token = generateToken(user.id);
+      res.cookie("token", token)
       console.log(token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
@@ -221,9 +222,7 @@ exports.login = async (req, res) => {
     }
         
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: `login Controller: Unable to login ${error.message}` });
+    next(error)
   }
 };
 

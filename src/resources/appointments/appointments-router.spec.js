@@ -12,7 +12,7 @@ beforeAll((done) => {
             console.log(token)
             done()
         })
-})
+}, 5000)
 
 describe('appointments', () => {
     
@@ -20,7 +20,7 @@ describe('appointments', () => {
         test('Post new appointment failure intended', async () => {
             const response = await request(server)
                 .post('/appointment')
-                .set('Cookie', `Bearer ${token}`)
+                .set('Cookie', `${token}`)
                 .send({ first_name: "David", last_name: "York" })
             expect(response.statusCode).toBe(500)
             expect(response.type).toBe("application/json")
@@ -32,7 +32,7 @@ describe('appointments', () => {
         test('Get appointment by ID', async () => {
             const response = await request(server)
                 .get('/appointment/1')
-                .set('Cookie', `Bearer ${token}`)
+                .set('Cookie', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
         })
