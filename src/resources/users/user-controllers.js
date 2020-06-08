@@ -117,7 +117,7 @@ exports.register = async (req, res) => {
           email: newUser.email,
         })
         const token = generateToken(newUser.id);
-        res.cookie("token", token)
+        // res.cookie("token", token)
         res.status(201).json({
           message: `Welcome ${newUser.first_name}`,
           token,
@@ -162,7 +162,7 @@ exports.login = async (req, res, next) => {
         
     ) {
       const token = generateToken(user.id);
-      res.cookie("token", token)
+      // res.cookie("token", token)
       console.log(token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
@@ -195,7 +195,7 @@ exports.login = async (req, res, next) => {
         
     ) {
       const token = generateToken(user.id);
-      res.cookie("token", token)
+      // res.cookie("token", token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
