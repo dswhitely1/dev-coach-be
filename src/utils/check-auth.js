@@ -1,3 +1,4 @@
+
 const jwt = require('jsonwebtoken');
 require("cookie-parser")
 
@@ -19,7 +20,7 @@ module.exports = (req, res, next) => {
       }
     })
 
-       
+    next();
   } catch (error) {
     res.status(401).json({ message: 'Auth Failed' });
     console.log(error)
