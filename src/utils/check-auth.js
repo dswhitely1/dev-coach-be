@@ -1,4 +1,3 @@
-
 const jwt = require('jsonwebtoken');
 require("cookie-parser")
 
@@ -6,7 +5,7 @@ require("cookie-parser")
 module.exports = (req, res, next) => {
   
   try {
-    const token = req.headers.authorization;
+    const { token } = req.cookie;
        if (!token) {
       return res.status(401).json({message: `User Not logged in, ${token}`})
       
