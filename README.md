@@ -2,6 +2,10 @@
 
 # Team
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/3211a1f6a061db1b55bc/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/dev-coach-be/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/3211a1f6a061db1b55bc/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/dev-coach-be/test_coverage) 
+
 Team Lead: [Enoka Jaona](https://github.com/EJaona) [Nazifa Hossain](https://github.com/ampers-and)
 
 Back-end Team: [Jose Reinoso](https://github.com/bigtonito39) [Dallas James](https://github.com/dallasjames) [David York](https://github.com/daetor2012)
@@ -722,3 +726,6 @@ Succesful response
   "token": "[token]"
 }
 ```
+
+
+
