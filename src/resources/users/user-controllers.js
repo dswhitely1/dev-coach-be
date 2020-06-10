@@ -2,6 +2,7 @@ require('dotenv');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail')
+//require("cookie-parser")
 
 
 const Users = require('./user-model');
@@ -117,7 +118,7 @@ exports.register = async (req, res) => {
           email: newUser.email,
         })
         const token = generateToken(newUser.id);
-        // res.cookie("token", token)
+        res.cookie("token", token)
         res.status(201).json({
           message: `Welcome ${newUser.first_name}`,
           token,
@@ -136,7 +137,7 @@ exports.register = async (req, res) => {
             username:fullUserDetails.username
           },
         });
-        window.localStorage.setItem('token', token)
+        //window.localStorage.setItem('token', token)
       } catch (error) {
         res
           .status(500)
@@ -162,8 +163,7 @@ exports.login = async (req, res, next) => {
         
     ) {
       const token = generateToken(user.id);
-      // res.cookie("token", token)
-      console.log(token)
+      res.cookie("token", token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
@@ -182,7 +182,7 @@ exports.login = async (req, res, next) => {
           username:user.username
         },
       });
-      window.localStorage.setItem('token', token)
+      //window.localStorage.setItem('token', token)
     } else {
       res
         .status(401)
@@ -195,7 +195,7 @@ exports.login = async (req, res, next) => {
         
     ) {
       const token = generateToken(user.id);
-      // res.cookie("token", token)
+      res.cookie("token", token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
