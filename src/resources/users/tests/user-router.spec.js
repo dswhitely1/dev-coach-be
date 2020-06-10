@@ -19,7 +19,7 @@ describe('users', () => {
         test('Get list of users', async () => {
             const response = await request(server)
                 .get('/user')
-                .set('Cookie', `${token}`)
+                .set('authorization', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
         })
@@ -28,7 +28,7 @@ describe('users', () => {
         test('Get user by ID', async () => {
             const response = await request(server)
                 .get('/user/1?role=1')
-                .set('Cookie', `${token}`)
+                .set('authorization', `${token}`)
                 console.log(response.body)
                 console.log(token)
             expect(response.statusCode).toBe(200)

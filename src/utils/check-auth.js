@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   try {
 
     const { token } = req.cookies;
-    const token2 = req.headers.cookie
+    const token2 = req.headers.authorization
 
        if (!token && !token2) {
       return res.status(401).json({message: `User Not logged in, ${token && token2}`})
