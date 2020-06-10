@@ -18,7 +18,7 @@ describe('feedback', () => {
         test('Get feedback by ID', async () => {
             const response = await request(server)
                 .get(`/feedback/1?role=1`)
-                .set('Cookie', `${token}`)
+                .set('authorization', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
         })
@@ -27,7 +27,7 @@ describe('feedback', () => {
         test('Post new feedback', async ()  => {
             const response = await request(server)
                 .post('/feedback')
-                .set('Cookie', `${token}`)
+                .set('authorization', `${token}`)
                 .send({ feedback: `Overall you did a decent job but could 
                 still use a bit of extra work to get better when it comes to 
                 handling the clearInterval properly using higher order 

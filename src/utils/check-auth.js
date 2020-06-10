@@ -7,14 +7,17 @@ module.exports = (req, res, next) => {
    console.log("take a look",req.headers.cookie)
    console.log(req)
   try {
+
     const { token } = req.cookies;
-       if (!token) {
-      return res.status(401).json({message: `User Not logged in, ${token}`})
+    const token2 = req.headers.authorization
+
+       if (!token && !token2) {
+      return res.status(401).json({message: `User Not logged in, ${token && token2}`})
       
     }
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    jwt.verify(token || token2, process.env.SECRET, (err, decoded) => {
       if (err) {
-        res.status(401).json({ you: `${err.message}, ${token}` });
+        res.status(401).json({ you: `${err.message}, ${token && token2}` });
         console.log(err)
       }  else {
         console.log(decoded)
