@@ -27,7 +27,7 @@ describe('users', () => {
     describe('[GET] /:id', () => {
         test('Get user by ID', async () => {
             const response = await request(server)
-                .get('/user/1')
+                .get('/user/1?role=1')
                 .set('Cookie', `${token}`)
                 console.log(response.body)
                 console.log(token)
