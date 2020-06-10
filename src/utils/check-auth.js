@@ -6,7 +6,9 @@ module.exports = (req, res, next) => {
   console.log("Right way",req.cookies.token) 
    console.log("take a look",req.headers.cookie)
   try {
+
     const { token } = req.cookies;
+
        if (!token) {
       return res.status(401).json({message: `User Not logged in, ${token}`})
       
