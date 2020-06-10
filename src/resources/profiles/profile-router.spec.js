@@ -30,7 +30,7 @@ describe('profiles', () => {
         test('Get coaches list', async () => {
             const response = await request(server)
                 .get('/profile/coaches')
-                .set('Cookie', `${token}`)
+                .set('authorization', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
 
@@ -40,7 +40,7 @@ describe('profiles', () => {
         test('Get students list', async () => {
             const response = await request(server)
                 .get('/profile/students')
-                .set('Cookie', `${token}`)
+                .set('authorization', `${token}`)
             expect(response.statusCode).toBe(200)
             expect(response.type).toBe("application/json")
 

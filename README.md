@@ -1,3 +1,8 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/3211a1f6a061db1b55bc/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/dev-coach-be/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/3211a1f6a061db1b55bc/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/dev-coach-be/test_coverage) 
+
+
 # Dev-Coach Back-End
 
 # Team
@@ -722,3 +727,6 @@ Succesful response
   "token": "[token]"
 }
 ```
+
+
+
