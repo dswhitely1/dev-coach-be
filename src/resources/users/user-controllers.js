@@ -2,6 +2,7 @@ require('dotenv');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail')
+require("cookie-parser")
 
 
 const Users = require('./user-model');
@@ -136,7 +137,7 @@ exports.register = async (req, res) => {
             username:fullUserDetails.username
           },
         });
-        window.localStorage.setItem('token', token)
+        //window.localStorage.setItem('token', token)
       } catch (error) {
         res
           .status(500)
@@ -182,7 +183,7 @@ exports.login = async (req, res, next) => {
           username:user.username
         },
       });
-      window.localStorage.setItem('token', token)
+      //window.localStorage.setItem('token', token)
     } else {
       res
         .status(401)

@@ -1,11 +1,14 @@
 const jwt = require('jsonwebtoken');
-require("cookie-parser")
+
 
 
 module.exports = (req, res, next) => {
+  console.log("Right way",req.cookies.token) 
+   console.log("take a look",req.headers.cookie)
   try {
-    const { token } = req.cookie;
-    console.log(token)
+
+    const { token } = req.cookies;
+
        if (!token) {
       return res.status(401).json({message: `User Not logged in, ${token}`})
       
@@ -16,10 +19,9 @@ module.exports = (req, res, next) => {
         console.log(err)
       }  else {
         console.log(decoded)
-        next();
+       
       }
     })
-
     next();
   } catch (error) {
     res.status(401).json({ message: 'Auth Failed' });
