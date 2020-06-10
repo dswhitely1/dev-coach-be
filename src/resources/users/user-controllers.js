@@ -2,7 +2,7 @@ require('dotenv');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail')
-require("cookie-parser")
+//require("cookie-parser")
 
 
 const Users = require('./user-model');
@@ -164,7 +164,7 @@ exports.login = async (req, res, next) => {
     ) {
       const token = generateToken(user.id);
       res.cookie("token", token)
-      console.log(token)
+      console.log("coming from login", token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,
@@ -197,6 +197,7 @@ exports.login = async (req, res, next) => {
     ) {
       const token = generateToken(user.id);
       res.cookie("token", token)
+      console.log("coming from login", token)
       res.status(200).json({
         message: `Welcome Back ${user.first_name}!`,
         token,

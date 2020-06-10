@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports = (req, res, next) => {
   console.log("Right way",req.cookies.token) 
    console.log("take a look",req.headers.cookie)
+   console.log(req)
   try {
     const { token } = req.cookies;
        if (!token) {
