@@ -3,6 +3,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const cookieParser = require("cookie-parser")
+const morgan = require('morgan')
 const userRouter = require('./src/resources/users/user-router');
 const appointmentRouter = require('./src/resources/appointments/appointments-router');
 const profileRouter = require('./src/resources/profiles/profile-router');
@@ -11,7 +13,6 @@ const feedbackRouter = require('./src/resources/feedback/feedback-router');
 const videoRouter = require('./src/resources/video/video-router');
 // const chatRouter = require('./src/resources/chat/chat-router');
 // const editorRouter = require('./src/resources/editor/editor-router');
-const cookieParse = require("cookie-parser")
 
 
 const server = express();
@@ -22,13 +23,14 @@ server.use(cors());
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
-server.use(cookieParse())
+server.use(cookieParser())
+server.use(morgan())
 
 // catch-all endpoint
 server.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to the Dev Coach API' });
 });
-server.use(cookieParse())
+server.use(cookieParser())
 server.use('/user', userRouter);
 server.use('/appointment', appointmentRouter);
 server.use('/profile', profileRouter);

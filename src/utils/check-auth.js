@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 
 module.exports = (req, res, next) => {
-  console.log("Right way",req.cookies.token) 
+  console.log("Right way",req.cookies) 
    console.log("take a look",req.headers.cookie)
    console.log(req)
   try {
