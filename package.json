@@ -6,12 +6,19 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "pretest": "npx knex migrate:latest --env testing && npx knex seed:run --env testing",
-    "test": "cross-env DB_ENV=testing jest --verbose --forceExit --coverage",
+    "test": "jest --detectOpenHandles --forceExit",
     "migrate": "npx knex migrate:latest",
-    "seed": "npx knex seed:run"
+    "seed": "npx knex seed:run",
+    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
+    ]
   },
   "repository": "https://github.com/LABS-EU3/quality_hub_backend.git",
   "author": "benjamingrabow <codingbenjamingrabow@gmx.de>",
