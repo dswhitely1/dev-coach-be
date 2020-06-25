@@ -66,9 +66,7 @@ exports.validatePassword = async (req, res, next) => {
     }catch(error) {
       console.log("validatePassword", error.message)
     }
-  }
-  
-  
+  }  
 };
 
 exports.validateEmail = async (req, res, next) => {

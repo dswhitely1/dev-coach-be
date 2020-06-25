@@ -22,6 +22,10 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
+    pool: {
+      min: 2,
+      max: 10
+    },
   },
   staging: {
     client: 'pg',
@@ -33,6 +37,10 @@ module.exports = {
     },
     seeds: {
       directory: './data/seeds',
+    },
+    pool: {
+      min: 2,
+      max: 10
     },
   },
   testing: {
@@ -48,6 +56,9 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
+    pool: {
+      min: 2,
+      max: 10
+    }
   },
 };
-//jest.setTimeout(30000)

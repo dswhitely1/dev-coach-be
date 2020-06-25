@@ -2,7 +2,6 @@ require('dotenv');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail')
-//require("cookie-parser")
 
 
 const Users = require('./user-model');
@@ -54,7 +53,7 @@ exports.resetPasswordEmail = async (req, res) => {
       const msg = {
        
         to: `${user.email}`,
-        from: 'devcoachemail@gmail.com',
+        from: 'dallasjames42@gmail.com',
         subject: 'Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -64,9 +63,9 @@ exports.resetPasswordEmail = async (req, res) => {
       };
       
       sgMail.send(msg).then(() => {
-        console.log("message sent")
+        console.log("message sent successfully")
         res.status(200).json({
-          message: "Email sent"
+          message: "Email sent Successfully"
         }).catch((err) => {
           console.log(err)
         })
@@ -119,25 +118,7 @@ exports.register = async (req, res) => {
         })
         const token = generateToken(newUser.id);
         res.cookie("token", token)
-        res.status(201).json({
-          message: `Welcome ${newUser.first_name}`,
-          token,
-          user: {
-            id: fullUserDetails.id,
-            first_name: fullUserDetails.first_name,
-            last_name: fullUserDetails.last_name,
-            email: fullUserDetails.email,
-            location: fullUserDetails.location,
-            role_id: fullUserDetails.role_id,
-            avatar_url: '',
-            tags: fullUserDetails.tags,
-            hourly_rate: fullUserDetails.hourly_rate,
-            linkedin_url: fullUserDetails.linkedin,
-            github_url: fullUserDetails.github,
-            username:fullUserDetails.username
-          },
-        });
-        //window.localStorage.setItem('token', token)
+        res.status(201).json({message: `Welcome ${fullUserDetails.first_name}`, token})
       } catch (error) {
         res
           .status(500)
@@ -155,34 +136,17 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res, next) => {
   const { username, email, password} = req.body;
-
+  
   try {
     if(username){
       const user = await Users.findByForLogin({username});
-           if (user && bcrypt.compareSync(password, user.password)
-        
-    ) {
+      
+      if (user && bcrypt.compareSync(password, user.password)
+      ) {
       const token = generateToken(user.id);
       res.cookie("token", token)
-      res.status(200).json({
-        message: `Welcome Back ${user.first_name}!`,
-        token,
-        user: {
-          id: user.id,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          email: user.email,
-          location: user.location,
-          role_id: user.role_id,
-          tags: user.tags,
-          avatar_url: user.avatar_url,
-          hourly_rate: user.hourly_rate,
-          linkedin: user.linkedin,
-          github: user.github,
-          username:user.username
-        },
-      });
-      //window.localStorage.setItem('token', token)
+      const Welcome = { message: `Welcome Back ${user.first_name}!`,token}
+      res.status(200).json(Welcome);
     } else {
       res
         .status(401)
@@ -196,24 +160,8 @@ exports.login = async (req, res, next) => {
     ) {
       const token = generateToken(user.id);
       res.cookie("token", token)
-      res.status(200).json({
-        message: `Welcome Back ${user.first_name}!`,
-        token,
-        user: {
-          id: user.id,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          email: user.email,
-          location: user.location,
-          role_id: user.role_id,
-          tags: user.tags,
-          avatar_url: user.avatar_url,
-          hourly_rate: user.hourly_rate,
-          linkedin: user.linkedin,
-          github: user.github,
-          username:user.username
-        },
-      });
+      const Welcome = { message: `Welcome Back ${user.first_name}!`,token}
+      res.status(200).json(Welcome);
     } else {
       res
         .status(401)
@@ -265,6 +213,7 @@ exports.putSettings = async (req, res) => {
        updatedUser,
        message: 'User Email updated successfully',
       });
+    // eslint-disable-next-line no-unused-expressions
     }else ( error => {
       res.status(400).json({
          message: error.message,

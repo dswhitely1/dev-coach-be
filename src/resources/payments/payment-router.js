@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const checkAuth = require('../../utils/check-auth');
+const corsfix = require("../../utils/cors");
 
 router.use(express.json());
 
@@ -34,7 +35,7 @@ router.use(express.json());
 //   res.send(subscription);
 // });
 
-router.get('/secret', checkAuth, async (req, res) => {
+router.get('/secret', checkAuth, corsfix, async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: req.body.price,
     currency: 'usd',

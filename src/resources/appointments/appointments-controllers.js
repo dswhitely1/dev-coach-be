@@ -63,7 +63,7 @@ exports.sendAppointmentEmail = async (req, res) => {
 
   const msg = {
     to: email,
-    from: 'devcoachemail@gmail.com',
+    from: 'dallasjames42@gmail.com',
     subject,
     text
   }

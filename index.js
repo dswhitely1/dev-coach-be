@@ -19,7 +19,7 @@ const server = express();
 
 // plug middleware & connections
 server.use(helmet());
-server.use(cors());
+server.use(cors({origin: true, credentials: true}));
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
